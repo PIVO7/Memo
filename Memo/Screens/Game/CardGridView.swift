@@ -47,7 +47,7 @@ struct CardGridView: View {
         } label: {
             MemoryCardView(card: card, size: side)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(CardButtonStyle())
         .disabled(!isEnabled || card.isFaceUp || card.isMatched)
         .accessibilityLabel(accessibilityLabel(for: card, number: index + 1))
         // Geen hint op kaarten die toch niet reageren; dat scheelt VoiceOver
@@ -57,6 +57,17 @@ struct CardGridView: View {
                 ? Text("Draai om")
                 : Text(verbatim: "")
         )
+    }
+
+    /// Zonder de automatische dim van de systeemknop: een open of gevonden
+    /// kaart is "uitgeschakeld" maar moet er niet uitgegrijsd bijliggen —
+    /// de kaart zelf toont zijn staat al.
+    private struct CardButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .scaleEffect(configuration.isPressed ? 0.93 : 1)
+                .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+        }
     }
 
     private func accessibilityLabel(for card: MemoryCard, number: Int) -> String {
