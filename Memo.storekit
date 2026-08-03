@@ -1,0 +1,38 @@
+{
+  "identifier" : "41E20A11-0000-4000-8000-41E20A110001",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : true,
+      "internalID" : "41E20A11-0000-4000-8000-41E20A110002",
+      "localizations" : [
+        {
+          "description" : "Alle tegenstanders, alle thema's en statistieken.",
+          "displayName" : "Gezinsversie",
+          "locale" : "nl_NL"
+        }
+      ],
+      "productID" : "com.pivo7.memo.gezin",
+      "referenceName" : "Gezinsversie",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "nl_NL",
+    "_storefront" : "BEL",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

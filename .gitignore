@@ -1,0 +1,38 @@
+# Memo.xcodeproj staat bewust wél in git, zodat je het project kan openen
+# zonder XcodeGen te installeren. Persoonlijke Xcode-staat blijft er buiten.
+Memo.xcodeproj/xcuserdata/
+Memo.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# CocoaPods / Carthage (voor het geval dat)
+Pods/
+Carthage/Build/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
