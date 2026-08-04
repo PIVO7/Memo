@@ -20,7 +20,14 @@ struct ProfilesView: View {
                 VStack(alignment: .leading, spacing: m.gutter * 1.5) {
                     section("NIEUW PROFIEL") {
                         HStack(spacing: 10) {
-                            TextField("Naam van je kind", text: $newName)
+                            TextField(
+                                "Naam van je kind",
+                                text: $newName,
+                                // Eigen promptkleur: de systeemplaceholder
+                                // kleurt met het toestelschema mee en werd in
+                                // donkere modus wit op de witte kaart.
+                                prompt: Text("Naam van je kind").foregroundStyle(AppTheme.ink.opacity(0.42))
+                            )
                                 .font(AppTheme.rounded(m.bodySize, .bold))
                                 .foregroundStyle(AppTheme.ink)
                                 .textInputAutocapitalization(.words)

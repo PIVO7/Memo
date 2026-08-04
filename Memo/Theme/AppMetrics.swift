@@ -102,7 +102,14 @@ private struct MetricsProvider: ViewModifier {
     @ScaledMetric(relativeTo: .body) private var textScale: CGFloat = 1
 
     func body(content: Content) -> some View {
-        content.environment(\.metrics, AppMetrics.resolve(sizeClass).scaled(by: textScale))
+        content
+            .environment(\.metrics, AppMetrics.resolve(sizeClass).scaled(by: textScale))
+            // Het systeemkleurenschema volgt het gekozen thema, niet de
+            // instelling van het toestel: in donkere modus werden de
+            // navigatietitel en placeholders anders wit op onze lichte
+            // vlakken. Op elke presentatiewortel, want een blad erft het
+            // schema niet van het scherm eronder.
+            .preferredColorScheme(ThemeStore.shared.themeID == .nacht ? .dark : .light)
     }
 }
 

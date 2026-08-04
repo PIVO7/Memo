@@ -1,7 +1,609 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
+    ", aan de beurt" : {
 
+    },
+    "%@ denkt na…" : {
+
+    },
+    "%@ hernoemen" : {
+
+    },
+    "%@ is aan de beurt" : {
+
+    },
+    "%@ mag beginnen" : {
+
+    },
+    "%@ verwijderen" : {
+
+    },
+    "%@ verwijderen?" : {
+
+    },
+    "%@ vs Computer" : {
+
+    },
+    "%@ wint met %lld paren!" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ wint met %2$lld paren!"
+          }
+        }
+      }
+    },
+    "%@ wint!" : {
+
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@, %@, Gezinsversie nodig" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@, Gezinsversie nodig"
+          }
+        }
+      }
+    },
+    "%@, %lld paren" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld paren"
+          }
+        }
+      }
+    },
+    "%@, %lld paren, winnaar" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld paren, winnaar"
+          }
+        }
+      }
+    },
+    "%@, paar van %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, paar van %2$@"
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld op rij · beste %lld" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld op rij · beste %2$lld"
+          }
+        }
+      }
+    },
+    "%lld overwinningen" : {
+
+    },
+    "%lld paren" : {
+
+    },
+    "%lld paren in één potje" : {
+
+    },
+    "%lld spelers · %lld overwinningen" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld spelers · %2$lld overwinningen"
+          }
+        }
+      }
+    },
+    "%lld× gewonnen · %lld gespeeld" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld× gewonnen · %2$lld gespeeld"
+          }
+        }
+      }
+    },
+    "2 spelers, één toestel" : {
+
+    },
+    "ABC" : {
+
+    },
+    "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt" : {
+
+    },
+    "Alle kleurenthema's: Snoep, Oceaan en Nacht" : {
+
+    },
+    "Alles ontgrendelen" : {
+
+    },
+    "Annuleer" : {
+
+    },
+    "Avatar van %@ aanpassen" : {
+
+    },
+    "Begin met kaartjes die nog niemand heeft gezien; zo leer je het bord kennen." : {
+
+    },
+    "beste %lld" : {
+
+    },
+    "Beste vangst" : {
+
+    },
+    "Beurt %lld" : {
+
+    },
+    "Bewaar" : {
+
+    },
+    "Blad" : {
+
+    },
+    "Blauw" : {
+
+    },
+    "Bliksem" : {
+
+    },
+    "Dat lukte niet" : {
+
+    },
+    "De aankoop wacht nog op goedkeuring van een ouder." : {
+
+    },
+    "De overwinningen van dit profiel gaan verloren." : {
+
+    },
+    "Dommel" : {
+
+    },
+    "Doorspelen" : {
+
+    },
+    "Draai de kaartjes en vind de paren" : {
+
+    },
+    "Draai om" : {
+
+    },
+    "Draai twee kaartjes om. Zelfde plaatje? Dan is het paar voor jou!" : {
+
+    },
+    "Eén keer kopen, voor het hele gezin — ook via Delen met gezin." : {
+
+    },
+    "Een paar gevonden? Dan mag je meteen nog een keer." : {
+
+    },
+    "Eerder gekocht? Zet terug" : {
+
+    },
+    "Er staat nog een spel klaar om verder te spelen." : {
+
+    },
+    "Evenveel paren? Dan is het gelijkspel." : {
+
+    },
+    "Gast" : {
+
+    },
+    "Gast 1" : {
+
+    },
+    "Gast 2" : {
+
+    },
+    "Geel" : {
+
+    },
+    "Geen paar? De kaartjes gaan weer dicht en de ander mag." : {
+
+    },
+    "Geen profielen" : {
+
+    },
+    "Gelijkspel" : {
+
+    },
+    "Gelijkspel — evenveel paren!" : {
+
+    },
+    "Gelijkspel!" : {
+
+    },
+    "GELUID" : {
+
+    },
+    "Geluidseffecten" : {
+
+    },
+    "Gespeeld" : {
+
+    },
+    "Gewonnen" : {
+
+    },
+    "Gewonnen met %lld paren!" : {
+
+    },
+    "Gezinsversie" : {
+
+    },
+    "GEZINSVERSIE" : {
+
+    },
+    "Groot" : {
+
+    },
+    "Haas" : {
+
+    },
+    "Hart" : {
+
+    },
+    "Helaas, geen paar…" : {
+
+    },
+    "Hoe werkt het?" : {
+
+    },
+    "Hoe werkt Memo?" : {
+
+    },
+    "Hoeveel is %lld × %lld?" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hoeveel is %1$lld × %2$lld?"
+          }
+        }
+      }
+    },
+    "Hond" : {
+
+    },
+    "Initialen" : {
+
+    },
+    "Instellingen" : {
+
+    },
+    "Je voortgang wordt bewaard." : {
+
+    },
+    "Jij bent aan de beurt" : {
+
+    },
+    "Kaart %lld, dicht" : {
+
+    },
+    "Kaart %lld, open: %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kaart %1$lld, open: %2$@"
+          }
+        }
+      }
+    },
+    "Kat" : {
+
+    },
+    "KIES 2 SPELERS" : {
+
+    },
+    "KIES HET BORD" : {
+
+    },
+    "KIES JE TEGENSTANDER" : {
+
+    },
+    "KIES JOUW PROFIEL" : {
+
+    },
+    "Kijk ook mee als de ander draait: dat zijn gratis hints!" : {
+
+    },
+    "Klaar!" : {
+
+    },
+    "Klassiek" : {
+
+    },
+    "Klein" : {
+
+    },
+    "KLEUR" : {
+
+    },
+    "Kleur %@" : {
+
+    },
+    "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens." : {
+
+    },
+    "Koraal" : {
+
+    },
+    "Kroon" : {
+
+    },
+    "Lieveheersbeestje" : {
+
+    },
+    "Lopend spel vervangen?" : {
+
+    },
+    "Maak eerst een profiel aan om te spelen." : {
+
+    },
+    "Maak eerst een speler aan" : {
+
+    },
+    "Maan" : {
+
+    },
+    "Memo!" : {
+
+    },
+    "Middel" : {
+
+    },
+    "Mint" : {
+
+    },
+    "Naam" : {
+
+    },
+    "Naam van je kind" : {
+
+    },
+    "Naam wijzigen" : {
+
+    },
+    "Naar profielen" : {
+
+    },
+    "Nacht" : {
+
+    },
+    "NIEUW PROFIEL" : {
+
+    },
+    "Nieuw record!" : {
+
+    },
+    "Nieuw spel starten" : {
+
+    },
+    "Nog %lld paren" : {
+
+    },
+    "Nog een keer!" : {
+
+    },
+    "Nog geen potjes gespeeld. Laat maar vallen!" : {
+
+    },
+    "Nog geen profielen. Maak er een aan om te spelen." : {
+
+    },
+    "Oceaan" : {
+
+    },
+    "Of speel als gast" : {
+
+    },
+    "Of speel met twee gasten" : {
+
+    },
+    "Oké" : {
+
+    },
+    "Ontgrendel voor %@" : {
+
+    },
+    "Ontgrendeld — veel plezier!" : {
+
+    },
+    "Onthoud goed wáár een kaartje lag — daar draait alles om." : {
+
+    },
+    "onthoudt best veel" : {
+
+    },
+    "Oranje" : {
+
+    },
+    "Paar gevonden: %@!" : {
+
+    },
+    "Paars" : {
+
+    },
+    "Pootafdruk" : {
+
+    },
+    "Professor Punt" : {
+
+    },
+    "Profielen" : {
+
+    },
+    "Raak! %@ mag nog een keer" : {
+
+    },
+    "Robbie" : {
+
+    },
+    "Schildpad" : {
+
+    },
+    "SLIMME TRUCJES" : {
+
+    },
+    "Sluit" : {
+
+    },
+    "Sluiten" : {
+
+    },
+    "Snoep" : {
+
+    },
+    "Solo tegen een slimme tegenstander" : {
+
+    },
+    "Solo uitdaging" : {
+
+    },
+    "Spel verlaten" : {
+
+    },
+    "Spel verlaten?" : {
+
+    },
+    "SPELERS" : {
+
+    },
+    "Start spel" : {
+
+    },
+    "Statistieken per speler, met winreeks en beste vangst" : {
+
+    },
+    "Ster" : {
+
+    },
+    "SYMBOOL" : {
+
+    },
+    "Tegen de computer" : {
+
+    },
+    "Tegen elkaar" : {
+
+    },
+    "Terug naar menu" : {
+
+    },
+    "THEMA" : {
+
+    },
+    "Thema %@" : {
+
+    },
+    "Thema %@, Gezinsversie nodig" : {
+
+    },
+    "Tik om ze om te draaien" : {
+
+    },
+    "Toont de statistieken" : {
+
+    },
+    "Twee memokaartjes" : {
+
+    },
+    "Twee spelers, één toestel" : {
+
+    },
+    "UITLEG" : {
+
+    },
+    "Verder spelen" : {
+
+    },
+    "vergeet bijna alles" : {
+
+    },
+    "vergeet nooit iets" : {
+
+    },
+    "Verlaten" : {
+
+    },
+    "Verwijderen" : {
+
+    },
+    "Vis" : {
+
+    },
+    "Vlam" : {
+
+    },
+    "Voeg toe" : {
+
+    },
+    "Vogel" : {
+
+    },
+    "Volgende keer win jij vast!" : {
+
+    },
+    "Vraag even aan papa of mama" : {
+
+    },
+    "Wie de meeste paren heeft, wint het potje." : {
+
+    },
+    "Winreeks" : {
+
+    },
+    "Zijn alle kaartjes op? Dan telt iedereen zijn paren." : {
+
+    },
+    "ZO SPEEL JE" : {
+
+    },
+    "ZO WIN JE" : {
+
+    },
+    "Zon" : {
+
+    }
   },
   "version" : "1.0"
 }
