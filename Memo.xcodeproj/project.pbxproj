@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02B8D35D15E4D1EA42F9C6AF /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15382521D99DC804018B6714 /* GameEngine.swift */; };
+		0561DCEBD7683A003C3CA849 /* FamilyRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219EE736E0FA3DC45F14A50 /* FamilyRecordsView.swift */; };
 		0806B4604F984BEF0ADE961C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64663EA45257DC95762FB6 /* AppTheme.swift */; };
 		09C93E49B64D54FDC597F41A /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9BD75D3BEC21F9F80E86E /* MemoryCard.swift */; };
 		0D16EC5E0E1797F9EF2E8D3C /* PlayerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */; };
@@ -18,6 +19,7 @@
 		1C63A7D6FDFF9C7D1229FDA6 /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA29D49F235339476DD0C57 /* EntitlementStore.swift */; };
 		2174B2F79447090A38AB36C7 /* MemoryEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D0D215CB30FDC62114C8A8 /* MemoryEngineTests.swift */; };
 		2756B1C3CC51029562E289CF /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AEEE5CCC7A13BDD6A9838 /* ThemePalette.swift */; };
+		2AB01702E71C532DAC874405 /* ProfileBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2BBF3976C2C8068A2024B3 /* ProfileBadge.swift */; };
 		2AC05CCF070520C412508136 /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87FD5D0DE728BFCE00104C5 /* AppMetrics.swift */; };
 		3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CEA807CDB1DE78287686F8 /* ToyBlock.swift */; };
 		33EE95B2BC54B16D4B7F1E21 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147347272B9F21A5BA93E0B /* SoundPlayer.swift */; };
@@ -41,6 +43,7 @@
 		9BB7BBF05F5440822620A360 /* fanfare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04E3CA284CC1D2ED2FBB8F64 /* fanfare.wav */; };
 		9CD16C1B03427FBBF34ABAE1 /* HomeHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354008D8A32DD748DA74FD62 /* HomeHeroView.swift */; };
 		9E0C0097E74FD8C9A6B9ACC9 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 88E9F6F3F5A9D29821EEEB9E /* ding.wav */; };
+		A0C3826CE725CAFB45EF69D2 /* GameRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6B357132218EDBEEE307D /* GameRecord.swift */; };
 		A94AF41CA39032CD1BDAA0E1 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */; };
 		ABF1667594DEE5DEF1CFEF13 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E272FC3311BB4ED4E3072 /* GameView.swift */; };
 		AC3A1EDAC7AD341371ADE1BA /* AvatarBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389E101676AE4E1D0C0D23A /* AvatarBadge.swift */; };
@@ -77,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		00D0CD31089ECB6056E69415 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		0219EE736E0FA3DC45F14A50 /* FamilyRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRecordsView.swift; sourceTree = "<group>"; };
 		04E3CA284CC1D2ED2FBB8F64 /* fanfare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fanfare.wav; sourceTree = "<group>"; };
 		09B8AF49971DF303712282DC /* CardGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGridView.swift; sourceTree = "<group>"; };
 		1147347272B9F21A5BA93E0B /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		6C8277CE241B234CBB2CAF2A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6D79015A77FC47B46525F983 /* ParentalGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateTests.swift; sourceTree = "<group>"; };
 		6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshot.swift; sourceTree = "<group>"; };
+		6FD6B357132218EDBEEE307D /* GameRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRecord.swift; sourceTree = "<group>"; };
 		70D42F5988BEC6D442E4439F /* GameSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetupView.swift; sourceTree = "<group>"; };
 		7BAA6C34AD98D214828DB366 /* ActiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGame.swift; sourceTree = "<group>"; };
 		85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfile.swift; sourceTree = "<group>"; };
@@ -126,6 +131,7 @@
 		C7CEA807CDB1DE78287686F8 /* ToyBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyBlock.swift; sourceTree = "<group>"; };
 		C8C7EB260E3EF6D3C057B4FB /* ComputerAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerAI.swift; sourceTree = "<group>"; };
 		CBC7EE35E4DCFB1DEC2C96AC /* ProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsView.swift; sourceTree = "<group>"; };
+		CF2BBF3976C2C8068A2024B3 /* ProfileBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBadge.swift; sourceTree = "<group>"; };
 		D1D0D215CB30FDC62114C8A8 /* MemoryEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryEngineTests.swift; sourceTree = "<group>"; };
 		D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardView.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				9ED8964871C3F5F72C91D129 /* AvatarPickerView.swift */,
+				0219EE736E0FA3DC45F14A50 /* FamilyRecordsView.swift */,
 				A50C400690E8C02797A64DA4 /* ProfileRowView.swift */,
 				CBC7EE35E4DCFB1DEC2C96AC /* ProfileStatsView.swift */,
 				A7F9208235E92D742B06B05A /* ProfilesView.swift */,
@@ -253,7 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */,
+				6FD6B357132218EDBEEE307D /* GameRecord.swift */,
 				85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */,
+				CF2BBF3976C2C8068A2024B3 /* ProfileBadge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -485,11 +494,13 @@
 				E76A5A92798965563FC83CDD /* ConfettiView.swift in Sources */,
 				F9F174EF955CD920320B8908 /* Destination.swift in Sources */,
 				1C63A7D6FDFF9C7D1229FDA6 /* EntitlementStore.swift in Sources */,
+				0561DCEBD7683A003C3CA849 /* FamilyRecordsView.swift in Sources */,
 				C2AD892147AEFC95F47CF577 /* GameCoverView.swift in Sources */,
 				02B8D35D15E4D1EA42F9C6AF /* GameEngine.swift in Sources */,
 				BBA2BEE638C9DF910BA8BD27 /* GameHeaderView.swift in Sources */,
 				4D1EF99205D7DF5D46313728 /* GameMode.swift in Sources */,
 				FAB8F24BEC2EB93267FF9107 /* GamePlayer.swift in Sources */,
+				A0C3826CE725CAFB45EF69D2 /* GameRecord.swift in Sources */,
 				A94AF41CA39032CD1BDAA0E1 /* GameResultOverlay.swift in Sources */,
 				7D4B0B4F7D569DDE043C7492 /* GameSetupView.swift in Sources */,
 				DD00113DB2F8F9763EA77886 /* GameSnapshot.swift in Sources */,
@@ -503,6 +514,7 @@
 				8E7CBEB4B0D0E58099AFB3EF /* ParentalGate.swift in Sources */,
 				CAA1DE4D619B7BB98D3316DF /* PaywallView.swift in Sources */,
 				0D16EC5E0E1797F9EF2E8D3C /* PlayerProfile.swift in Sources */,
+				2AB01702E71C532DAC874405 /* ProfileBadge.swift in Sources */,
 				5C77C67ABBE61A041F68054B /* ProfileRowView.swift in Sources */,
 				C63A98448DD6F87DA87ABED0 /* ProfileStatsView.swift in Sources */,
 				71E49BB8991940733B70EB7B /* ProfileStore.swift in Sources */,

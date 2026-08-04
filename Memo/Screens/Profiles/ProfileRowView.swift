@@ -10,12 +10,9 @@ struct ProfileRowView: View {
     let onAvatarChange: (Int, String?) -> Void
 
     @Environment(\.metrics) private var m
-    @Environment(EntitlementStore.self) private var entitlements
     @State private var renameText = ""
     @State private var isRenaming = false
     @State private var isDeleting = false
-    @State private var showStats = false
-    @State private var showPaywall = false
     @State private var showAvatarPicker = false
 
     var body: some View {
@@ -34,13 +31,7 @@ struct ProfileRowView: View {
                     .appMetrics()
             }
 
-            Button {
-                if entitlements.isFamilyUnlocked {
-                    showStats = true
-                } else {
-                    showPaywall = true
-                }
-            } label: {
+            NavigationLink(value: Destination.stats(profile.id)) {
                 HStack(spacing: m.gutter * 0.9) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(profile.name)
@@ -49,7 +40,7 @@ struct ProfileRowView: View {
                             .lineLimit(1)
                         Text("\(profile.wins)× gewonnen · \(profile.gamesPlayed) gespeeld")
                             .font(AppTheme.rounded(m.captionSize, .bold))
-                            .foregroundStyle(AppTheme.soft)
+                            .foregroundStyle(AppTheme.cardSoft)
                             .lineLimit(1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -57,14 +48,6 @@ struct ProfileRowView: View {
             }
             .buttonStyle(.plain)
             .accessibilityHint("Toont de statistieken")
-            .sheet(isPresented: $showStats) {
-                ProfileStatsView(profile: profile)
-                    .appMetrics()
-            }
-            .sheet(isPresented: $showPaywall) {
-                PaywallView(entitlements: entitlements)
-                    .appMetrics()
-            }
 
             renameButton
             deleteButton

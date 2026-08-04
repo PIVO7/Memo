@@ -74,6 +74,39 @@ struct ProfilesView: View {
                             }
                         }
                     }
+
+                    // Records vergelijken heeft pas zin met z'n tweeën.
+                    if profileStore.humanProfiles.count >= 2 {
+                        section("GEZIN") {
+                            NavigationLink(value: Destination.familyRecords) {
+                                HStack(spacing: m.gutter * 0.9) {
+                                    Image(systemName: "trophy.fill")
+                                        .font(.system(size: m.bodySize + 2, weight: .black))
+                                        .foregroundStyle(AppTheme.amber)
+                                        .frame(width: m.avatarSize, height: m.avatarSize)
+                                        .background(Circle().fill(AppTheme.tintAmber))
+                                        .overlay { Circle().strokeBorder(AppTheme.ink, lineWidth: m.thinBorder + 0.5) }
+
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("Gezinsrecords")
+                                            .font(AppTheme.rounded(m.bodySize + 2))
+                                            .foregroundStyle(AppTheme.ink)
+                                        Text("Wie heeft het record in huis?")
+                                            .font(AppTheme.rounded(m.captionSize, .bold))
+                                            .foregroundStyle(AppTheme.cardSoft)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: m.bodySize * 0.9, weight: .black))
+                                        .foregroundStyle(AppTheme.cardDim)
+                                }
+                                .padding(m.gutter * 0.9)
+                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
                 }
                 .padding(.horizontal, m.gutter * 1.3)
                 .padding(.top, 8)

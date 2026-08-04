@@ -33,6 +33,31 @@ final class ProfileStoreTests: XCTestCase {
         XCTAssertEqual(store.humanProfiles[0].name.count, ProfileStore.maxNameLength)
     }
 
+    func testHistoryRecordsResultsAndStaysCapped() {
+        let store = ProfileStore(fileURL: fileURL)
+        store.addProfile(name: "Lene")
+        store.addProfile(name: "Ellis")
+        let lene = store.humanProfiles[0]
+        let ellis = store.humanProfiles[1]
+        let players = [GamePlayer(profile: lene), GamePlayer(profile: ellis)]
+
+        store.recordGameResult(players: players, winnerProfileIDs: [lene.id], pairCounts: [5, 3])
+        store.recordGameResult(players: players, winnerProfileIDs: [], pairCounts: [4, 4])
+
+        let winner = store.humanProfiles[0]
+        XCTAssertEqual(winner.history.count, 2)
+        XCTAssertEqual(winner.history[0].pairs, 5)
+        XCTAssertTrue(winner.history[0].won)
+        XCTAssertTrue(winner.history[1].draw)
+        XCTAssertEqual(store.humanProfiles[1].history[0].pairs, 3)
+
+        // Ver voorbij de limiet: de oudste potjes vallen eraf.
+        for _ in 0..<(ProfileStore.maxHistoryLength + 5) {
+            store.recordGameResult(players: players, winnerProfileIDs: [lene.id], pairCounts: [6, 2])
+        }
+        XCTAssertEqual(store.humanProfiles[0].history.count, ProfileStore.maxHistoryLength)
+    }
+
     func testRecordWinUpdatesStreakAndBestHaul() {
         let store = ProfileStore(fileURL: fileURL)
         store.addProfile(name: "Lene")

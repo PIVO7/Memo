@@ -10,6 +10,8 @@ final class ProfileStore {
     /// Langer wordt het invoerveld én het spelbord onleesbaar; de opslag
     /// knipt af zodat ook een plak-actie netjes blijft.
     static let maxNameLength = 24
+    /// Genoeg voor het grafiekje (tien) met wat marge.
+    static let maxHistoryLength = 20
 
     private let fileURL: URL
     private let encoder = JSONEncoder()
@@ -81,6 +83,16 @@ final class ProfileStore {
             } else {
                 profiles[index].currentStreak = 0
             }
+            // Voor het grafiekje op de statistiekenpagina; afgetopt zodat het
+            // profielbestand niet meegroeit met elke speelavond.
+            let won = winnerProfileIDs.contains(player.profileID)
+            profiles[index].history.append(GameRecord(
+                pairs: pairs,
+                won: won,
+                draw: winnerProfileIDs.isEmpty,
+                date: .now
+            ))
+            profiles[index].history = Array(profiles[index].history.suffix(Self.maxHistoryLength))
         }
         save()
     }

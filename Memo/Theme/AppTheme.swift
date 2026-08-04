@@ -37,6 +37,15 @@ enum AppTheme {
     @MainActor static var offFill: Color { palette.offFill }
     @MainActor static var offInk: Color { palette.offInk }
 
+    // Kaarten
+    /// Kaarten en knoppen zijn hier in elk thema wit; de naam bestaat zodat
+    /// de statistiekenviews dezelfde woordenschat spreken als in Dobbel.
+    @MainActor static var card: Color { .white }
+    /// Gedempte tekst óp een kaart: altijd inkt-gebaseerd, want `soft` en
+    /// `dim` zijn voor tekst op de achtergrond bedoeld.
+    @MainActor static var cardSoft: Color { palette.ink.opacity(0.65) }
+    @MainActor static var cardDim: Color { palette.ink.opacity(0.42) }
+
     /// Alle tekst in de app komt hier langs; de maat komt uit `AppMetrics`,
     /// zodat een iPad grotere letters krijgt zonder aparte fontconstanten.
     static func rounded(_ size: CGFloat, _ weight: Font.Weight = .black) -> Font {

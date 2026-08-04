@@ -74,6 +74,10 @@ struct HomeView: View {
                     ProfilesView()
                 case .setup(let mode):
                     GameSetupView(mode: mode)
+                case .stats(let profileID):
+                    ProfileStatsView(profileID: profileID)
+                case .familyRecords:
+                    FamilyRecordsView()
                 }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
