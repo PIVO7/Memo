@@ -16,7 +16,7 @@ struct FamilyRecordsView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             ScrollView {
                 VStack(alignment: .leading, spacing: m.gutter) {

@@ -39,7 +39,7 @@ struct AvatarPickerView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             VStack(spacing: m.gutter) {
                 AvatarBadge(name: profile.name, colorIndex: colorIndex, symbol: symbol, size: m.avatarSize * 1.6)
@@ -58,10 +58,21 @@ struct AvatarPickerView: View {
                             Circle()
                                 .fill(color)
                                 .overlay {
+                                    // De ring in `headline` en niet `ink`: in
+                                    // het nachtthema is inkt onzichtbaar op de
+                                    // donkere achtergrond.
                                     Circle().strokeBorder(
-                                        AppTheme.ink,
+                                        colorIndex == index ? AppTheme.headline : AppTheme.ink,
                                         lineWidth: colorIndex == index ? 3.5 : 1.5
                                     )
+                                }
+                                .overlay {
+                                    if colorIndex == index {
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: m.captionSize + 2, weight: .black))
+                                            .foregroundStyle(.white)
+                                            .shadow(color: .black.opacity(0.45), radius: 0, x: 0, y: 1.5)
+                                    }
                                 }
                                 .frame(width: m.tapTarget * 0.8, height: m.tapTarget * 0.8)
                                 .scaleEffect(colorIndex == index ? 1.12 : 1)
@@ -133,7 +144,7 @@ struct AvatarPickerView: View {
             .frame(height: m.tapTarget)
         }
         .buttonStyle(ToyButtonStyle(
-            fill: picked ? AppTheme.coral : .white,
+            fill: picked ? AppTheme.coral : AppTheme.card,
             radius: m.cellCorner,
             depth: picked ? 3 : 2,
             border: m.thinBorder

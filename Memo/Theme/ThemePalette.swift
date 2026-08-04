@@ -5,6 +5,9 @@ import SwiftUI
 struct ThemePalette {
     /// De achtergrond van elk scherm.
     let cream: Color
+    /// Kaarten en knoppen. In de lichte thema's wit; in het nachtthema warm
+    /// papier, zodat de vlakken niet fel oplichten.
+    let card: Color
     /// Randen, slagschaduwen en tekst óp witte kaarten. Blijft in elk thema
     /// donker, want de kaarten blijven wit.
     let ink: Color
@@ -62,6 +65,7 @@ enum ThemeID: String, CaseIterable, Identifiable {
 extension ThemePalette {
     static let klassiek = ThemePalette(
         cream: Color(red: 1.00, green: 0.98, blue: 0.95),
+        card: .white,
         ink: Color(red: 0.13, green: 0.13, blue: 0.11),
         headline: Color(red: 0.13, green: 0.13, blue: 0.11),
         sunk: Color(red: 0.97, green: 0.95, blue: 0.89),
@@ -84,6 +88,7 @@ extension ThemePalette {
     /// versmelt alles tot één roze vlak.
     static let snoep = ThemePalette(
         cream: Color(red: 0.99, green: 0.94, blue: 0.97),
+        card: .white,
         ink: Color(red: 0.17, green: 0.12, blue: 0.15),
         headline: Color(red: 0.17, green: 0.12, blue: 0.15),
         sunk: Color(red: 0.95, green: 0.93, blue: 0.89),
@@ -104,6 +109,7 @@ extension ThemePalette {
 
     static let oceaan = ThemePalette(
         cream: Color(red: 0.92, green: 0.96, blue: 0.97),
+        card: .white,
         ink: Color(red: 0.11, green: 0.17, blue: 0.20),
         headline: Color(red: 0.11, green: 0.17, blue: 0.20),
         sunk: Color(red: 0.93, green: 0.96, blue: 0.94),
@@ -125,23 +131,28 @@ extension ThemePalette {
     /// De kaarten en het scoreblad blijven wit met donkere inkt; alleen de
     /// wereld eromheen wordt donker. Zo blijft het spel zelf even leesbaar
     /// als overdag.
+    /// Avondlicht in plaats van schel wit: de kaarten en knoppen zijn warm
+    /// papier met donkere inkt, zodat het spel leesbaar blijft zonder dat de
+    /// vlakken uit het donker knallen. De tinten zijn een tikje gedempt en de
+    /// tekst op de achtergrond juist lichter.
     static let nacht = ThemePalette(
-        cream: Color(red: 0.14, green: 0.16, blue: 0.24),
+        cream: Color(red: 0.16, green: 0.18, blue: 0.27),
+        card: Color(red: 0.93, green: 0.91, blue: 0.85),
         ink: Color(red: 0.13, green: 0.13, blue: 0.11),
         headline: Color(red: 0.97, green: 0.95, blue: 0.91),
-        sunk: Color(red: 0.97, green: 0.95, blue: 0.89),
+        sunk: Color(red: 0.86, green: 0.84, blue: 0.77),
         amber: Color(red: 1.00, green: 0.79, blue: 0.24),
         coral: Color(red: 1.00, green: 0.46, blue: 0.36),
         mint: Color(red: 0.28, green: 0.87, blue: 0.60),
         sky: Color(red: 0.40, green: 0.68, blue: 1.00),
-        tintAmber: Color(red: 1.00, green: 0.95, blue: 0.81),
-        tintSky: Color(red: 0.89, green: 0.96, blue: 1.00),
-        tintCoral: Color(red: 1.00, green: 0.87, blue: 0.83),
-        tintStone: Color(red: 0.93, green: 0.89, blue: 0.82),
-        faint: Color(red: 0.62, green: 0.66, blue: 0.77),
-        soft: Color(red: 0.72, green: 0.76, blue: 0.85),
-        dim: Color(red: 0.52, green: 0.56, blue: 0.67),
+        tintAmber: Color(red: 0.96, green: 0.90, blue: 0.74),
+        tintSky: Color(red: 0.84, green: 0.92, blue: 0.96),
+        tintCoral: Color(red: 0.96, green: 0.82, blue: 0.78),
+        tintStone: Color(red: 0.85, green: 0.82, blue: 0.74),
+        faint: Color(red: 0.70, green: 0.74, blue: 0.84),
+        soft: Color(red: 0.79, green: 0.82, blue: 0.90),
+        dim: Color(red: 0.60, green: 0.64, blue: 0.74),
         offFill: Color(red: 0.29, green: 0.32, blue: 0.41),
-        offInk: Color(red: 0.55, green: 0.58, blue: 0.68)
+        offInk: Color(red: 0.64, green: 0.67, blue: 0.77)
     )
 }

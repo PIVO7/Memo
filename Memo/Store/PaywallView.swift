@@ -20,7 +20,7 @@ struct PaywallView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             ScrollView {
                 VStack(spacing: m.gutter) {
@@ -44,7 +44,7 @@ struct PaywallView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(m.gutter)
-                    .toyBlock(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                    .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
 
                     if entitlements.isFamilyUnlocked {
                         Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
@@ -99,7 +99,7 @@ struct PaywallView: View {
                         .foregroundStyle(AppTheme.ink)
                         .frame(width: m.tapTarget, height: m.tapTarget)
                 }
-                .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
                 .padding(.top, m.gutter)
                 .padding(.trailing, m.gutter)
             }
@@ -167,12 +167,12 @@ struct PaywallView: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: m.tapTarget)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
                     }
                 }
             }
             .padding(m.gutter * 1.4)
-            .toyBlock(fill: AppTheme.cream, radius: m.cardCorner + 4, depth: m.depth + 1, border: m.border)
+            .toyBlock(fill: AppTheme.card, radius: m.cardCorner + 4, depth: m.depth + 1, border: m.border)
             .frame(maxWidth: m.overlayMaxWidth * 0.82)
             .padding(m.gutter * 2)
             .accessibilityAddTraits(.isModal)

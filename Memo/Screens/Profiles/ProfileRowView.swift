@@ -53,7 +53,7 @@ struct ProfileRowView: View {
             deleteButton
         }
         .padding(m.gutter * 0.9)
-        .toyBlock(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
     }
 
     private var renameButton: some View {

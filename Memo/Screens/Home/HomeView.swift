@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                AppTheme.cream.ignoresSafeArea()
+                ThemedBackground()
 
                 ScrollView {
                     VStack(spacing: 0) {
@@ -93,7 +93,7 @@ struct HomeView: View {
                         .foregroundStyle(AppTheme.ink)
                         .frame(width: m.tapTarget, height: m.tapTarget)
                 }
-                .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
                 .padding(.trailing, m.gutter * 1.5)
                 .padding(.top, m.gutter * 0.5)
             }
@@ -135,16 +135,16 @@ struct HomeView: View {
                     .foregroundStyle(AppTheme.ink)
                 Text(subtitle)
                     .font(AppTheme.rounded(m.captionSize, .bold))
-                    .foregroundStyle(AppTheme.soft)
+                    .foregroundStyle(AppTheme.cardSoft)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
             Image(systemName: "chevron.right")
                 .font(.system(size: m.bodySize * 0.9, weight: .black))
-                .foregroundStyle(AppTheme.dim)
+                .foregroundStyle(AppTheme.cardDim)
         }
         .padding(m.gutter * 1.15)
-        .toyBlock(fill: .white, radius: m.cardCorner, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 }
 

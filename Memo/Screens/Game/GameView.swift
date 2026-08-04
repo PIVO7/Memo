@@ -30,7 +30,7 @@ struct GameView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             VStack(spacing: m.gutter) {
                 GameHeaderView(

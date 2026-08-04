@@ -38,9 +38,8 @@ enum AppTheme {
     @MainActor static var offInk: Color { palette.offInk }
 
     // Kaarten
-    /// Kaarten en knoppen zijn hier in elk thema wit; de naam bestaat zodat
-    /// de statistiekenviews dezelfde woordenschat spreken als in Dobbel.
-    @MainActor static var card: Color { .white }
+    /// Kaarten en knoppen; wit behalve in het nachtthema.
+    @MainActor static var card: Color { palette.card }
     /// Gedempte tekst óp een kaart: altijd inkt-gebaseerd, want `soft` en
     /// `dim` zijn voor tekst op de achtergrond bedoeld.
     @MainActor static var cardSoft: Color { palette.ink.opacity(0.65) }

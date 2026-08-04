@@ -16,7 +16,7 @@ struct SettingsView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             ScrollView {
                 VStack(alignment: .leading, spacing: m.gutter * 1.4) {
@@ -34,7 +34,7 @@ struct SettingsView: View {
                                 .foregroundStyle(AppTheme.ink)
                                 .frame(width: m.tapTarget, height: m.tapTarget)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
                     }
 
                     section("THEMA") {
@@ -56,7 +56,7 @@ struct SettingsView: View {
                         }
                         .tint(AppTheme.mint)
                         .padding(m.gutter)
-                        .toyBlock(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
                         .onChange(of: soundOn) { _, isOn in
                             SoundPlayer.shared.isEnabled = isOn
                             if isOn {
@@ -80,7 +80,7 @@ struct SettingsView: View {
                             }
                             .padding(m.gutter)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
                         .sheet(isPresented: $showRules) {
                             RulesView()
                                 .appMetrics()
@@ -108,7 +108,7 @@ struct SettingsView: View {
                             }
                             .padding(m.gutter)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
                     }
                 }
                 .padding(.horizontal, m.gutter * 1.3)

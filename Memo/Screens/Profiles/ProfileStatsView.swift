@@ -18,7 +18,7 @@ struct ProfileStatsView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             if let profile {
                 content(for: profile)

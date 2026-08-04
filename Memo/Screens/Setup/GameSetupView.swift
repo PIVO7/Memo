@@ -24,7 +24,7 @@ struct GameSetupView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             VStack(alignment: .leading, spacing: m.gutter) {
                 HStack(alignment: .top) {
@@ -119,7 +119,7 @@ struct GameSetupView: View {
                             .frame(height: m.buttonHeight * 0.82)
                     }
                     .buttonStyle(ToyButtonStyle(
-                        fill: .white,
+                        fill: AppTheme.card,
                         radius: m.cardCorner * 0.8,
                         depth: m.depth,
                         border: m.border
@@ -238,13 +238,13 @@ struct GameSetupView: View {
                     .foregroundStyle(AppTheme.ink)
                 Text(size.subtitle)
                     .font(AppTheme.rounded(m.captionSize * 0.82, .bold))
-                    .foregroundStyle(AppTheme.soft)
+                    .foregroundStyle(AppTheme.cardSoft)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, m.gutter * 0.55)
         }
         .buttonStyle(ToyButtonStyle(
-            fill: picked ? AppTheme.tintCoral : .white,
+            fill: picked ? AppTheme.tintCoral : AppTheme.card,
             radius: m.cardCorner * 0.8,
             depth: picked ? m.depth : 3,
             border: m.border
@@ -268,18 +268,18 @@ struct GameSetupView: View {
                         .lineLimit(1)
                     Text("\(profile.wins) overwinningen")
                         .font(AppTheme.rounded(m.captionSize, .bold))
-                        .foregroundStyle(AppTheme.soft)
+                        .foregroundStyle(AppTheme.cardSoft)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Image(systemName: picked ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: m.bodySize * 1.4, weight: .black))
-                    .foregroundStyle(picked ? AppTheme.coral : AppTheme.dim)
+                    .foregroundStyle(picked ? AppTheme.coral : AppTheme.cardDim)
             }
             .padding(m.gutter * 0.9)
         }
         .buttonStyle(ToyButtonStyle(
-            fill: picked ? AppTheme.tintCoral : .white,
+            fill: picked ? AppTheme.tintCoral : AppTheme.card,
             radius: m.cardCorner * 0.9,
             depth: m.depth,
             border: m.border
@@ -304,7 +304,7 @@ struct GameSetupView: View {
                 // tegenstander net zo duidelijk is als de gekozen speler.
                 Image(systemName: picked ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: m.bodySize * 1.1, weight: .black))
-                    .foregroundStyle(picked ? AppTheme.coral : AppTheme.dim)
+                    .foregroundStyle(picked ? AppTheme.coral : AppTheme.cardDim)
                 AvatarBadge(name: level.personaName, colorIndex: level.avatarColorIndex, symbol: level.avatarSymbol, size: m.avatarSize * 0.9)
                     .overlay(alignment: .bottomTrailing) {
                         if locked {
@@ -323,7 +323,7 @@ struct GameSetupView: View {
                     .minimumScaleFactor(0.7)
                 Text(level.subtitle)
                     .font(AppTheme.rounded(m.captionSize * 0.82, .bold))
-                    .foregroundStyle(AppTheme.soft)
+                    .foregroundStyle(AppTheme.cardSoft)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
             }
@@ -332,7 +332,7 @@ struct GameSetupView: View {
             .padding(.horizontal, 4)
         }
         .buttonStyle(ToyButtonStyle(
-            fill: picked ? AppTheme.tintCoral : .white,
+            fill: picked ? AppTheme.tintCoral : AppTheme.card,
             radius: m.cardCorner * 0.9,
             depth: picked ? m.depth : 3,
             border: m.border

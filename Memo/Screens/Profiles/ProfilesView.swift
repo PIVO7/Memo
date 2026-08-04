@@ -14,7 +14,7 @@ struct ProfilesView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             ScrollView {
                 VStack(alignment: .leading, spacing: m.gutter * 1.5) {
@@ -50,17 +50,17 @@ struct ProfilesView: View {
                                 .disabled(!canAdd)
                         }
                         .padding(m.gutter)
-                        .toyBlock(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
                     }
 
                     section("SPELERS") {
                         if profileStore.humanProfiles.isEmpty {
                             Text("Nog geen profielen. Maak er een aan om te spelen.")
                                 .font(AppTheme.rounded(m.bodySize, .bold))
-                                .foregroundStyle(AppTheme.soft)
+                                .foregroundStyle(AppTheme.cardSoft)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(m.gutter)
-                                .toyBlock(fill: .white, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
                         } else {
                             LazyVGrid(columns: columns, spacing: m.gutter) {
                                 ForEach(profileStore.humanProfiles) { profile in

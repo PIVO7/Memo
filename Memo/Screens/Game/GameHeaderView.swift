@@ -21,7 +21,7 @@ struct GameHeaderView: View {
             .padding(.horizontal, 10)
             .padding(.vertical, m.gutter * 0.45)
             .frame(maxWidth: .infinity)
-            .toyBlock(fill: .white, radius: m.cellCorner + 3, depth: 3, border: m.thinBorder + 0.5)
+            .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 3, depth: 3, border: m.thinBorder + 0.5)
 
             Button(action: onLeave) {
                 Label("Spel verlaten", systemImage: "xmark")
@@ -30,7 +30,7 @@ struct GameHeaderView: View {
                     .foregroundStyle(AppTheme.ink)
                     .frame(width: m.tapTarget, height: m.tapTarget)
             }
-            .buttonStyle(ToyButtonStyle(fill: .white, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
         }
     }
 

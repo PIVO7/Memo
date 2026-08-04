@@ -36,7 +36,7 @@ struct MemoryCardView: View {
     private var front: some View {
         ZStack {
             RoundedRectangle(cornerRadius: corner, style: .continuous)
-                .fill(.white)
+                .fill(AppTheme.card)
             Image(systemName: card.face.symbol)
                 .font(.system(size: size * 0.44, weight: .black))
                 .foregroundStyle(AvatarBadge.palette[card.face.colorIndex % AvatarBadge.palette.count])
