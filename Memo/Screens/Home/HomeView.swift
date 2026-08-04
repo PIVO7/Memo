@@ -60,6 +60,9 @@ struct HomeView: View {
                                 menuLabel(String(localized: "Profielen"), subtitle: winsSubtitle,
                                           tint: AppTheme.mint, faceIndex: 1)
                             }
+                            NavigationLink(value: Destination.statistics) {
+                                statsMenuLabel
+                            }
                         }
                         .padding(.bottom, m.gutter * 2)
                     }
@@ -78,6 +81,8 @@ struct HomeView: View {
                     ProfileStatsView(profileID: profileID)
                 case .familyRecords:
                     FamilyRecordsView()
+                case .statistics:
+                    StatsOverviewView()
                 }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
@@ -119,6 +124,34 @@ struct HomeView: View {
             return String(localized: "Maak eerst een speler aan")
         }
         return String(localized: "\(profileStore.humanProfiles.count) spelers · \(total) overwinningen")
+    }
+
+    /// Zelfde tegel als het spelmenu, maar met een trofee: statistieken
+    /// zijn geen spelmodus.
+    private var statsMenuLabel: some View {
+        HStack(spacing: m.gutter) {
+            Image(systemName: "trophy.fill")
+                .font(.system(size: m.avatarSize * 0.52, weight: .black))
+                .foregroundStyle(AppTheme.ink)
+                .frame(width: m.avatarSize + 2, height: m.avatarSize + 2)
+                .toyBlock(fill: AppTheme.tintAmber, radius: m.cellCorner + 2, depth: 0, border: m.thinBorder + 0.5)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Statistieken")
+                    .font(AppTheme.rounded(m.bodySize + 3))
+                    .foregroundStyle(AppTheme.ink)
+                Text("Trofeeën en records")
+                    .font(AppTheme.rounded(m.captionSize, .bold))
+                    .foregroundStyle(AppTheme.cardSoft)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Image(systemName: "chevron.right")
+                .font(.system(size: m.bodySize * 0.9, weight: .black))
+                .foregroundStyle(AppTheme.cardDim)
+        }
+        .padding(m.gutter * 1.15)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 
     private func menuLabel(_ title: String, subtitle: String, tint: Color, faceIndex: Int) -> some View {

@@ -7,4 +7,6 @@ enum Destination: Hashable {
     /// actuele stand uit de store leest.
     case stats(UUID)
     case familyRecords
+    /// Het overzicht achter de statistieken-tegel op het startscherm.
+    case statistics
 }
