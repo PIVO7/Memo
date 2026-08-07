@@ -91,11 +91,9 @@ struct FamilyRecordsView: View {
         value: (PlayerProfile) -> Int,
         format: (Int) -> String
     ) -> some View {
-        let best = contenders.map(value).max() ?? 0
-        let holders = contenders.filter { value($0) == best }
-
-        // Een record van nul is nog geen record; die rij wacht stilletjes.
-        if best > 0 {
+        // De rekensom staat in FamilyRecordMath; een record van nul is nog
+        // geen record en die rij wacht dan stilletjes.
+        if let (best, holders) = FamilyRecordMath.record(in: contenders, value: value) {
             HStack(spacing: m.gutter * 0.8) {
                 Image(systemName: icon)
                     .font(.system(size: m.bodySize, weight: .black))

@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Het aankoopscherm van de Gezinsversie: wat je krijgt, één prijs, en een
-/// ouder-poort vóór de kassa.
+/// Het aankoopscherm van de Gezinsversie: wat je krijgt, één prijs — en de
+/// ouder-poort vóór het hele scherm, niet alleen vóór de kassa.
 struct PaywallView: View {
     let entitlements: EntitlementStore
 
@@ -9,9 +9,12 @@ struct PaywallView: View {
     @Environment(\.metrics) private var m
 
     @State private var gateQuestion: ParentalGateQuestion?
-    @State private var pendingAction: (() async -> Void)?
+    /// De poort staat vóór het hele scherm: ook de prijzen en de koopknoppen
+    /// zijn oudergebied (kindercategorie).
+    @State private var gatePassed = false
     @State private var isBusy = false
-    /// Uitleg wanneer een aankoop niet doorging; annuleren blijft stil.
+    /// Uitleg wanneer kopen of terugzetten niet doorging; annuleren blijft
+    /// stil.
     @State private var purchaseNotice: String?
 
     private var priceText: String {
@@ -22,87 +25,28 @@ struct PaywallView: View {
         ZStack {
             ThemedBackground()
 
-            ScrollView {
-                VStack(spacing: m.gutter) {
-                    Image(systemName: "figure.2.and.child.holdinghands")
-                        .font(.system(size: m.titleSize, weight: .black))
-                        .foregroundStyle(AppTheme.coral)
-
-                    Text("Gezinsversie")
-                        .font(AppTheme.rounded(m.titleSize * 0.7))
-                        .foregroundStyle(AppTheme.headline)
-
-                    Text("Eén keer kopen, voor het hele gezin — ook via Delen met gezin.")
-                        .font(AppTheme.rounded(m.captionSize + 2, .bold))
-                        .foregroundStyle(AppTheme.soft)
-                        .multilineTextAlignment(.center)
-
-                    VStack(alignment: .leading, spacing: m.gutter * 0.7) {
-                        feature("graduationcap.fill", "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt")
-                        feature("paintpalette.fill", "Alle kleurenthema's: Snoep, Oceaan en Nacht")
-                        feature("chart.bar.fill", "Statistieken per speler, met winreeks en beste vangst")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(m.gutter)
-                    .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
-
-                    if entitlements.isFamilyUnlocked {
-                        Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
-                            .font(AppTheme.rounded(m.bodySize))
-                            .foregroundStyle(AppTheme.mint)
-                            .padding(.top, m.gutter)
-                    } else {
-                        Button {
-                            askParent { await purchase() }
-                        } label: {
-                            Text("Ontgrendel voor \(priceText)")
-                                .font(AppTheme.rounded(m.buttonTextSize * 0.8))
-                                .foregroundStyle(AppTheme.ink)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: m.buttonHeight * 0.85)
-                        }
-                        .buttonStyle(ToyButtonStyle(
-                            fill: AppTheme.mint,
-                            radius: m.cardCorner * 0.9,
-                            depth: m.depth,
-                            border: m.border
-                        ))
-                        .disabled(isBusy)
-
-                        Button {
-                            askParent { await entitlements.restorePurchases() }
-                        } label: {
-                            Text("Eerder gekocht? Zet terug")
-                                .font(AppTheme.rounded(m.captionSize, .bold))
-                                .foregroundStyle(AppTheme.soft)
-                                .frame(minHeight: m.tapTarget)
-                                .contentShape(.rect)
-                        }
-                        .buttonStyle(.plain)
-                        .disabled(isBusy)
-                    }
-                }
-                .padding(.horizontal, m.gutter * 1.4)
-                .padding(.top, m.gutter)
-                .padding(.bottom, m.gutter * 2)
-                .frame(maxWidth: m.overlayMaxWidth)
-                .frame(maxWidth: .infinity)
+            if gatePassed || entitlements.isFamilyUnlocked {
+                paywallContent
             }
-            // De sluitknop hoort in de hoek van het vénster, niet in de
-            // hoek van de smallere tekstkolom — op iPad zweefde hij anders
-            // ergens halverwege.
-            .overlay(alignment: .topTrailing) {
-                Button(action: { dismiss() }) {
-                    Label("Sluiten", systemImage: "xmark")
-                        .labelStyle(.iconOnly)
-                        .font(.system(size: m.captionSize + 2, weight: .black))
-                        .foregroundStyle(AppTheme.ink)
-                        .frame(width: m.tapTarget, height: m.tapTarget)
+
+            // De sluitknop hoort in de hoek van het vénster, niet in de hoek
+            // van de smallere tekstkolom — en blijft ook mét dichte poort
+            // bereikbaar, zodat een kind gewoon weg kan.
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: { dismiss() }) {
+                        Label("Sluiten", systemImage: "xmark")
+                            .labelStyle(.iconOnly)
+                            .font(.system(size: m.captionSize + 2, weight: .black))
+                            .foregroundStyle(AppTheme.ink)
+                            .frame(width: m.tapTarget, height: m.tapTarget)
+                    }
+                    .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
                 }
-                .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
-                .padding(.top, m.gutter)
-                .padding(.trailing, m.gutter)
+                Spacer()
             }
+            .padding(m.gutter)
 
             // De ouder-poort: verplicht voor de kindercategorie, en eerlijk
             // gezegd gewoon verstandig.
@@ -121,6 +65,78 @@ struct PaywallView: View {
             }
         }
         .interactiveDismissDisabled(isBusy)
+        .onAppear {
+            // De vraag komt meteen bij het openen; wie de winkel al heeft,
+            // hoeft niets meer te rekenen.
+            if !entitlements.isFamilyUnlocked && !gatePassed {
+                gateQuestion = .make()
+            }
+        }
+    }
+
+    private var paywallContent: some View {
+        ScrollView {
+            VStack(spacing: m.gutter) {
+                Image(systemName: "figure.2.and.child.holdinghands")
+                    .font(.system(size: m.titleSize, weight: .black))
+                    .foregroundStyle(AppTheme.coral)
+
+                Text("Gezinsversie")
+                    .font(AppTheme.rounded(m.titleSize * 0.7))
+                    .foregroundStyle(AppTheme.headline)
+
+                Text("Eén keer kopen, voor het hele gezin — ook via Delen met gezin.")
+                    .font(AppTheme.rounded(m.captionSize + 2, .bold))
+                    .foregroundStyle(AppTheme.soft)
+                    .multilineTextAlignment(.center)
+
+                VStack(alignment: .leading, spacing: m.gutter * 0.7) {
+                    feature("graduationcap.fill", "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt")
+                    feature("paintpalette.fill", "Alle kleurenthema's: Snoep, Oceaan en Nacht")
+                    feature("chart.bar.fill", "Statistieken per speler, met winreeks en beste vangst")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(m.gutter)
+                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+
+                if entitlements.isFamilyUnlocked {
+                    Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
+                        .font(AppTheme.rounded(m.bodySize))
+                        .foregroundStyle(AppTheme.mint)
+                        .padding(.top, m.gutter)
+                } else {
+                    Button(action: startPurchase) {
+                        Text("Ontgrendel voor \(priceText)")
+                            .font(AppTheme.rounded(m.buttonTextSize * 0.8))
+                            .foregroundStyle(AppTheme.ink)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: m.buttonHeight * 0.85)
+                    }
+                    .buttonStyle(ToyButtonStyle(
+                        fill: AppTheme.mint,
+                        radius: m.cardCorner * 0.9,
+                        depth: m.depth,
+                        border: m.border
+                    ))
+                    .disabled(isBusy)
+
+                    Button(action: startRestore) {
+                        Text("Eerder gekocht? Zet terug")
+                            .font(AppTheme.rounded(m.captionSize, .bold))
+                            .foregroundStyle(AppTheme.soft)
+                            .frame(minHeight: m.tapTarget)
+                            .contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(isBusy)
+                }
+            }
+            .padding(.horizontal, m.gutter * 1.4)
+            .padding(.top, m.gutter)
+            .padding(.bottom, m.gutter * 2)
+            .frame(maxWidth: m.overlayMaxWidth)
+            .frame(maxWidth: .infinity)
+        }
     }
 
     private func feature(_ icon: String, _ text: LocalizedStringKey) -> some View {
@@ -139,11 +155,11 @@ struct PaywallView: View {
 
     private func gateOverlay(_ question: ParentalGateQuestion) -> some View {
         ZStack {
-            // Tikken om te sluiten is een extraatje voor ziende gebruikers;
-            // VoiceOver krijgt de opties op de kaart, niet dit vlak.
+            // Tikken naast de kaart sluit het hele scherm; VoiceOver krijgt
+            // de opties op de kaart, niet dit vlak.
             AppTheme.ink.opacity(0.5)
                 .ignoresSafeArea()
-                .onTapGesture { closeGate() }
+                .onTapGesture { dismiss() }
                 .accessibilityHidden(true)
 
             VStack(spacing: m.gutter * 0.8) {
@@ -180,33 +196,34 @@ struct PaywallView: View {
         .transition(.opacity)
     }
 
-    private func askParent(_ action: @escaping () async -> Void) {
-        pendingAction = action
-        withAnimation(.easeOut(duration: 0.15)) {
-            gateQuestion = .make()
-        }
-    }
-
     private func answerGate(with option: Int, question: ParentalGateQuestion) {
         guard option == question.answer else {
             // Fout: nieuwe vraag, zodat gokken niet loont.
             gateQuestion = .make()
             return
         }
-        let action = pendingAction
-        closeGate()
+        withAnimation(.easeOut(duration: 0.15)) {
+            gateQuestion = nil
+            gatePassed = true
+        }
+    }
+
+    // MARK: - Kassa
+
+    private func startPurchase() {
         isBusy = true
         Task {
-            await action?()
+            await purchase()
             isBusy = false
         }
     }
 
-    private func closeGate() {
-        withAnimation(.easeOut(duration: 0.15)) {
-            gateQuestion = nil
+    private func startRestore() {
+        isBusy = true
+        Task {
+            await restore()
+            isBusy = false
         }
-        pendingAction = nil
     }
 
     /// Annuleren is een keuze en blijft stil; mislukken en wachten-op-ouder
@@ -219,6 +236,17 @@ struct PaywallView: View {
             showNotice(String(localized: "De aankoop wacht nog op goedkeuring van een ouder."))
         case .failed:
             showNotice(String(localized: "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens."))
+        }
+    }
+
+    /// Terugzetten dat stilletjes niets doet lijkt kapot; hier hoort een
+    /// antwoord bij, ook als dat "niets gevonden" is.
+    private func restore() async {
+        let synced = await entitlements.restorePurchases()
+        if !synced {
+            showNotice(String(localized: "Terugzetten is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens."))
+        } else if !entitlements.isFamilyUnlocked {
+            showNotice(String(localized: "Er is geen eerdere aankoop gevonden voor dit Apple-account."))
         }
     }
 

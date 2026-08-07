@@ -81,7 +81,7 @@ extension ThemePalette {
         soft: Color(red: 0.45, green: 0.39, blue: 0.31),
         dim: Color(red: 0.66, green: 0.60, blue: 0.51),
         offFill: Color(red: 0.86, green: 0.83, blue: 0.76),
-        offInk: Color(red: 0.70, green: 0.66, blue: 0.59)
+        offInk: Color(red: 0.37, green: 0.35, blue: 0.30)
     )
 
     /// Snoepwinkel: roze als basis, maar met geel en lila ertussen — anders
@@ -104,7 +104,7 @@ extension ThemePalette {
         soft: Color(red: 0.51, green: 0.35, blue: 0.44),
         dim: Color(red: 0.68, green: 0.54, blue: 0.62),
         offFill: Color(red: 0.89, green: 0.83, blue: 0.86),
-        offInk: Color(red: 0.69, green: 0.59, blue: 0.64)
+        offInk: Color(red: 0.42, green: 0.33, blue: 0.38)
     )
 
     static let oceaan = ThemePalette(
@@ -125,7 +125,7 @@ extension ThemePalette {
         soft: Color(red: 0.29, green: 0.42, blue: 0.46),
         dim: Color(red: 0.48, green: 0.59, blue: 0.62),
         offFill: Color(red: 0.84, green: 0.89, blue: 0.88),
-        offInk: Color(red: 0.58, green: 0.66, blue: 0.66)
+        offInk: Color(red: 0.27, green: 0.35, blue: 0.35)
     )
 
     /// De kaarten en het scoreblad blijven wit met donkere inkt; alleen de
@@ -153,6 +153,6 @@ extension ThemePalette {
         soft: Color(red: 0.79, green: 0.82, blue: 0.90),
         dim: Color(red: 0.60, green: 0.64, blue: 0.74),
         offFill: Color(red: 0.29, green: 0.32, blue: 0.41),
-        offInk: Color(red: 0.64, green: 0.67, blue: 0.77)
+        offInk: Color(red: 0.85, green: 0.88, blue: 0.95)
     )
 }

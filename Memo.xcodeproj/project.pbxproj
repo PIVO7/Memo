@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00676E1B4EA68558F9E5315D /* StatsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F622C967B2A0E7251B24DC3 /* StatsModelTests.swift */; };
 		02B8D35D15E4D1EA42F9C6AF /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15382521D99DC804018B6714 /* GameEngine.swift */; };
 		0561DCEBD7683A003C3CA849 /* FamilyRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219EE736E0FA3DC45F14A50 /* FamilyRecordsView.swift */; };
 		0806B4604F984BEF0ADE961C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64663EA45257DC95762FB6 /* AppTheme.swift */; };
@@ -32,6 +33,7 @@
 		5B3041916F46CB47BEEC53C9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8870890E8E938B1F07237E3E /* PrivacyInfo.xcprivacy */; };
 		5C77C67ABBE61A041F68054B /* ProfileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50C400690E8C02797A64DA4 /* ProfileRowView.swift */; };
 		6318BE77EAC9063AB7254B36 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA284904EA4235D267A3253D /* RulesView.swift */; };
+		6512E0987D4D9EEC31AA17DE /* FamilyRecordMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0100BDA5524B8FCE0E322 /* FamilyRecordMath.swift */; };
 		6A9AE0A3E9F3F6D290F9597D /* ComputerAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D62CDF088261474EF9EB789 /* ComputerAITests.swift */; };
 		71E49BB8991940733B70EB7B /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68382A4A8CFE47DEEB91C93 /* ProfileStore.swift */; };
 		7D4B0B4F7D569DDE043C7492 /* GameSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D42F5988BEC6D442E4439F /* GameSetupView.swift */; };
@@ -89,6 +91,7 @@
 		122E272FC3311BB4ED4E3072 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		15382521D99DC804018B6714 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1E27C6133C4D9FF97283CF20 /* GameStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoreTests.swift; sourceTree = "<group>"; };
+		1F622C967B2A0E7251B24DC3 /* StatsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModelTests.swift; sourceTree = "<group>"; };
 		25A8895B0B1E361A2ACF3EE5 /* MemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoApp.swift; sourceTree = "<group>"; };
 		27D215C505ABAAA60942ADE9 /* wissel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wissel.wav; sourceTree = "<group>"; };
 		2FB9BD75D3BEC21F9F80E86E /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 		CBC7EE35E4DCFB1DEC2C96AC /* ProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsView.swift; sourceTree = "<group>"; };
 		CF2BBF3976C2C8068A2024B3 /* ProfileBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBadge.swift; sourceTree = "<group>"; };
 		D1D0D215CB30FDC62114C8A8 /* MemoryEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryEngineTests.swift; sourceTree = "<group>"; };
+		D2A0100BDA5524B8FCE0E322 /* FamilyRecordMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRecordMath.swift; sourceTree = "<group>"; };
 		D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardView.swift; sourceTree = "<group>"; };
 		DF4D827565961B6FC56D160A /* GamePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayer.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 		77FF6B630F00FC33A520BDE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2A0100BDA5524B8FCE0E322 /* FamilyRecordMath.swift */,
 				F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */,
 				6FD6B357132218EDBEEE307D /* GameRecord.swift */,
 				85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */,
@@ -282,6 +287,7 @@
 				6D79015A77FC47B46525F983 /* ParentalGateTests.swift */,
 				986688BF89A638C7C1BE5A25 /* ProfileStoreTests.swift */,
 				90ABB010BEB527FBF614080C /* RenderSmokeTests.swift */,
+				1F622C967B2A0E7251B24DC3 /* StatsModelTests.swift */,
 			);
 			path = "Memo Tests";
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				8D6A779C0026A429A1F10BB5 /* ParentalGateTests.swift in Sources */,
 				129E7008173CD88AD92B20A0 /* ProfileStoreTests.swift in Sources */,
 				CFDAE91F91574C43A28C122C /* RenderSmokeTests.swift in Sources */,
+				00676E1B4EA68558F9E5315D /* StatsModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +509,7 @@
 				E76A5A92798965563FC83CDD /* ConfettiView.swift in Sources */,
 				F9F174EF955CD920320B8908 /* Destination.swift in Sources */,
 				1C63A7D6FDFF9C7D1229FDA6 /* EntitlementStore.swift in Sources */,
+				6512E0987D4D9EEC31AA17DE /* FamilyRecordMath.swift in Sources */,
 				0561DCEBD7683A003C3CA849 /* FamilyRecordsView.swift in Sources */,
 				C2AD892147AEFC95F47CF577 /* GameCoverView.swift in Sources */,
 				02B8D35D15E4D1EA42F9C6AF /* GameEngine.swift in Sources */,
@@ -607,7 +615,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VB6FS3N78T;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -740,7 +748,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = VB6FS3N78T;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

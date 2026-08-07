@@ -91,12 +91,18 @@ final class EntitlementStore {
         }
     }
 
-    func restorePurchases() async {
+    /// Meldt of het synchroniseren zelf gelukt is, zodat de paywall een
+    /// mislukking kan benoemen in plaats van stil te blijven.
+    @discardableResult
+    func restorePurchases() async -> Bool {
+        var synced = true
         do {
             try await AppStore.sync()
         } catch {
             logger.error("Herstellen mislukt: \(error.localizedDescription, privacy: .public)")
+            synced = false
         }
         await refreshEntitlements()
+        return synced
     }
 }
