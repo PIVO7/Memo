@@ -37,7 +37,10 @@ struct CardGridView: View {
             .padding(padding)
             .toyBlock(fill: AppTheme.sky, radius: m.cardCorner, depth: m.depth + 1, border: m.border)
             .frame(width: gridWidth)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Bovenaan verankerd: zo sluit het raster aan op de statusregel
+            // en valt de restruimte onderaan, bij de hand — geen gat midden
+            // op het scherm.
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
     }
 

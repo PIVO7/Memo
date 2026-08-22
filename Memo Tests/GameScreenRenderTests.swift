@@ -38,16 +38,24 @@ final class GameScreenRenderTests: XCTestCase {
         }
         engine.flip(at: engine.cards.indices.first(where: { !engine.cards[$0].isMatched })!)
 
-        let view = GameView(engine: engine, onRematch: {}, onClose: {})
-            .environment(ProfileStore(fileURL: URL.temporaryDirectory.appending(path: "render-\(UUID()).json")))
-            .environment(GameStore(fileURL: URL.temporaryDirectory.appending(path: "render-\(UUID()).json")))
-            .environment(\.metrics, .phone)
-            .frame(width: 393, height: 852)
+        // Twee maten: iPhone en iPad portret, zodat een indeling op beide
+        // te beoordelen valt.
+        let variants: [(suffix: String, width: CGFloat, height: CGFloat, metrics: AppMetrics)] = [
+            ("", 393, 852, .phone),
+            ("-ipad", 834, 1194, .pad)
+        ]
+        for variant in variants {
+            let view = GameView(engine: engine, onRematch: {}, onClose: {})
+                .environment(ProfileStore(fileURL: URL.temporaryDirectory.appending(path: "render-\(UUID()).json")))
+                .environment(GameStore(fileURL: URL.temporaryDirectory.appending(path: "render-\(UUID()).json")))
+                .environment(\.metrics, variant.metrics)
+                .frame(width: variant.width, height: variant.height)
 
-        let renderer = ImageRenderer(content: view)
-        renderer.scale = 2
-        let image = try XCTUnwrap(renderer.uiImage)
-        try XCTUnwrap(image.pngData())
-            .write(to: outputDirectory.appending(path: "spelscherm.png"))
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = 2
+            let image = try XCTUnwrap(renderer.uiImage)
+            try XCTUnwrap(image.pngData())
+                .write(to: outputDirectory.appending(path: "spelscherm\(variant.suffix).png"))
+        }
     }
 }
