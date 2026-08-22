@@ -36,7 +36,7 @@ final class GameScreenRenderTests: XCTestCase {
                 break
             }
         }
-        engine.flip(at: engine.cards.indices.first(where: { !engine.cards[$0].isMatched })!)
+        engine.flip(at: try XCTUnwrap(engine.cards.indices.first { !engine.cards[$0].isMatched }))
 
         // Twee maten: iPhone en iPad portret, zodat een indeling op beide
         // te beoordelen valt.

@@ -168,9 +168,9 @@ struct GameView: View {
     /// boven het speelveld.
     private var topBar: some View {
         HStack(spacing: 8) {
-            (Text("Beurt \(engine.attempts + (engine.isFinished ? 0 : 1))")
-                + Text(verbatim: " · ")
-                + Text("Nog \(engine.pairsRemaining) paren"))
+            let turn = Text("Beurt \(engine.attempts + (engine.isFinished ? 0 : 1))")
+            let pairs = Text("Nog \(engine.pairsRemaining) paren")
+            Text("\(turn) · \(pairs)")
                 .textCase(.uppercase)
                 .font(AppTheme.rounded(m.captionSize * 0.92))
                 .kerning(1.6)
