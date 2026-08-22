@@ -33,11 +33,13 @@ struct GameView: View {
             ThemedBackground()
 
             VStack(spacing: m.gutter) {
+                topBar
+
+                // De tussenstand vlak boven het speelveld dat hij samenvat.
                 GameHeaderView(
                     players: engine.players,
                     currentPlayerID: engine.currentPlayer.id,
-                    pairCount: engine.pairCount(of:),
-                    onLeave: requestLeave
+                    pairCount: engine.pairCount(of:)
                 )
 
                 statusLine
@@ -49,8 +51,6 @@ struct GameView: View {
                     isEnabled: engine.canFlip,
                     onFlip: flip
                 )
-
-                infoRow
             }
             .padding(.horizontal, m.gutter)
             .padding(.vertical, m.gutter * 0.5)
@@ -163,17 +163,31 @@ struct GameView: View {
             .opacity(showResult || showTurnBanner ? 0 : 1)
     }
 
-    private var infoRow: some View {
-        HStack {
-            Text("Nog \(engine.pairsRemaining) paren")
-                .font(AppTheme.rounded(m.captionSize, .bold))
+    /// De dunne bovenrand: beurt- en parenteller (passieve meta-info) met
+    /// de sluitknop ernaast. De tussenstand staat niet meer hier maar vlak
+    /// boven het speelveld.
+    private var topBar: some View {
+        HStack(spacing: 8) {
+            (Text("Beurt \(engine.attempts + (engine.isFinished ? 0 : 1))")
+                + Text(verbatim: " · ")
+                + Text("Nog \(engine.pairsRemaining) paren"))
+                .textCase(.uppercase)
+                .font(AppTheme.rounded(m.captionSize * 0.92))
+                .kerning(1.6)
                 .foregroundStyle(AppTheme.faint)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 4)
 
-            Spacer()
-
-            Text("Beurt \(engine.attempts + (engine.isFinished ? 0 : 1))")
-                .font(AppTheme.rounded(m.captionSize, .bold))
-                .foregroundStyle(AppTheme.faint)
+            Button(action: requestLeave) {
+                Label("Spel verlaten", systemImage: "xmark")
+                    .labelStyle(.iconOnly)
+                    .font(.system(size: m.captionSize + 2, weight: .black))
+                    .foregroundStyle(AppTheme.ink)
+                    .frame(width: m.tapTarget, height: m.tapTarget)
+            }
+            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
         }
     }
 

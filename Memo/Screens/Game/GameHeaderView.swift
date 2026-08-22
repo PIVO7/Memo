@@ -1,37 +1,27 @@
 import SwiftUI
 
-/// De twee spelers op één regel, elk met hun parenteller, en de sluitknop
-/// ernaast. Wie aan de beurt is krijgt een gekleurde chip met zijn bolletje.
+/// De twee spelers op één regel, elk met hun parenteller. De tussenstand
+/// hoort vlak boven het speelveld dat hij samenvat; de sluitknop staat
+/// apart in de bovenrand van het spelscherm. Wie aan de beurt is krijgt
+/// een gekleurde chip met zijn bolletje.
 struct GameHeaderView: View {
     let players: [GamePlayer]
     let currentPlayerID: UUID
     /// Spelerindex → aantal gevonden paren.
     let pairCount: (Int) -> Int
-    let onLeave: () -> Void
 
     @Environment(\.metrics) private var m
 
     var body: some View {
-        HStack(spacing: 8) {
-            HStack(spacing: 6) {
-                ForEach(Array(players.enumerated()), id: \.element.id) { index, player in
-                    chip(for: player, index: index)
-                }
+        HStack(spacing: 6) {
+            ForEach(Array(players.enumerated()), id: \.element.id) { index, player in
+                chip(for: player, index: index)
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, m.gutter * 0.45)
-            .frame(maxWidth: .infinity)
-            .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 3, depth: 3, border: m.thinBorder + 0.5)
-
-            Button(action: onLeave) {
-                Label("Spel verlaten", systemImage: "xmark")
-                    .labelStyle(.iconOnly)
-                    .font(.system(size: m.captionSize + 2, weight: .black))
-                    .foregroundStyle(AppTheme.ink)
-                    .frame(width: m.tapTarget, height: m.tapTarget)
-            }
-            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
         }
+        .padding(.horizontal, 10)
+        .padding(.vertical, m.gutter * 0.45)
+        .frame(maxWidth: .infinity)
+        .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 3, depth: 3, border: m.thinBorder + 0.5)
     }
 
     private func chip(for player: GamePlayer, index: Int) -> some View {
@@ -76,7 +66,7 @@ struct GameHeaderView: View {
     let lene = GamePlayer(profile: PlayerProfile(name: "Lene", avatarColorIndex: 0))
     let ellis = GamePlayer(profile: PlayerProfile(name: "Ellis", avatarColorIndex: 1))
 
-    GameHeaderView(players: [lene, ellis], currentPlayerID: lene.id, pairCount: { $0 + 2 }, onLeave: {})
+    GameHeaderView(players: [lene, ellis], currentPlayerID: lene.id, pairCount: { $0 + 2 })
         .padding()
         .background(AppTheme.cream)
         .appMetrics()
