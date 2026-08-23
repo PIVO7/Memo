@@ -16,6 +16,7 @@
 		10CD4AC4BA33767345105DD1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BC3F9F1DD0D1FC2F835B61 /* HomeView.swift */; };
 		129E7008173CD88AD92B20A0 /* ProfileStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986688BF89A638C7C1BE5A25 /* ProfileStoreTests.swift */; };
 		14D4975AFEB00318AB086A95 /* ComputerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7EB260E3EF6D3C057B4FB /* ComputerAI.swift */; };
+		1546CD3F5E2B9EAC4185014A /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2B7B1A674C2724BF54761E /* ProfileEditorView.swift */; };
 		17BF94457180FBFCBD9E8963 /* ThemedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6A368EF501741067021134 /* ThemedBackground.swift */; };
 		1B9D50A9062A0F3B3B24FF68 /* ToyDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823457F9CDC0A035D1A0971 /* ToyDialog.swift */; };
 		1C63A7D6FDFF9C7D1229FDA6 /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA29D49F235339476DD0C57 /* EntitlementStore.swift */; };
@@ -60,7 +61,6 @@
 		CFDAE91F91574C43A28C122C /* RenderSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB010BEB527FBF614080C /* RenderSmokeTests.swift */; };
 		D402CDDA5B4E824D1058EDC4 /* SplitMix64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5774D7D2596B2E59511A8D /* SplitMix64.swift */; };
 		D412685C8BD732275BD7E41C /* TurnBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E9D9D59F2D894784E0654 /* TurnBannerView.swift */; };
-		DA031106748D579B51B1799E /* AvatarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8964871C3F5F72C91D129 /* AvatarPickerView.swift */; };
 		DA4DCCBCD5BD8E82EE05F19D /* wissel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27D215C505ABAAA60942ADE9 /* wissel.wav */; };
 		DD00113DB2F8F9763EA77886 /* GameSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */; };
 		E69868E12926773366CC0121 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 00D0CD31089ECB6056E69415 /* Localizable.xcstrings */; };
@@ -108,6 +108,7 @@
 		5E4AF5360E3D9F304FD146BF /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		66F54049424B2D3D51469A2E /* ThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStore.swift; sourceTree = "<group>"; };
 		6AA29D49F235339476DD0C57 /* EntitlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementStore.swift; sourceTree = "<group>"; };
+		6B2B7B1A674C2724BF54761E /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
 		6C8277CE241B234CBB2CAF2A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6D79015A77FC47B46525F983 /* ParentalGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateTests.swift; sourceTree = "<group>"; };
 		6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshot.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		974A5091F9C370C2F565F158 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		986688BF89A638C7C1BE5A25 /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		9E6284AFB3A19457C6947D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9ED8964871C3F5F72C91D129 /* AvatarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerView.swift; sourceTree = "<group>"; };
 		A389E101676AE4E1D0C0D23A /* AvatarBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarBadge.swift; sourceTree = "<group>"; };
 		A50C400690E8C02797A64DA4 /* ProfileRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRowView.swift; sourceTree = "<group>"; };
 		A7F9208235E92D742B06B05A /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 		2FF1CB7599BE424516B02D64 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
-				9ED8964871C3F5F72C91D129 /* AvatarPickerView.swift */,
 				0219EE736E0FA3DC45F14A50 /* FamilyRecordsView.swift */,
+				6B2B7B1A674C2724BF54761E /* ProfileEditorView.swift */,
 				A50C400690E8C02797A64DA4 /* ProfileRowView.swift */,
 				CBC7EE35E4DCFB1DEC2C96AC /* ProfileStatsView.swift */,
 				A7F9208235E92D742B06B05A /* ProfilesView.swift */,
@@ -506,7 +506,6 @@
 				2AC05CCF070520C412508136 /* AppMetrics.swift in Sources */,
 				0806B4604F984BEF0ADE961C /* AppTheme.swift in Sources */,
 				AC3A1EDAC7AD341371ADE1BA /* AvatarBadge.swift in Sources */,
-				DA031106748D579B51B1799E /* AvatarPickerView.swift in Sources */,
 				CAE5A3B680E04BD1A358985B /* CardGridView.swift in Sources */,
 				14D4975AFEB00318AB086A95 /* ComputerAI.swift in Sources */,
 				890640D3EB29EAF534D56CF4 /* ComputerLevel.swift in Sources */,
@@ -535,6 +534,7 @@
 				CAA1DE4D619B7BB98D3316DF /* PaywallView.swift in Sources */,
 				0D16EC5E0E1797F9EF2E8D3C /* PlayerProfile.swift in Sources */,
 				2AB01702E71C532DAC874405 /* ProfileBadge.swift in Sources */,
+				1546CD3F5E2B9EAC4185014A /* ProfileEditorView.swift in Sources */,
 				5C77C67ABBE61A041F68054B /* ProfileRowView.swift in Sources */,
 				C63A98448DD6F87DA87ABED0 /* ProfileStatsView.swift in Sources */,
 				71E49BB8991940733B70EB7B /* ProfileStore.swift in Sources */,

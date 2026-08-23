@@ -1,33 +1,31 @@
 import SwiftUI
 
-/// Eén profiel in de lijst, met de knoppen om te hernoemen of te verwijderen.
-/// De rij houdt zijn eigen dialoogtoestand bij: bij gedeelde toestand zou elke
-/// rij dezelfde vlag volgen en zouden er meerdere dialogen tegelijk openen.
+/// Eén profiel in de lijst. Het potloodje (en een tik op het bolletje) opent
+/// de profieleditor voor naam, kleur en symbool tegelijk; de rij houdt zijn
+/// eigen dialoogtoestand bij zodat er nooit twee dialogen tegelijk openen.
 struct ProfileRowView: View {
     let profile: PlayerProfile
-    let onRename: (String) -> Void
+    /// Naam, kleurindex en symbool uit de editor, in die volgorde.
+    let onEdit: (String, Int, String?) -> Void
     let onDelete: () -> Void
-    let onAvatarChange: (Int, String?) -> Void
 
     @Environment(\.metrics) private var m
-    @State private var renameText = ""
-    @State private var isRenaming = false
     @State private var isDeleting = false
-    @State private var showAvatarPicker = false
+    @State private var showEditor = false
 
     var body: some View {
         HStack(spacing: m.gutter * 0.9) {
-            // Tik op het bolletje om het aan te passen; op de naam voor de
-            // statistieken.
+            // Tik op het bolletje om het profiel aan te passen; op de naam
+            // voor de statistieken.
             Button {
-                showAvatarPicker = true
+                showEditor = true
             } label: {
                 AvatarBadge(profile: profile, size: m.avatarSize)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("Avatar van \(profile.name) aanpassen")
-            .sheet(isPresented: $showAvatarPicker) {
-                AvatarPickerView(profile: profile, onSave: onAvatarChange)
+            .accessibilityLabel("Profiel van \(profile.name) aanpassen")
+            .sheet(isPresented: $showEditor) {
+                ProfileEditorView(profile: profile, onSave: onEdit)
                     .appMetrics()
             }
 
@@ -46,34 +44,29 @@ struct ProfileRowView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            .buttonStyle(.plain)
+            .buttonStyle(RowLinkStyle())
             .accessibilityHint("Toont de statistieken")
 
-            renameButton
+            editButton
             deleteButton
         }
         .padding(m.gutter * 0.9)
         .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
     }
 
-    private var renameButton: some View {
-        Button(action: beginRename) {
+    private var editButton: some View {
+        Button {
+            showEditor = true
+        } label: {
             // Een Label en geen kale Image: de titel voedt VoiceOver én
             // Voice Control, ook al toont de knop alleen het icoon.
-            Label("\(profile.name) hernoemen", systemImage: "pencil")
+            Label("Profiel van \(profile.name) aanpassen", systemImage: "pencil")
                 .labelStyle(.iconOnly)
                 .font(.system(size: m.captionSize + 2, weight: .black))
                 .foregroundStyle(AppTheme.ink)
                 .frame(width: m.tapTarget, height: m.tapTarget)
         }
         .buttonStyle(ToyButtonStyle(fill: AppTheme.tintAmber, radius: m.cellCorner, depth: 3, border: m.thinBorder))
-        // De dialoog hangt aan de knop die hem opent, niet aan het scherm,
-        // zodat de animatie vanaf de juiste plek vertrekt.
-        .alert("Naam wijzigen", isPresented: $isRenaming) {
-            TextField("Naam", text: $renameText)
-            Button("Bewaar") { onRename(renameText) }
-            Button("Annuleer", role: .cancel) {}
-        }
     }
 
     private var deleteButton: some View {
@@ -97,22 +90,26 @@ struct ProfileRowView: View {
         }
     }
 
-    private func beginRename() {
-        renameText = profile.name
-        isRenaming = true
-    }
-
     private func beginDelete() {
         isDeleting = true
+    }
+
+    /// Zonder de automatische dim van de systeemknop: in de render-rooktest
+    /// staat de rij buiten een NavigationStack en zou de naam er anders
+    /// uitgegrijsd bijstaan.
+    private struct RowLinkStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .opacity(configuration.isPressed ? 0.55 : 1)
+        }
     }
 }
 
 #Preview {
     ProfileRowView(
         profile: PlayerProfile(name: "Lene", wins: 3, gamesPlayed: 7),
-        onRename: { _ in },
-        onDelete: {},
-        onAvatarChange: { _, _ in }
+        onEdit: { _, _, _ in },
+        onDelete: {}
     )
     .environment(EntitlementStore(previewUnlocked: true))
     .padding()

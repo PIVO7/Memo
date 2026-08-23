@@ -33,11 +33,11 @@ final class ProfileStore {
         profiles.filter { !$0.isComputer }.sorted { $0.createdAt < $1.createdAt }
     }
 
-    func addProfile(name: String) {
+    func addProfile(name: String, colorIndex: Int? = nil, symbol: String? = nil) {
         let trimmed = cleaned(name)
         guard !trimmed.isEmpty else { return }
-        let color = profiles.count % PlayerProfile.avatarPaletteCount
-        let profile = PlayerProfile(name: trimmed, avatarColorIndex: color)
+        let color = colorIndex ?? profiles.count % PlayerProfile.avatarPaletteCount
+        let profile = PlayerProfile(name: trimmed, avatarColorIndex: color, avatarSymbol: symbol)
         profiles.append(profile)
         save()
     }
@@ -47,6 +47,19 @@ final class ProfileStore {
         guard !trimmed.isEmpty,
               let index = profiles.firstIndex(where: { $0.id == id && !$0.isComputer }) else { return }
         profiles[index].name = trimmed
+        save()
+    }
+
+    /// Alles uit de profieleditor in één keer; een lege naam laat de oude
+    /// naam staan zodat een half ingevuld scherm nooit een naam wist.
+    func updateProfile(id: UUID, name: String, colorIndex: Int, symbol: String?) {
+        guard let index = profiles.firstIndex(where: { $0.id == id && !$0.isComputer }) else { return }
+        let trimmed = cleaned(name)
+        if !trimmed.isEmpty {
+            profiles[index].name = trimmed
+        }
+        profiles[index].avatarColorIndex = colorIndex
+        profiles[index].avatarSymbol = symbol
         save()
     }
 
