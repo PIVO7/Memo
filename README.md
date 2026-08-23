@@ -1,7 +1,7 @@
 # Memo!
 
 Een memoryspel voor kinderen, in dezelfde speelgoedstijl als
-[Dobbel](https://github.com/PIVO7/Yathzee) en
+[Dobbel](https://github.com/PIVO7/Dobbel) en
 [Vier op een rij](https://github.com/PIVO7/VierOpEenRij).
 
 Draai twee kaartjes om en vind de paren. Speel met z'n tweeën aan één
