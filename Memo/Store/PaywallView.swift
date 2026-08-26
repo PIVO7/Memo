@@ -46,7 +46,9 @@ struct PaywallView: View {
                 }
                 Spacer()
             }
-            .padding(m.gutter)
+            // Ruimer dan de standaardmarge: de ronde hoek van het sheet
+            // liep anders dwars achter de knop door en knipte zijn schaduw.
+            .padding(m.gutter * 1.4)
 
             // De ouder-poort: verplicht voor de kindercategorie, en eerlijk
             // gezegd gewoon verstandig.
