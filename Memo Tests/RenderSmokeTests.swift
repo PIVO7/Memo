@@ -67,6 +67,7 @@ final class RenderSmokeTests: XCTestCase {
                 message: "Lene wint met 5 paren!",
                 pairCounts: [5, 3],
                 isNewRecord: true,
+                animatesIn: false,
                 onRematch: {},
                 onClose: {}
             )
