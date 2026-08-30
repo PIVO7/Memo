@@ -31,6 +31,7 @@
 		4A4646EAEA658C8B9D26185D /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9208235E92D742B06B05A /* ProfilesView.swift */; };
 		4D1EF99205D7DF5D46313728 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */; };
 		4D529BF48C72536744CC5639 /* ThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F54049424B2D3D51469A2E /* ThemeStore.swift */; };
+		59219C6B1F4182EF3F01AC4D /* CardRowBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DA746DF3FB0D49A0BBBFF1 /* CardRowBand.swift */; };
 		5B3041916F46CB47BEEC53C9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8870890E8E938B1F07237E3E /* PrivacyInfo.xcprivacy */; };
 		5C77C67ABBE61A041F68054B /* ProfileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50C400690E8C02797A64DA4 /* ProfileRowView.swift */; };
 		6318BE77EAC9063AB7254B36 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA284904EA4235D267A3253D /* RulesView.swift */; };
@@ -96,6 +97,7 @@
 		25A8895B0B1E361A2ACF3EE5 /* MemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoApp.swift; sourceTree = "<group>"; };
 		27D215C505ABAAA60942ADE9 /* wissel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wissel.wav; sourceTree = "<group>"; };
 		2FB9BD75D3BEC21F9F80E86E /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
+		32DA746DF3FB0D49A0BBBFF1 /* CardRowBand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRowBand.swift; sourceTree = "<group>"; };
 		34BC3F9F1DD0D1FC2F835B61 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		354008D8A32DD748DA74FD62 /* HomeHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeroView.swift; sourceTree = "<group>"; };
 		392A9E586671A60815FF36D0 /* Memo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				7BAA6C34AD98D214828DB366 /* ActiveGame.swift */,
+				32DA746DF3FB0D49A0BBBFF1 /* CardRowBand.swift */,
 				974A5091F9C370C2F565F158 /* Destination.swift */,
 				354008D8A32DD748DA74FD62 /* HomeHeroView.swift */,
 				34BC3F9F1DD0D1FC2F835B61 /* HomeView.swift */,
@@ -507,6 +510,7 @@
 				0806B4604F984BEF0ADE961C /* AppTheme.swift in Sources */,
 				AC3A1EDAC7AD341371ADE1BA /* AvatarBadge.swift in Sources */,
 				CAE5A3B680E04BD1A358985B /* CardGridView.swift in Sources */,
+				59219C6B1F4182EF3F01AC4D /* CardRowBand.swift in Sources */,
 				14D4975AFEB00318AB086A95 /* ComputerAI.swift in Sources */,
 				890640D3EB29EAF534D56CF4 /* ComputerLevel.swift in Sources */,
 				E76A5A92798965563FC83CDD /* ConfettiView.swift in Sources */,
