@@ -29,10 +29,10 @@ struct MemoApp: App {
                 }
         }
         .onChange(of: scenePhase) { _, phase in
-            // Naar de achtergrond: eerst de wachtrij met zetten op schijf
-            // laten landen, zodat een snelle force-quit niets verliest.
-            if phase == .background {
-                Task { await gameStore.flush() }
+            // Meteen naar schijf zodra de app uit beeld raakt: een kind dat
+            // direct daarna de app wegveegt, raakt anders de laatste zet kwijt.
+            if phase == .background || phase == .inactive {
+                gameStore.persistNow()
             }
         }
     }

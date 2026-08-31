@@ -72,7 +72,7 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
 
     /// Aantal kleuren in het avatarpalet; `AvatarBadge.palette` moet even
     /// lang zijn (een test bewaakt dat).
-    static let avatarPaletteCount = 6
+    static let avatarPaletteCount = 7
 
     /// Vaste id's, zodat een bewaard spel na een herstart dezelfde
     /// tegenstander terugvindt.

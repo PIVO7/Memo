@@ -15,7 +15,8 @@ struct AvatarBadge: View {
             AppTheme.amber,
             AppTheme.mint,
             Color(red: 0.78, green: 0.47, blue: 0.90),
-            Color(red: 0.98, green: 0.60, blue: 0.35)
+            Color(red: 0.98, green: 0.60, blue: 0.35),
+            Color(red: 0.97, green: 0.52, blue: 0.75)
         ]
     }
 

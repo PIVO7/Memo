@@ -74,6 +74,13 @@ struct PaywallView: View {
                 gateQuestion = .make()
             }
         }
+        // De prijs kan bij het openen nog ontbreken (geen netwerk bij de
+        // start); hier krijgt hij een tweede kans.
+        .task {
+            if entitlements.familyProduct == nil {
+                await entitlements.load()
+            }
+        }
     }
 
     private var paywallContent: some View {

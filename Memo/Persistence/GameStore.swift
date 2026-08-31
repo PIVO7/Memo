@@ -65,6 +65,22 @@ final class GameStore {
         await pendingWrite?.value
     }
 
+    /// Schrijft de huidige stand meteen en synchroon weg. Voor het moment dat
+    /// de app naar de achtergrond gaat: wie direct daarna geforceerd afsluit,
+    /// geeft de asynchrone schrijfrij geen kans meer. De rij zelf mag daarna
+    /// gewoon aflopen — de laatste taak schrijft dezelfde stand nog eens.
+    func persistNow() {
+        if let savedGame {
+            do {
+                try JSONEncoder().encode(savedGame).write(to: fileURL, options: [.atomic])
+            } catch {
+                opslagLogger.error("Spelstand bewaren mislukt: \(error.localizedDescription, privacy: .public)")
+            }
+        } else {
+            try? FileManager.default.removeItem(at: fileURL)
+        }
+    }
+
     private func load() {
         guard FileManager.default.fileExists(atPath: fileURL.path) else {
             savedGame = nil
