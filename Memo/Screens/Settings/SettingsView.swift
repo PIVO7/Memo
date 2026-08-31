@@ -9,7 +9,6 @@ struct SettingsView: View {
     @Environment(\.metrics) private var m
 
     @State private var soundOn = SoundPlayer.shared.isEnabled
-    @State private var turnBannerOn = TurnBanner.isEnabled
     @State private var showRules = false
     @State private var showPaywall = false
 
@@ -63,25 +62,6 @@ struct SettingsView: View {
                             if isOn {
                                 SoundPlayer.shared.play(.drop)
                             }
-                        }
-                    }
-
-                    section("MELDINGEN") {
-                        Toggle(isOn: $turnBannerOn) {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Beurtmelding")
-                                    .font(AppTheme.rounded(m.bodySize, .bold))
-                                    .foregroundStyle(AppTheme.ink)
-                                Text("Rode melding bij elke beurtwissel")
-                                    .font(AppTheme.rounded(m.captionSize, .bold))
-                                    .foregroundStyle(AppTheme.cardSoft)
-                            }
-                        }
-                        .tint(AppTheme.mint)
-                        .padding(m.gutter)
-                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
-                        .onChange(of: turnBannerOn) { _, isOn in
-                            TurnBanner.isEnabled = isOn
                         }
                     }
 

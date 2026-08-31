@@ -3713,54 +3713,6 @@
           }
         }
       }
-    },
-    "MELDINGEN" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BANNERS"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ANNONCES"
-          }
-        }
-      }
-    },
-    "Beurtmelding" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn banner"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annonce de tour"
-          }
-        }
-      }
-    },
-    "Rode melding bij elke beurtwissel" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Red banner at every turn change"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annonce rouge à chaque changement de tour"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"
