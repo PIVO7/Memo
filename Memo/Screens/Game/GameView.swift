@@ -266,10 +266,14 @@ struct GameView: View {
     private func presentTurnBanner() {
         guard !engine.isFinished else { return }
         turnPulse += 1
-        SoundPlayer.shared.play(.turn)
         AccessibilityNotification.Announcement(
             bannerTitle ?? String(localized: "\(engine.currentPlayer.name) is aan de beurt")
         ).post()
+
+        // De melding is uitschakelbaar; de tik en de VoiceOver-aankondiging
+        // hierboven blijven, want die vertellen hetzelfde zonder rood vlak.
+        guard TurnBanner.isEnabled else { return }
+        SoundPlayer.shared.play(.turn)
 
         withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.35, dampingFraction: 0.8)) {
             showTurnBanner = true

@@ -180,7 +180,9 @@ struct GameResultOverlay: View {
                     if isFirst {
                         Image(systemName: "crown.fill")
                             .font(.system(size: avatarSize * 0.4, weight: .black))
-                            .foregroundStyle(AppTheme.amber)
+                            // Crème in plaats van amber: op de amberkleurige
+                            // achtergrond viel de kroon anders weg.
+                            .foregroundStyle(AppTheme.card)
                             .shadow(color: AppTheme.ink, radius: 0, y: 1.5)
                             .rotationEffect(.degrees(14))
                             .offset(x: avatarSize * 0.4, y: -avatarSize * 0.3)

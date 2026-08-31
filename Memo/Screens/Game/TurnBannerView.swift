@@ -1,5 +1,16 @@
 import SwiftUI
 
+/// De rode beurtmelding staat standaard uit: de tussenstand laat al zien wie
+/// er mag. Wie hem toch wil, zet hem aan bij de instellingen.
+enum TurnBanner {
+    private static let key = "beurtmelding-aan"
+
+    static var isEnabled: Bool {
+        get { UserDefaults.standard.object(forKey: key) as? Bool ?? false }
+        set { UserDefaults.standard.set(newValue, forKey: key) }
+    }
+}
+
 /// Korte melding bij een beurtwissel, zodat aan één toestel duidelijk is wie
 /// er nu mag. Hij komt bovenaan en dimt niets; de avatar staat erbij omdat
 /// een kind die sneller herkent dan zijn naam.
