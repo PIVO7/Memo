@@ -49,6 +49,38 @@
         }
       }
     },
+    "%@ heeft al 1 trofee verdiend" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ has already earned 1 trophy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ a déjà gagné 1 trophée"
+          }
+        }
+      }
+    },
+    "%@ heeft al %lld trofeeën verdiend" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ has already earned %lld trophies"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ a déjà gagné %lld trophées"
+          }
+        }
+      }
+    },
     "%@ hernoemen" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -332,6 +364,22 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Hier komt de trofeeënkast van %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@'s trophy case starts here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vitrine à trophées de %@ commence ici"
+          }
+        }
+      }
     },
     "%lld" : {
       "localizations" : {

@@ -62,7 +62,7 @@ struct ProfileStatsView: View {
                         }
                     }
                     section("TROFEEËN") {
-                        lockedTeaser
+                        lockedTeaser(for: profile)
                     }
                 }
             }
@@ -236,17 +236,33 @@ struct ProfileStatsView: View {
     }
 
     /// Het voorproefje zonder Gezinsversie: de kast staat er, de deurtjes
-    /// zitten dicht.
-    private var lockedTeaser: some View {
-        VStack(spacing: m.gutter) {
+    /// zitten dicht. De trofeeën die al verdiend zijn glimmen wel mee, met
+    /// een slotje erop — zes lege vakjes vertellen niet dat er iets
+    /// klaarligt, drie gouden met een slot wel.
+    private func lockedTeaser(for profile: PlayerProfile) -> some View {
+        let badges = ProfileBadge.collection(for: profile)
+        let earnedCount = badges.filter(\.isEarned).count
+        // Verdiende trofeeën vooraan: het getal in de tekst klopt dan met
+        // wat er te zien is.
+        let preview = Array((badges.filter(\.isEarned) + badges.filter { !$0.isEarned }).prefix(6))
+
+        return VStack(spacing: m.gutter) {
             LazyVGrid(columns: badgeColumns, spacing: m.gutter * 0.6) {
-                ForEach(0..<6, id: \.self) { _ in
-                    Image(systemName: "lock.fill")
+                ForEach(preview) { badge in
+                    Image(systemName: badge.isEarned ? badge.icon : "lock.fill")
                         .font(.system(size: m.bodySize + 4, weight: .black))
-                        .foregroundStyle(AppTheme.offInk)
+                        .foregroundStyle(badge.isEarned ? AppTheme.ink : AppTheme.offInk)
                         .frame(width: m.tapTarget * 0.82, height: m.tapTarget * 0.82)
-                        .background(Circle().fill(AppTheme.offFill))
-                        .overlay { Circle().strokeBorder(AppTheme.offInk, lineWidth: m.thinBorder + 0.5) }
+                        .background(Circle().fill(badge.isEarned ? AppTheme.amber : AppTheme.offFill))
+                        .overlay {
+                            Circle().strokeBorder(
+                                badge.isEarned ? AppTheme.ink : AppTheme.offInk,
+                                lineWidth: m.thinBorder + 0.5
+                            )
+                        }
+                        .overlay(alignment: .bottomTrailing) {
+                            if badge.isEarned { lockPip }
+                        }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, m.gutter * 0.6)
                         .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: 0, border: m.thinBorder + 0.5)
@@ -254,11 +270,18 @@ struct ProfileStatsView: View {
             }
             .accessibilityHidden(true)
 
-            Text("Trofeeën, het grafiekje en de gezinsrecords horen bij de Gezinsversie.")
-                .font(AppTheme.rounded(m.captionSize + 2, .bold))
-                .foregroundStyle(AppTheme.soft)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
+            VStack(spacing: m.gutter * 0.3) {
+                Text(teaserHeadline(name: profile.name, earned: earnedCount))
+                    .font(AppTheme.rounded(m.bodySize))
+                    .foregroundStyle(AppTheme.headline)
+
+                Text("Trofeeën, het grafiekje en de gezinsrecords horen bij de Gezinsversie.")
+                    .font(AppTheme.rounded(m.captionSize + 2, .bold))
+                    .foregroundStyle(AppTheme.soft)
+            }
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity)
+            .accessibilityElement(children: .combine)
 
             Button {
                 showPaywall = true
@@ -275,6 +298,26 @@ struct ProfileStatsView: View {
                 depth: m.compactButton.depth,
                 border: m.border
             ))
+        }
+    }
+
+    /// Het slotje in de hoek van een trofee die al verdiend is.
+    private var lockPip: some View {
+        Image(systemName: "lock.fill")
+            .font(.system(size: m.captionSize * 0.7, weight: .black))
+            .foregroundStyle(AppTheme.ink)
+            .padding(m.captionSize * 0.26)
+            .background(Circle().fill(AppTheme.card))
+            .overlay { Circle().strokeBorder(AppTheme.ink, lineWidth: m.thinBorder) }
+    }
+
+    /// De kop boven het slot: eerst wat er al klaarligt, pas daarna wat het
+    /// kost.
+    private func teaserHeadline(name: String, earned: Int) -> String {
+        switch earned {
+        case 0: String(localized: "Hier komt de trofeeënkast van \(name)")
+        case 1: String(localized: "\(name) heeft al 1 trofee verdiend")
+        default: String(localized: "\(name) heeft al \(earned) trofeeën verdiend")
         }
     }
 
