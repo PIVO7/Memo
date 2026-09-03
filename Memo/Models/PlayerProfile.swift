@@ -20,6 +20,10 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
     var mostPairs: Int
     /// De laatste potjes, voor het grafiekje op de statistiekenpagina.
     var history: [GameRecord]
+    /// Snelste tijd tegen de klok in seconden, per bordgrootte
+    /// (`BoardSize.rawValue`). Een klein bord is nu eenmaal sneller dan een
+    /// groot, dus die tijden liggen naast elkaar, niet tegen elkaar.
+    var bestTimes: [String: Int]
 
     init(
         id: UUID = UUID(),
@@ -34,7 +38,8 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         currentStreak: Int = 0,
         bestStreak: Int = 0,
         mostPairs: Int = 0,
-        history: [GameRecord] = []
+        history: [GameRecord] = [],
+        bestTimes: [String: Int] = [:]
     ) {
         self.id = id
         self.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -49,6 +54,12 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         self.bestStreak = bestStreak
         self.mostPairs = mostPairs
         self.history = history
+        self.bestTimes = bestTimes
+    }
+
+    /// Snelste tijd op dit bord, als die er al is.
+    func bestTime(for boardSize: BoardSize) -> Int? {
+        bestTimes[boardSize.rawValue]
     }
 
     /// Met de hand, zodat oudere profielbestanden zonder de statistiekvelden
@@ -68,6 +79,7 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         bestStreak = try container.decodeIfPresent(Int.self, forKey: .bestStreak) ?? 0
         mostPairs = try container.decodeIfPresent(Int.self, forKey: .mostPairs) ?? 0
         history = try container.decodeIfPresent([GameRecord].self, forKey: .history) ?? []
+        bestTimes = try container.decodeIfPresent([String: Int].self, forKey: .bestTimes) ?? [:]
     }
 
     /// Aantal kleuren in het avatarpalet; `AvatarBadge.palette` moet even

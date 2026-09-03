@@ -65,6 +65,16 @@ struct FamilyRecordsView: View {
                             value: { $0.gamesPlayed },
                             format: { String(localized: "\($0) potjes") }
                         )
+                        // Tegen de klok wint juist de kléinste tijd, per bord.
+                        ForEach(BoardSize.allCases) { size in
+                            recordRow(
+                                title: String(localized: "Snelste tijd · \(size.title)"),
+                                icon: "stopwatch.fill",
+                                value: { $0.bestTime(for: size) ?? 0 },
+                                best: FamilyRecordMath.lowestPositive,
+                                format: { ClockText.string(seconds: $0) }
+                            )
+                        }
                     }
                 }
                 .padding(.horizontal, m.gutter * 1.5)
@@ -89,11 +99,12 @@ struct FamilyRecordsView: View {
         title: String,
         icon: String,
         value: (PlayerProfile) -> Int,
+        best: @escaping ([Int]) -> Int? = { $0.max() },
         format: (Int) -> String
     ) -> some View {
         // De rekensom staat in FamilyRecordMath; een record van nul is nog
         // geen record en die rij wacht dan stilletjes.
-        if let (best, holders) = FamilyRecordMath.record(in: contenders, value: value) {
+        if let (best, holders) = FamilyRecordMath.record(in: contenders, value: value, best: best) {
             HStack(spacing: m.gutter * 0.8) {
                 Image(systemName: icon)
                     .font(.system(size: m.bodySize, weight: .black))

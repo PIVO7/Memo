@@ -16,12 +16,15 @@ struct GameSnapshot: Codable, Equatable {
     var currentPlayerIndex: Int
     var cards: [SavedCard]
     var attempts: Int
+    /// Tegen de klok: de verstreken seconden op het moment van bewaren. De
+    /// klok staat stil tot de eerste tik na het hervatten.
+    var elapsedSeconds: Int?
     var turnMessage: String
     var savedAt: Date
 
     /// Alleen een geldig, nog niet afgelopen spel is het hervatten waard.
     var isResumable: Bool {
-        guard players.count == 2,
+        guard players.count == (mode.isSolo ? 1 : 2),
               (0..<players.count).contains(startingPlayerIndex),
               (0..<players.count).contains(currentPlayerIndex),
               cards.count >= 8, cards.count.isMultiple(of: 2),
@@ -44,6 +47,8 @@ struct GameSnapshot: Codable, Equatable {
             return names.first.map { String(localized: "\($0) vs Computer") } ?? mode.title
         case .versusFriends:
             return names.joined(separator: " · ")
+        case .timeTrial:
+            return names.first.map { "\($0) · \(mode.title)" } ?? mode.title
         }
     }
 }

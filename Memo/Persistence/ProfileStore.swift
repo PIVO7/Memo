@@ -110,6 +110,24 @@ final class ProfileStore {
         save()
     }
 
+    /// Een potje tegen de klok telt als gespeeld potje en kan een snelste
+    /// tijd opleveren, maar raakt winst, reeks en grafiekje niet: daar valt
+    /// niemand te verslaan. Meldt of de tijd een nieuw record is — een
+    /// eerste tijd is nog geen record.
+    @discardableResult
+    func recordTimeTrial(profileID: UUID, boardSize: BoardSize, seconds: Int) -> Bool {
+        guard seconds > 0,
+              let index = profiles.firstIndex(where: { $0.id == profileID && !$0.isComputer }) else { return false }
+        profiles[index].gamesPlayed += 1
+        let previous = profiles[index].bestTime(for: boardSize)
+        let isRecord = previous.map { seconds < $0 } ?? false
+        if previous == nil || isRecord {
+            profiles[index].bestTimes[boardSize.rawValue] = seconds
+        }
+        save()
+        return isRecord
+    }
+
     private func cleaned(_ name: String) -> String {
         String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(Self.maxNameLength))
     }

@@ -33,6 +33,11 @@ final class GameEngine {
     /// Het net gevonden paar, voor een korte highlight in het raster.
     private(set) var lastMatchIndices: [Int] = []
 
+    /// Tegen de klok: seconden die al vaststaan (van vóór een hervatting of
+    /// van een afgelopen potje) en het moment waarop de klok weer ging lopen.
+    private var bankedSeconds = 0
+    private var clockStartedAt: Date?
+
     private var rng: SplitMix64
     /// Het geheugen van de computerspeler; leeft zolang dit potje leeft.
     private let computerAI = ComputerAI()
@@ -57,6 +62,16 @@ final class GameEngine {
         cards.count(where: { !$0.isMatched }) / 2
     }
 
+    /// De stopwatch, in hele seconden. Leest de klok bij elke vraag: de UI
+    /// tikt zelf per seconde, de engine houdt geen timer aan de praat.
+    var elapsedSeconds: Int {
+        bankedSeconds + (clockStartedAt.map { Int(Date.now.timeIntervalSince($0)) } ?? 0)
+    }
+
+    /// Loopt de klok? Pas vanaf de eerste tik, en niet meer na het laatste
+    /// paar of tijdens een bewaarde pauze.
+    var isClockRunning: Bool { clockStartedAt != nil }
+
     var snapshot: GameSnapshot {
         GameSnapshot(
             mode: mode,
@@ -68,6 +83,7 @@ final class GameEngine {
             // begint de beurt gewoon opnieuw.
             cards: cards.map { GameSnapshot.SavedCard(face: $0.face, matchedBy: $0.matchedBy) },
             attempts: attempts,
+            elapsedSeconds: mode.isSolo ? elapsedSeconds : nil,
             turnMessage: turnMessage,
             savedAt: .now
         )
@@ -88,7 +104,9 @@ final class GameEngine {
         var rng = SplitMix64(seed: seed ?? UInt64.random(in: .min ... .max))
         self.cards = BoardSize.deck(for: boardSize, using: &rng)
         self.rng = rng
-        self.turnMessage = String(localized: "\(currentPlayer.name) mag beginnen")
+        self.turnMessage = mode.isSolo
+            ? String(localized: "Tik een kaartje — dan start de klok")
+            : String(localized: "\(currentPlayer.name) mag beginnen")
     }
 
     init(snapshot: GameSnapshot, seed: UInt64? = nil) {
@@ -103,6 +121,9 @@ final class GameEngine {
             return card
         }
         self.attempts = snapshot.attempts
+        // De klok staat stil tot de eerste tik na het hervatten: de tijd
+        // dat de app dicht was, telt niet mee.
+        self.bankedSeconds = snapshot.elapsedSeconds ?? 0
         self.rng = SplitMix64(seed: seed ?? UInt64.random(in: .min ... .max))
         self.turnMessage = snapshot.turnMessage
 
@@ -204,6 +225,10 @@ final class GameEngine {
 
         cards[index].isFaceUp = true
         faceUpIndices.append(index)
+        // Tegen de klok: de eerste tik zet de stopwatch aan.
+        if mode.isSolo, clockStartedAt == nil, !isFinished {
+            clockStartedAt = .now
+        }
         // De computer kijkt met élke open kaart mee, ook die van de mens —
         // precies zoals aan tafel.
         if let computerLevel {
@@ -230,6 +255,8 @@ final class GameEngine {
             matchPulse += 1
             if cards.allSatisfy(\.isMatched) {
                 finishGame()
+            } else if mode.isSolo {
+                turnMessage = String(localized: "Een paar! Ga zo door")
             } else {
                 turnMessage = String(localized: "Een paar! \(currentPlayer.name) mag nog een keer")
             }
@@ -241,6 +268,12 @@ final class GameEngine {
     }
 
     private func advanceTurn() {
+        // Solo is er niemand om aan door te geven: gewoon opnieuw proberen,
+        // zonder beurtwissel-gedoe.
+        guard !mode.isSolo else {
+            turnMessage = String(localized: "Probeer nog eens!")
+            return
+        }
         currentPlayerIndex = (currentPlayerIndex + 1) % players.count
         turnMessage = String(localized: "\(currentPlayer.name) is aan de beurt")
         turnJustChanged = true
@@ -248,6 +281,16 @@ final class GameEngine {
 
     private func finishGame() {
         isFinished = true
+        if mode.isSolo {
+            // De klok bevriest op het laatste paar; de speler "wint" altijd,
+            // zodat het eindscherm hem op het podium zet.
+            bankedSeconds = elapsedSeconds
+            clockStartedAt = nil
+            winnerProfileIDs = [currentPlayer.profileID]
+            isDraw = false
+            turnMessage = String(localized: "Klaar in \(ClockText.string(seconds: bankedSeconds))!")
+            return
+        }
         let counts = players.indices.map(pairCount(of:))
         let best = counts.max() ?? 0
         let winners = players.indices.filter { counts[$0] == best }

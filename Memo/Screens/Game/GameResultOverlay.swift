@@ -12,6 +12,9 @@ struct GameResultOverlay: View {
     let pairCounts: [Int]
     /// Meer paren dan ooit tevoren: extra feest.
     var isNewRecord = false
+    /// Tegen de klok: de eindtijd. Dan geen "wint!" maar "Klaar!", en de
+    /// stopwatch in plaats van de parenteller.
+    var timeText: String?
     /// Uit voor stille renders (rooktest, previews zonder klok): het scherm
     /// staat er dan meteen compleet, zonder choreografie.
     var animatesIn = true
@@ -49,6 +52,9 @@ struct GameResultOverlay: View {
     /// De banner noemt de winnaar bij naam; een kaal "Gewonnen!" leest
     /// alsof jíj won, ook wanneer de computer er met de paren vandoor ging.
     private var bannerTitle: String {
+        if timeText != nil {
+            return String(localized: "Klaar!").uppercased()
+        }
         let title = winner.map { String(localized: "\($0.name) wint!") } ?? String(localized: "Gelijkspel!")
         return title.uppercased()
     }
@@ -123,6 +129,10 @@ struct GameResultOverlay: View {
                         .font(AppTheme.rounded(m.bodySize + 2, .bold))
                         .foregroundStyle(AppTheme.ink)
                         .opacity(bannerIn ? 1 : 0)
+                } else if let timeText {
+                    TimeTile(text: timeText)
+                        .opacity(bannerIn ? 1 : 0)
+                        .accessibilityLabel(String(localized: "klaar in \(timeText)"))
                 } else {
                     TallyTiles(value: shownCount, label: String(localized: "paren"))
                         .opacity(bannerIn ? 1 : 0)
@@ -386,6 +396,29 @@ private struct TallyTiles: View {
                 .foregroundStyle(AppTheme.ink)
         }
         .animation(.snappy(duration: 0.15), value: value)
+        .accessibilityElement(children: .ignore)
+    }
+}
+
+/// De eindtijd tegen de klok: één witte tegel met de stopwatch ervoor.
+private struct TimeTile: View {
+    let text: String
+
+    @Environment(\.metrics) private var m
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "stopwatch.fill")
+                .font(.system(size: m.bodySize + 4, weight: .black))
+                .foregroundStyle(AppTheme.coral)
+            Text(text)
+                .font(AppTheme.rounded(m.titleSize * 0.9))
+                .foregroundStyle(AppTheme.ink)
+                .monospacedDigit()
+        }
+        .padding(.horizontal, m.gutter)
+        .padding(.vertical, m.gutter * 0.4)
+        .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.border)
         .accessibilityElement(children: .ignore)
     }
 }

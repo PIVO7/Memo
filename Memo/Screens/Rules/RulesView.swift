@@ -46,6 +46,15 @@ struct RulesView: View {
                         }
                     }
 
+                    section("TEGEN DE KLOK") {
+                        card {
+                            bullet("stopwatch.fill", String(localized: "Solo: vind alle paren zo snel als je kunt. De klok start bij je eerste tik."))
+                            bullet("arrow.clockwise", String(localized: "Geen paar? De kaartjes gaan dicht en je probeert gewoon opnieuw — verliezen kan niet."))
+                            bullet("sparkles", String(localized: "Klop je eigen snelste tijd per bord: klein, middel of groot."))
+                            bullet("figure.2.and.child.holdinghands", String(localized: "Hoort bij de Gezinsversie."))
+                        }
+                    }
+
                     section("SLIMME TRUCJES") {
                         card {
                             bullet("brain.head.profile", String(localized: "Onthoud goed wáár een kaartje lag — daar draait alles om."))

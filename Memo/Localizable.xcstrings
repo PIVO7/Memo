@@ -49,6 +49,22 @@
         }
       }
     },
+    "%@, Gezinsversie nodig" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, Family Version needed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, Version Famille requise"
+          }
+        }
+      }
+    },
     "%@ heeft al 1 trofee verdiend" : {
       "localizations" : {
         "en" : {
@@ -110,6 +126,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Au tour de %@"
+          }
+        }
+      }
+    },
+    "%@, %lld van %lld paren, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, %lld of %lld pairs, %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, %lld paires sur %lld, %@"
           }
         }
       }
@@ -413,6 +445,22 @@
         }
       }
     },
+    "Een paar! Ga zo door" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pair! Keep going"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une paire ! Continue"
+          }
+        }
+      }
+    },
     "Eenmalig · geen abonnement" : {
       "localizations" : {
         "en" : {
@@ -425,6 +473,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Achat unique · sans abonnement"
+          }
+        }
+      }
+    },
+    "Geen paar? De kaartjes gaan dicht en je probeert gewoon opnieuw — verliezen kan niet." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No pair? The cards flip back and you simply try again — you can't lose."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas de paire ? Les cartes se retournent et tu réessaies, tout simplement — impossible de perdre."
           }
         }
       }
@@ -461,6 +525,86 @@
         }
       }
     },
+    "Hoort bij de Gezinsversie." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Part of the Family Version."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fait partie de la Version Famille."
+          }
+        }
+      }
+    },
+    "Klaar in %@!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done in %@!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminé en %@ !"
+          }
+        }
+      }
+    },
+    "klaar in %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "done in %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "terminé en %@"
+          }
+        }
+      }
+    },
+    "Klop je eigen snelste tijd per bord: klein, middel of groot." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat your own fastest time per board: small, medium or large."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bats ton meilleur temps par plateau : petit, moyen ou grand."
+          }
+        }
+      }
+    },
+    "Klop je eigen tijd" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat your own time"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bats ton propre temps"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "en" : {
@@ -489,6 +633,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld victoires"
+          }
+        }
+      }
+    },
+    "%lld minuten en %lld seconden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld minutes and %lld seconds"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld minutes et %lld secondes"
           }
         }
       }
@@ -575,6 +735,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld parties"
+          }
+        }
+      }
+    },
+    "%lld seconden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld seconds"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld secondes"
           }
         }
       }
@@ -816,6 +992,54 @@
         }
       }
     },
+    "Probeer nog eens!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essaie encore !"
+          }
+        }
+      }
+    },
+    "Snelste tijd" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fastest time"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur temps"
+          }
+        }
+      }
+    },
+    "Snelste tijd · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fastest time · %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur temps · %@"
+          }
+        }
+      }
+    },
     "Snoep, Oceaan en Nacht" : {
       "localizations" : {
         "en" : {
@@ -832,6 +1056,38 @@
         }
       }
     },
+    "Solo: alle paren zo snel mogelijk" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo: every pair as fast as you can"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo : toutes les paires le plus vite possible"
+          }
+        }
+      }
+    },
+    "Solo: vind alle paren zo snel als je kunt. De klok start bij je eerste tik." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo: find every pair as fast as you can. The clock starts at your first tap."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo : trouve toutes les paires le plus vite possible. Le chrono démarre à ta première touche."
+          }
+        }
+      }
+    },
     "Statistieken en trofeeën" : {
       "localizations" : {
         "en" : {
@@ -844,6 +1100,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Statistiques et trophées"
+          }
+        }
+      }
+    },
+    "Tegen de klok" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Against the clock"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contre la montre"
+          }
+        }
+      }
+    },
+    "TEGEN DE KLOK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AGAINST THE CLOCK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CONTRE LA MONTRE"
+          }
+        }
+      }
+    },
+    "Tik een kaartje — dan start de klok" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a card — that starts the clock"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touche une carte — le chrono démarre"
           }
         }
       }

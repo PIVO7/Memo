@@ -7,6 +7,7 @@ struct HomeView: View {
     @Environment(\.metrics) private var m
     @State private var activeGame: ActiveGame?
     @State private var showSettings = false
+    @State private var showPaywall = false
 
     var body: some View {
         NavigationStack {
@@ -89,6 +90,27 @@ struct HomeView: View {
                                               tint: AppTheme.sky, cardFill: AppTheme.tintSky,
                                               faceIndex: 0)
                                 }
+                                // Tegen de klok hoort bij de Gezinsversie: de
+                                // tegel staat er wel, maar met een slotje dat
+                                // naar de winkel leidt.
+                                if entitlements.isFamilyUnlocked || !GameMode.timeTrial.isPremium {
+                                    NavigationLink(value: Destination.setup(.timeTrial)) {
+                                        menuLabel(GameMode.timeTrial.title,
+                                                  subtitle: String(localized: "Klop je eigen tijd"),
+                                                  tint: AppTheme.mint, cardFill: AppTheme.tintStone,
+                                                  faceIndex: 10)
+                                    }
+                                } else {
+                                    Button {
+                                        showPaywall = true
+                                    } label: {
+                                        menuLabel(GameMode.timeTrial.title,
+                                                  subtitle: String(localized: "Klop je eigen tijd"),
+                                                  tint: AppTheme.mint, cardFill: AppTheme.tintStone,
+                                                  faceIndex: 10, locked: true)
+                                    }
+                                    .accessibilityLabel(String(localized: "\(GameMode.timeTrial.title), Gezinsversie nodig"))
+                                }
                             }
                             .padding(.horizontal, m.gutter * 1.5)
                             .frame(maxWidth: m.contentMaxWidth)
@@ -162,6 +184,10 @@ struct HomeView: View {
                 SettingsView(entitlements: entitlements)
                     .appMetrics()
             }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView(entitlements: entitlements)
+                    .appMetrics()
+            }
             .fullScreenCover(item: $activeGame) { game in
                 GameCoverView(
                     game: game,
@@ -182,13 +208,32 @@ struct HomeView: View {
         return String(localized: "\(profileStore.humanProfiles.count) spelers · \(total) overwinningen")
     }
 
-    private func menuLabel(_ title: String, subtitle: String, tint: Color, cardFill: Color, faceIndex: Int, badge: String? = nil) -> some View {
+    private func menuLabel(
+        _ title: String,
+        subtitle: String,
+        tint: Color,
+        cardFill: Color,
+        faceIndex: Int,
+        badge: String? = nil,
+        locked: Bool = false
+    ) -> some View {
         var card = MemoryCard(face: CardFace.catalog[faceIndex % CardFace.catalog.count])
         card.isFaceUp = true
         return HStack(spacing: m.gutter) {
             MemoryCardView(card: card, size: m.avatarSize * 0.66)
                 .frame(width: m.avatarSize + 2, height: m.avatarSize + 2)
                 .toyBlock(fill: tint, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
+                .overlay(alignment: .bottomTrailing) {
+                    // Zelfde slotje als bij de tegenstanders en de thema's.
+                    if locked {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: m.captionSize * 0.9, weight: .black))
+                            .foregroundStyle(.white)
+                            .padding(3)
+                            .background(Circle().fill(AppTheme.ink))
+                            .offset(x: 5, y: 5)
+                    }
+                }
 
             VStack(alignment: .leading, spacing: 3) {
                 if let badge {

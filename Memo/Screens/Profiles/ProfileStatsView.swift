@@ -92,6 +92,14 @@ struct ProfileStatsView: View {
                 "\(profile.mostPairs)",
                 icon: "square.fill.on.square.fill"
             )
+            // Pas zichtbaar na een eerste potje tegen de klok; per bord,
+            // want een klein bord is nu eenmaal sneller dan een groot.
+            let times = BoardSize.allCases.compactMap { size in
+                profile.bestTime(for: size).map { "\(size.title) \(ClockText.string(seconds: $0))" }
+            }
+            if !times.isEmpty {
+                statRow(String(localized: "Snelste tijd"), times.joined(separator: " · "), icon: "stopwatch.fill")
+            }
         }
     }
 

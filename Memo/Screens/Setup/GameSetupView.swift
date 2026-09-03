@@ -124,9 +124,9 @@ struct GameSetupView: View {
                         // Expliciet LocalizedStringKey: een ternary van twee
                         // letterlijke strings wordt anders een gewone String
                         // en die vertaalt Text niet.
-                        Text(mode == .versusComputer
-                             ? LocalizedStringKey("Of speel als gast")
-                             : LocalizedStringKey("Of speel met twee gasten"))
+                        Text(mode == .versusFriends
+                             ? LocalizedStringKey("Of speel met twee gasten")
+                             : LocalizedStringKey("Of speel als gast"))
                             .font(AppTheme.rounded(m.compactButton.textSize))
                             .foregroundStyle(AppTheme.ink)
                             .frame(maxWidth: .infinity)
@@ -140,9 +140,9 @@ struct GameSetupView: View {
                     ))
                     .padding(.bottom, 6)
                 } else {
-                    Text(mode == .versusComputer
-                         ? LocalizedStringKey("KIES JOUW PROFIEL")
-                         : LocalizedStringKey("KIES 2 SPELERS"))
+                    Text(mode == .versusFriends
+                         ? LocalizedStringKey("KIES 2 SPELERS")
+                         : LocalizedStringKey("KIES JOUW PROFIEL"))
                         .font(AppTheme.rounded(m.captionSize * 0.9))
                         .kerning(1.4)
                         .foregroundStyle(AppTheme.faint)
@@ -364,7 +364,7 @@ struct GameSetupView: View {
 
     private var canStart: Bool {
         switch mode {
-        case .versusComputer:
+        case .versusComputer, .timeTrial:
             return selectedIDs.count == 1
         case .versusFriends:
             return selectedIDs.count == 2
@@ -372,7 +372,8 @@ struct GameSetupView: View {
     }
 
     private func toggle(_ id: UUID) {
-        if mode == .versusComputer {
+        // Solo of tegen de computer: één profiel, de laatste tik wint.
+        if mode != .versusFriends {
             selectedIDs = [id]
             return
         }

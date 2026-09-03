@@ -125,6 +125,7 @@ struct PaywallView: View {
                         .multilineTextAlignment(.center)
 
                     VStack(alignment: .leading, spacing: m.gutter * 0.7) {
+                        feature("stopwatch.fill", "Tegen de klok", "Solo: alle paren zo snel mogelijk")
                         feature("graduationcap.fill", "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
                         feature("paintpalette.fill", "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
                         feature("chart.bar.fill", "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")

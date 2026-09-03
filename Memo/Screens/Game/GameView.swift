@@ -44,11 +44,21 @@ struct GameView: View {
                 topBar
 
                 // De tussenstand vlak boven het speelveld dat hij samenvat.
-                GameHeaderView(
-                    players: engine.players,
-                    currentPlayerID: engine.currentPlayer.id,
-                    pairCount: engine.pairCount(of:)
-                )
+                if engine.mode.isSolo {
+                    TimeTrialHeaderView(
+                        player: engine.currentPlayer,
+                        pairs: engine.pairCount(of: 0),
+                        totalPairs: engine.boardSize.pairCount,
+                        isRunning: engine.isClockRunning,
+                        elapsedSeconds: { engine.elapsedSeconds }
+                    )
+                } else {
+                    GameHeaderView(
+                        players: engine.players,
+                        currentPlayerID: engine.currentPlayer.id,
+                        pairCount: engine.pairCount(of:)
+                    )
+                }
 
                 statusLine
 
@@ -79,6 +89,7 @@ struct GameView: View {
                     message: engine.turnMessage,
                     pairCounts: engine.players.indices.map(engine.pairCount(of:)),
                     isNewRecord: isNewRecord,
+                    timeText: engine.mode.isSolo ? ClockText.string(seconds: engine.elapsedSeconds) : nil,
                     onRematch: onRematch,
                     onClose: onClose
                 )
@@ -285,6 +296,17 @@ struct GameView: View {
     private func recordResult() {
         guard !didRecordResult else { return }
         didRecordResult = true
+        if engine.mode.isSolo {
+            // Tegen de klok: alleen de tijd telt. Gasten worden niet bewaard;
+            // de store geeft dan gewoon "geen record" terug.
+            gameStore.clear()
+            isNewRecord = profileStore.recordTimeTrial(
+                profileID: engine.currentPlayer.profileID,
+                boardSize: engine.boardSize,
+                seconds: engine.elapsedSeconds
+            )
+            return
+        }
         let pairCounts = engine.players.indices.map(engine.pairCount(of:))
         // Record checken vóór de statistieken worden bijgewerkt; het eerste
         // potje ooit telt niet als record.
