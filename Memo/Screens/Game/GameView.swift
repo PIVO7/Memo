@@ -32,6 +32,10 @@ struct GameView: View {
 
     private enum FlipOutcome { case match, mismatch, finished }
 
+    /// De korte knal bij een gevonden paar; verdwijnt vanzelf weer.
+    @State private var showMatchCallout = false
+    @State private var matchCallout: Task<Void, Never>?
+
     var body: some View {
         ZStack {
             ThemedBackground()
@@ -62,6 +66,11 @@ struct GameView: View {
             // iPad uit over het volle scherm.
             .frame(maxWidth: m.contentMaxWidth)
             .frame(maxWidth: .infinity)
+
+            if showMatchCallout {
+                MatchCalloutView()
+                    .zIndex(2)
+            }
 
             if showResult {
                 GameResultOverlay(
@@ -113,6 +122,7 @@ struct GameView: View {
         }
         .onChange(of: engine.matchPulse) { _, _ in
             lastOutcome = .match
+            presentMatchCallout()
             winPulse += 1
             SoundPlayer.shared.play(.score)
             if let pair = engine.lastMatchIndices.first.map({ engine.cards[$0] }) {
@@ -237,6 +247,22 @@ struct GameView: View {
             return String(localized: "Jij bent aan de beurt")
         }
         return String(localized: "\(engine.currentPlayer.name) is aan de beurt")
+    }
+
+    /// De knal even laten staan en dan vanzelf laten gaan. Een volgend
+    /// paar onderbreekt de vorige, zodat er nooit twee overlappen.
+    private func presentMatchCallout() {
+        matchCallout?.cancel()
+        matchCallout = Task {
+            withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.3, dampingFraction: 0.6)) {
+                showMatchCallout = true
+            }
+            try? await Task.sleep(for: .milliseconds(1100))
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeOut(duration: 0.2)) {
+                showMatchCallout = false
+            }
+        }
     }
 
     private func gameDidFinish() {

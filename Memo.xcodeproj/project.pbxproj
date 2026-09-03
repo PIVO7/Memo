@@ -54,6 +54,7 @@
 		A94AF41CA39032CD1BDAA0E1 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */; };
 		ABF1667594DEE5DEF1CFEF13 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E272FC3311BB4ED4E3072 /* GameView.swift */; };
 		AC3A1EDAC7AD341371ADE1BA /* AvatarBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389E101676AE4E1D0C0D23A /* AvatarBadge.swift */; };
+		AF4B436E892109794F2909F4 /* MatchCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45331EF35F8717EE7437295C /* MatchCalloutView.swift */; };
 		BBA2BEE638C9DF910BA8BD27 /* GameHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DFD5B1B6CF78AA5CE598F2 /* GameHeaderView.swift */; };
 		C2AD892147AEFC95F47CF577 /* GameCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A15666A5067DC77B837CB /* GameCoverView.swift */; };
 		C63A98448DD6F87DA87ABED0 /* ProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC7EE35E4DCFB1DEC2C96AC /* ProfileStatsView.swift */; };
@@ -104,6 +105,7 @@
 		39DFD5B1B6CF78AA5CE598F2 /* GameHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
 		4157B96FE73FAD7A2FEC7984 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		425AEEE5CCC7A13BDD6A9838 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
+		45331EF35F8717EE7437295C /* MatchCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCalloutView.swift; sourceTree = "<group>"; };
 		46637695CC2F9D7139F7AA35 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		49E4910A6CBBC6C45CDBD228 /* ToyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyToggleStyle.swift; sourceTree = "<group>"; };
 		4C64663EA45257DC95762FB6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				39DFD5B1B6CF78AA5CE598F2 /* GameHeaderView.swift */,
 				D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */,
 				122E272FC3311BB4ED4E3072 /* GameView.swift */,
+				45331EF35F8717EE7437295C /* MatchCalloutView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				ABF1667594DEE5DEF1CFEF13 /* GameView.swift in Sources */,
 				9CD16C1B03427FBBF34ABAE1 /* HomeHeroView.swift in Sources */,
 				10CD4AC4BA33767345105DD1 /* HomeView.swift in Sources */,
+				AF4B436E892109794F2909F4 /* MatchCalloutView.swift in Sources */,
 				F238FB44C1A954136EA82C87 /* MemoApp.swift in Sources */,
 				09C93E49B64D54FDC597F41A /* MemoryCard.swift in Sources */,
 				FD189B55854CB2D904331E71 /* MemoryCardView.swift in Sources */,

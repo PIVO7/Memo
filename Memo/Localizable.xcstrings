@@ -640,6 +640,38 @@
         }
       }
     },
+    "Een paar! %@ mag nog een keer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got it! %@ gets another turn"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouvé ! %@ rejoue"
+          }
+        }
+      }
+    },
+    "Paar!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pair!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une paire !"
+          }
+        }
+      }
+    },
     "Uit" : {
       "localizations" : {
         "en" : {
@@ -2621,22 +2653,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Profils"
-          }
-        }
-      }
-    },
-    "Raak! %@ mag nog een keer" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Got it! %@ gets another turn"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trouvé ! %@ rejoue"
           }
         }
       }

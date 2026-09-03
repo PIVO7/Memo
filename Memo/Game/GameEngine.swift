@@ -231,7 +231,7 @@ final class GameEngine {
             if cards.allSatisfy(\.isMatched) {
                 finishGame()
             } else {
-                turnMessage = String(localized: "Raak! \(currentPlayer.name) mag nog een keer")
+                turnMessage = String(localized: "Een paar! \(currentPlayer.name) mag nog een keer")
             }
         } else {
             isResolving = true
