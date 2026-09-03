@@ -14,6 +14,7 @@
 		09C93E49B64D54FDC597F41A /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9BD75D3BEC21F9F80E86E /* MemoryCard.swift */; };
 		0C453CDBB2CE22C551B59775 /* TimeTrialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836D014C7094DB2CCF724741 /* TimeTrialTests.swift */; };
 		0D16EC5E0E1797F9EF2E8D3C /* PlayerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */; };
+		0D9DE0E5AF81902C58B68D53 /* ThemeTrialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF50A0AF0FEB5C31F83EBA7 /* ThemeTrialTests.swift */; };
 		10CD4AC4BA33767345105DD1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BC3F9F1DD0D1FC2F835B61 /* HomeView.swift */; };
 		129E7008173CD88AD92B20A0 /* ProfileStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986688BF89A638C7C1BE5A25 /* ProfileStoreTests.swift */; };
 		14D4975AFEB00318AB086A95 /* ComputerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C7EB260E3EF6D3C057B4FB /* ComputerAI.swift */; };
@@ -27,6 +28,7 @@
 		2AC05CCF070520C412508136 /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87FD5D0DE728BFCE00104C5 /* AppMetrics.swift */; };
 		2EAB77030658AA9A48FCC34A /* ClockText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE30EF0A196C3F6F56D70A /* ClockText.swift */; };
 		3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CEA807CDB1DE78287686F8 /* ToyBlock.swift */; };
+		324336BF5697A633FC65EC58 /* ThemeTrialNudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3485EC79C0A44984D4C82 /* ThemeTrialNudge.swift */; };
 		33EE95B2BC54B16D4B7F1E21 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147347272B9F21A5BA93E0B /* SoundPlayer.swift */; };
 		3727EAFB31A7328254CBC1E4 /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4AF5360E3D9F304FD146BF /* GameStore.swift */; };
 		4A11DBD3AB63476AEBDC0C8F /* ActiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA6C34AD98D214828DB366 /* ActiveGame.swift */; };
@@ -124,6 +126,7 @@
 		70D42F5988BEC6D442E4439F /* GameSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetupView.swift; sourceTree = "<group>"; };
 		785723AF5D9D9D972C38075D /* StatsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOverviewView.swift; sourceTree = "<group>"; };
 		7BAA6C34AD98D214828DB366 /* ActiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGame.swift; sourceTree = "<group>"; };
+		7EF50A0AF0FEB5C31F83EBA7 /* ThemeTrialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTrialTests.swift; sourceTree = "<group>"; };
 		836D014C7094DB2CCF724741 /* TimeTrialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialTests.swift; sourceTree = "<group>"; };
 		85A7BFC6E275D5B1D94B62C7 /* PlayerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfile.swift; sourceTree = "<group>"; };
 		8823457F9CDC0A035D1A0971 /* ToyDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyDialog.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		E5070771B30D3D3E971DA3B9 /* GameScreenRenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenRenderTests.swift; sourceTree = "<group>"; };
 		EBEE752A44FFBCB499987646 /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plop.wav; sourceTree = "<group>"; };
 		F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		F9C3485EC79C0A44984D4C82 /* ThemeTrialNudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTrialNudge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -242,6 +246,7 @@
 				AC6A368EF501741067021134 /* ThemedBackground.swift */,
 				425AEEE5CCC7A13BDD6A9838 /* ThemePalette.swift */,
 				66F54049424B2D3D51469A2E /* ThemeStore.swift */,
+				F9C3485EC79C0A44984D4C82 /* ThemeTrialNudge.swift */,
 				C7CEA807CDB1DE78287686F8 /* ToyBlock.swift */,
 				E3ABF5D31BFD64EEBDE31E1B /* ToyButtonStyle.swift */,
 				49E4910A6CBBC6C45CDBD228 /* ToyToggleStyle.swift */,
@@ -303,6 +308,7 @@
 				986688BF89A638C7C1BE5A25 /* ProfileStoreTests.swift */,
 				90ABB010BEB527FBF614080C /* RenderSmokeTests.swift */,
 				1F622C967B2A0E7251B24DC3 /* StatsModelTests.swift */,
+				7EF50A0AF0FEB5C31F83EBA7 /* ThemeTrialTests.swift */,
 				836D014C7094DB2CCF724741 /* TimeTrialTests.swift */,
 			);
 			path = "Memo Tests";
@@ -510,6 +516,7 @@
 				129E7008173CD88AD92B20A0 /* ProfileStoreTests.swift in Sources */,
 				CFDAE91F91574C43A28C122C /* RenderSmokeTests.swift in Sources */,
 				00676E1B4EA68558F9E5315D /* StatsModelTests.swift in Sources */,
+				0D9DE0E5AF81902C58B68D53 /* ThemeTrialTests.swift in Sources */,
 				0C453CDBB2CE22C551B59775 /* TimeTrialTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,6 +572,7 @@
 				7E58E75767A5E40994C5ECEB /* StatsOverviewView.swift in Sources */,
 				2756B1C3CC51029562E289CF /* ThemePalette.swift in Sources */,
 				4D529BF48C72536744CC5639 /* ThemeStore.swift in Sources */,
+				324336BF5697A633FC65EC58 /* ThemeTrialNudge.swift in Sources */,
 				17BF94457180FBFCBD9E8963 /* ThemedBackground.swift in Sources */,
 				CEE44AFD99D45184AA27B134 /* TimeTrialHeaderView.swift in Sources */,
 				3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */,

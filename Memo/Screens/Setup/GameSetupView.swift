@@ -224,6 +224,7 @@ struct GameSetupView: View {
                 activeGame: $activeGame
             )
         }
+        .themeTrialNudge(after: activeGame)
     }
 
     /// De bordkeuze: klein voor de jongsten, groot voor de geheugentijgers.

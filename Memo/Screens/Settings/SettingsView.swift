@@ -11,6 +11,8 @@ struct SettingsView: View {
     @State private var soundOn = SoundPlayer.shared.isEnabled
     @State private var showRules = false
     @State private var showPaywall = false
+    /// Het thema waar de proefvraag over gaat.
+    @State private var trialCandidate: ThemeID?
 
     private var themeStore: ThemeStore { .shared }
 
@@ -118,18 +120,53 @@ struct SettingsView: View {
                 .frame(maxWidth: .infinity)
             }
         }
+        .overlay {
+            if let trialCandidate {
+                trialDialog(for: trialCandidate)
+            }
+        }
+    }
+
+    /// Eerst proberen, dan kopen: één potje in het thema, daarna springt
+    /// het vanzelf terug. De winkel volgt na dat potje.
+    private func trialDialog(for theme: ThemeID) -> some View {
+        ToyDialog(
+            title: String(localized: "\(theme.title) proberen?"),
+            message: String(localized: "Speel één potje in dit thema. Daarna springt het terug naar Klassiek."),
+            confirmTitle: String(localized: "Probeer één potje"),
+            cancelTitle: String(localized: "Niet nu"),
+            onConfirm: {
+                withAnimation(.easeOut(duration: 0.15)) {
+                    trialCandidate = nil
+                }
+                themeStore.startTrial(theme)
+            },
+            onCancel: {
+                withAnimation(.easeOut(duration: 0.15)) {
+                    trialCandidate = nil
+                }
+            }
+        )
     }
 
     /// Eén themakaart: de achtergrondkleur van het thema met zijn accenten
     /// als bolletjes, zodat je ziet wat je kiest voor je tikt.
     private func themeCard(_ theme: ThemeID) -> some View {
         let palette = theme.palette
-        let picked = themeStore.themeID == theme
+        let picked = themeStore.activeThemeID == theme
         let locked = theme != .klassiek && !entitlements.isFamilyUnlocked
 
         return Button {
             if locked {
-                showPaywall = true
+                // Eerst proberen, dan kopen; wie het al probeerde gaat naar
+                // de winkel.
+                if themeStore.canTry(theme) {
+                    withAnimation(.easeOut(duration: 0.15)) {
+                        trialCandidate = theme
+                    }
+                } else {
+                    showPaywall = true
+                }
             } else {
                 themeStore.select(theme)
             }

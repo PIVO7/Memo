@@ -196,6 +196,7 @@ struct HomeView: View {
                     activeGame: $activeGame
                 )
             }
+            .themeTrialNudge(after: activeGame)
         }
         .tint(AppTheme.coral)
     }

@@ -20,6 +20,8 @@ struct GameCoverView: View {
             engine: engine,
             onRematch: {
                 // Wie vorige keer tweede was, mag nu beginnen.
+                // Nog een keer is een tweede potje: de proef stopt hier.
+                ThemeStore.shared.endTrialAfterFinishedGame()
                 let fresh = GameEngine(
                     mode: engine.mode,
                     profiles: engine.rematchProfiles(),
@@ -29,7 +31,13 @@ struct GameCoverView: View {
                 gameStore.save(fresh.snapshot)
                 rematchEngine = fresh
             },
-            onClose: { activeGame = nil }
+            onClose: {
+                // Een uitgespeeld proefpotje is voorbij zodra het scherm dichtgaat.
+                if engine.isFinished {
+                    ThemeStore.shared.endTrialAfterFinishedGame()
+                }
+                activeGame = nil
+            }
         )
         // Verse engine, verse view-state: het eindscherm, de banners en de
         // record-vlag beginnen bij een rematch opnieuw.
