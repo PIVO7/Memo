@@ -79,7 +79,7 @@ struct FamilyRecordsView: View {
                 }
                 .padding(.horizontal, m.gutter * 1.5)
                 .padding(.bottom, m.gutter * 2)
-                .frame(maxWidth: m.overlayMaxWidth)
+                .frame(maxWidth: m.contentMaxWidth)
                 .frame(maxWidth: .infinity)
             }
         }

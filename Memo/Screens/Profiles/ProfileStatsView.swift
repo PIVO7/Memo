@@ -9,6 +9,7 @@ struct ProfileStatsView: View {
     @Environment(ProfileStore.self) private var profileStore
     @Environment(EntitlementStore.self) private var entitlements
     @Environment(\.metrics) private var m
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     @State private var showPaywall = false
 
@@ -68,7 +69,9 @@ struct ProfileStatsView: View {
             }
             .padding(.horizontal, m.gutter * 1.5)
             .padding(.bottom, m.gutter * 2)
-            .frame(maxWidth: m.overlayMaxWidth)
+            // De brede kolom, net als bij de profielen: op een iPad stond de
+            // smalle kolom verloren in het midden en braken de waarden af.
+            .frame(maxWidth: m.contentMaxWidth)
             .frame(maxWidth: .infinity)
         }
     }
@@ -120,6 +123,9 @@ struct ProfileStatsView: View {
             Text(value)
                 .font(AppTheme.rounded(m.bodySize + 3))
                 .foregroundStyle(AppTheme.ink)
+                .multilineTextAlignment(.trailing)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
         }
         .padding(.horizontal, m.gutter)
         .padding(.vertical, m.gutter * 0.7)
@@ -185,7 +191,7 @@ struct ProfileStatsView: View {
     // MARK: - Trofeeën
 
     private var badgeColumns: [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: m.gutter * 0.6), count: 3)
+        Array(repeating: GridItem(.flexible(), spacing: m.gutter * 0.6), count: sizeClass == .regular ? 4 : 3)
     }
 
     private func trophyCase(for profile: PlayerProfile) -> some View {
