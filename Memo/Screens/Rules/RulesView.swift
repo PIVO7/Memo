@@ -27,7 +27,7 @@ struct RulesView: View {
                                 .foregroundStyle(AppTheme.ink)
                                 .frame(width: m.tapTarget, height: m.tapTarget)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                     }
 
                     section("ZO SPEEL JE") {
@@ -79,7 +79,7 @@ struct RulesView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(m.gutter)
-        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 
     private func bullet(_ icon: String, _ text: String) -> some View {

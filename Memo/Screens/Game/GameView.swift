@@ -25,6 +25,12 @@ struct GameView: View {
     @State private var flipPulse = 0
     @State private var turnPulse = 0
     @State private var winPulse = 0
+    /// De laatste uitkomst kleurt de statuschip: amber bij een paar, sky bij
+    /// geen paar, coral bij het feest op het einde. Neutraal zodra de beurt
+    /// wisselt.
+    @State private var lastOutcome: FlipOutcome?
+
+    private enum FlipOutcome { case match, mismatch, finished }
 
     var body: some View {
         ZStack {
@@ -106,6 +112,7 @@ struct GameView: View {
             SoundPlayer.shared.play(.drop)
         }
         .onChange(of: engine.matchPulse) { _, _ in
+            lastOutcome = .match
             winPulse += 1
             SoundPlayer.shared.play(.score)
             if let pair = engine.lastMatchIndices.first.map({ engine.cards[$0] }) {
@@ -113,6 +120,9 @@ struct GameView: View {
                     String(localized: "Paar gevonden: \(pair.face.label)!")
                 ).post()
             }
+        }
+        .onChange(of: engine.mismatchPulse) { _, _ in
+            lastOutcome = .mismatch
         }
         .onChange(of: engine.isResolving) { _, resolving in
             resolveDelay?.cancel()
@@ -125,10 +135,12 @@ struct GameView: View {
         }
         .onChange(of: engine.isFinished) { _, finished in
             guard finished else { return }
+            lastOutcome = .finished
             gameDidFinish()
         }
         .onChange(of: engine.turnJustChanged) { _, changed in
             guard changed else { return }
+            lastOutcome = nil
             announceTurnChange()
             engine.acknowledgeTurnChange()
         }
@@ -139,16 +151,30 @@ struct GameView: View {
 
     // MARK: - Deelviews
 
-    /// De spelstand onder de kop: wie er mag, of dat de computer nadenkt.
-    /// Tijdens het eindscherm wijkt hij.
+    /// De spelstand als toy-chip onder de kop: wie er mag, paar of geen
+    /// paar. Het kleuraccent volgt de uitkomst, zodat een kind één duidelijk
+    /// "ding" heeft om naar te kijken. Tijdens het eindscherm wijkt hij.
     private var statusLine: some View {
         Text(engine.turnMessage)
             .font(AppTheme.rounded(m.bodySize, .bold))
-            .foregroundStyle(AppTheme.soft)
+            .foregroundStyle(AppTheme.ink)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
+            .padding(.horizontal, m.gutter)
+            .padding(.vertical, m.gutter * 0.45)
             .frame(maxWidth: .infinity)
+            .toyBlock(fill: statusFill, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
+            .animation(.easeOut(duration: 0.15), value: engine.turnMessage)
             .opacity(showResult ? 0 : 1)
+    }
+
+    private var statusFill: Color {
+        switch lastOutcome {
+        case .match: AppTheme.tintAmber
+        case .mismatch: AppTheme.tintSky
+        case .finished: AppTheme.tintCoral
+        case nil: AppTheme.card
+        }
     }
 
     /// De dunne bovenrand: beurt- en parenteller (passieve meta-info) met
@@ -175,7 +201,7 @@ struct GameView: View {
                     .foregroundStyle(AppTheme.ink)
                     .frame(width: m.tapTarget, height: m.tapTarget)
             }
-            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
         }
     }
 

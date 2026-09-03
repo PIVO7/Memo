@@ -42,7 +42,7 @@ struct PaywallView: View {
                             .foregroundStyle(AppTheme.ink)
                             .frame(width: m.tapTarget, height: m.tapTarget)
                     }
-                    .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                    .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                 }
                 Spacer()
             }
@@ -106,7 +106,7 @@ struct PaywallView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(m.gutter)
-                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
 
                 if entitlements.isFamilyUnlocked {
                     Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
@@ -116,14 +116,14 @@ struct PaywallView: View {
                 } else {
                     Button(action: startPurchase) {
                         Text("Ontgrendel voor \(priceText)")
-                            .font(AppTheme.rounded(m.buttonTextSize * 0.8))
+                            .font(AppTheme.rounded(m.defaultButton.textSize))
                             .foregroundStyle(AppTheme.ink)
                             .frame(maxWidth: .infinity)
-                            .frame(height: m.buttonHeight * 0.85)
+                            .frame(height: m.defaultButton.height)
                     }
                     .buttonStyle(ToyButtonStyle(
                         fill: AppTheme.mint,
-                        radius: m.cardCorner * 0.9,
+                        radius: m.buttonCorner,
                         depth: m.depth,
                         border: m.border
                     ))
@@ -192,12 +192,12 @@ struct PaywallView: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: m.tapTarget)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                     }
                 }
             }
             .padding(m.gutter * 1.4)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner + 4, depth: m.depth + 1, border: m.border)
+            .toyBlock(fill: AppTheme.card, radius: m.dialogCorner, depth: m.heroDepth, border: m.border)
             .frame(maxWidth: m.overlayMaxWidth * 0.82)
             .padding(m.gutter * 2)
             .accessibilityAddTraits(.isModal)

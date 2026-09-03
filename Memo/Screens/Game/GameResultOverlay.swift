@@ -138,11 +138,13 @@ struct GameResultOverlay: View {
 
             if isNewRecord {
                 Label("Nieuw record!", systemImage: "sparkles")
+                    .textCase(.uppercase)
                     .font(AppTheme.rounded(m.captionSize + 2))
+                    .kerning(1.5)
                     .foregroundStyle(AppTheme.ink)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
-                    .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 2, depth: 3, border: m.thinBorder)
+                    .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder)
                     .opacity(bannerIn ? 1 : 0)
             }
         }
@@ -225,28 +227,28 @@ struct GameResultOverlay: View {
             // spelers; wie tweede was mag nu beginnen.
             Button(action: onRematch) {
                 Text("Nog een keer!")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.85))
+                    .font(AppTheme.rounded(m.defaultButton.textSize))
                     .foregroundStyle(AppTheme.ink)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.9)
+                    .frame(height: m.defaultButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.mint,
-                radius: m.cardCorner * 0.8,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border
             ))
 
             Button(action: onClose) {
                 Text("Terug naar menu")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.85))
+                    .font(AppTheme.rounded(m.defaultButton.textSize))
                     .foregroundStyle(AppTheme.ink)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.9)
+                    .frame(height: m.defaultButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.card,
-                radius: m.cardCorner * 0.8,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border
             ))
@@ -375,7 +377,7 @@ private struct TallyTiles: View {
                         .foregroundStyle(AppTheme.ink)
                         .monospacedDigit()
                         .frame(width: m.avatarSize * 1.1, height: m.avatarSize * 1.45)
-                        .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: 4, border: m.border)
+                        .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.border)
                         .contentTransition(.numericText(value: Double(value)))
                 }
             }
@@ -399,10 +401,10 @@ private struct PodiumBlock: View {
 
     private var shape: UnevenRoundedRectangle {
         UnevenRoundedRectangle(
-            topLeadingRadius: m.cellCorner + 6,
+            topLeadingRadius: m.buttonCorner,
             bottomLeadingRadius: 0,
             bottomTrailingRadius: 0,
-            topTrailingRadius: m.cellCorner + 6,
+            topTrailingRadius: m.buttonCorner,
             style: .continuous
         )
     }
@@ -420,11 +422,11 @@ private struct PodiumBlock: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
                 .background(
-                    RoundedRectangle(cornerRadius: m.cellCorner * 0.7, style: .continuous)
+                    RoundedRectangle(cornerRadius: m.cellCorner, style: .continuous)
                         .fill(rank == 0 ? AppTheme.sunk : AppTheme.card)
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: m.cellCorner * 0.7, style: .continuous)
+                    RoundedRectangle(cornerRadius: m.cellCorner, style: .continuous)
                         .strokeBorder(AppTheme.ink, lineWidth: m.thinBorder)
                 )
                 .padding(.horizontal, 4)

@@ -5,6 +5,8 @@ struct ProfilesView: View {
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(\.metrics) private var m
     @State private var showNewProfile = false
+    /// Het profiel dat op de verwijderbevestiging wacht.
+    @State private var deletingProfile: PlayerProfile?
 
     /// Op een iPad past er een tweede kolom naast; op een iPhone niet.
     private var columns: [GridItem] {
@@ -30,14 +32,18 @@ struct ProfilesView: View {
                                 .foregroundStyle(AppTheme.cardSoft)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(m.gutter)
-                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
                         } else {
                             LazyVGrid(columns: columns, spacing: m.gutter) {
                                 ForEach(profileStore.humanProfiles) { profile in
                                     ProfileRowView(
                                         profile: profile,
                                         onEdit: { profileStore.updateProfile(id: profile.id, name: $0, colorIndex: $1, symbol: $2) },
-                                        onDelete: { profileStore.deleteProfile(id: profile.id) }
+                                        onDelete: {
+                                            withAnimation(.easeOut(duration: 0.15)) {
+                                                deletingProfile = profile
+                                            }
+                                        }
                                     )
                                 }
                             }
@@ -71,7 +77,7 @@ struct ProfilesView: View {
                                         .foregroundStyle(AppTheme.cardDim)
                                 }
                                 .padding(m.gutter * 0.9)
-                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                                .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
                             }
                             .buttonStyle(.plain)
                         }
@@ -82,6 +88,27 @@ struct ProfilesView: View {
                 .padding(.bottom, m.gutter * 2)
                 .frame(maxWidth: m.contentMaxWidth)
                 .frame(maxWidth: .infinity)
+            }
+
+            // Eigen dialoog in de speelgoedstijl in plaats van het grijze
+            // systeempaneel.
+            if let profile = deletingProfile {
+                ToyDialog(
+                    title: String(localized: "\(profile.name) verwijderen?"),
+                    message: String(localized: "De overwinningen van dit profiel gaan verloren."),
+                    confirmTitle: String(localized: "Verwijderen"),
+                    cancelTitle: String(localized: "Annuleer"),
+                    onConfirm: {
+                        profileStore.deleteProfile(id: profile.id)
+                        deletingProfile = nil
+                    },
+                    onCancel: {
+                        withAnimation(.easeOut(duration: 0.15)) {
+                            deletingProfile = nil
+                        }
+                    }
+                )
+                .zIndex(5)
             }
         }
         .navigationTitle("Profielen")
@@ -128,11 +155,11 @@ struct NewProfileButton: View {
                 .font(AppTheme.rounded(m.bodySize + 1))
                 .foregroundStyle(AppTheme.ink)
                 .frame(maxWidth: .infinity)
-                .frame(minHeight: m.buttonHeight * 0.8)
+                .frame(minHeight: m.compactButton.height)
         }
         .buttonStyle(ToyButtonStyle(
             fill: AppTheme.mint,
-            radius: m.cardCorner * 0.9,
+            radius: m.buttonCorner,
             depth: m.depth,
             border: m.border
         ))

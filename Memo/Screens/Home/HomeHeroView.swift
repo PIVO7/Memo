@@ -28,7 +28,9 @@ struct HomeHeroView: View {
     private func heroCard(face: CardFace, tilt: Double) -> some View {
         var card = MemoryCard(face: face)
         card.isFaceUp = flipped
-        return MemoryCardView(card: card, size: m.discSize * 1.15)
+        // Losstaande kaartjes op de hero krijgen dikte, net als de andere
+        // losse toy blocks.
+        return MemoryCardView(card: card, size: m.discSize * 1.15, depth: m.shallowDepth)
             .rotationEffect(.degrees(tilt))
     }
 

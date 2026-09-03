@@ -39,7 +39,7 @@ struct FamilyRecordsView: View {
                             .foregroundStyle(AppTheme.cardSoft)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(m.gutter)
-                            .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
                     } else {
                         recordRow(
                             title: String(localized: "Meeste overwinningen"),
@@ -118,7 +118,7 @@ struct FamilyRecordsView: View {
             }
             .padding(.horizontal, m.gutter)
             .padding(.vertical, m.gutter * 0.7)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.8, depth: 3, border: m.thinBorder + 0.5)
+            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(
                 "\(title): \(format(best)), \(holders.map(\.name).formatted(.list(type: .and)))"
@@ -141,20 +141,20 @@ struct FamilyRecordsView: View {
                 showPaywall = true
             } label: {
                 Text("Ontgrendel de Gezinsversie")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.75))
+                    .font(AppTheme.rounded(m.compactButton.textSize))
                     .foregroundStyle(AppTheme.ink)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.8)
+                    .frame(height: m.compactButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.mint,
-                radius: m.cardCorner * 0.9,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border
             ))
         }
         .padding(m.gutter)
-        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 }
 

@@ -115,7 +115,7 @@ struct ProfileStatsView: View {
         }
         .padding(.horizontal, m.gutter)
         .padding(.vertical, m.gutter * 0.7)
-        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.8, depth: 3, border: m.thinBorder + 0.5)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(title): \(value)")
     }
@@ -134,7 +134,7 @@ struct ProfileStatsView: View {
                     .foregroundStyle(AppTheme.cardSoft)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(m.gutter)
-                    .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                    .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
             } else {
                 HStack(alignment: .bottom, spacing: m.gutter * 0.45) {
                     ForEach(Array(games.enumerated()), id: \.offset) { index, game in
@@ -149,10 +149,10 @@ struct ProfileStatsView: View {
                                 .foregroundStyle(AppTheme.ink)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.6)
-                            RoundedRectangle(cornerRadius: m.cellCorner * 0.7, style: .continuous)
+                            RoundedRectangle(cornerRadius: m.cellCorner, style: .continuous)
                                 .fill(game.won ? AppTheme.amber : AppTheme.sky)
                                 .overlay {
-                                    RoundedRectangle(cornerRadius: m.cellCorner * 0.7, style: .continuous)
+                                    RoundedRectangle(cornerRadius: m.cellCorner, style: .continuous)
                                         .strokeBorder(AppTheme.ink, lineWidth: m.thinBorder)
                                 }
                                 // Nooit helemaal plat: ook een mager potje
@@ -169,7 +169,7 @@ struct ProfileStatsView: View {
                     }
                 }
                 .padding(m.gutter)
-                .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
             }
         }
     }
@@ -221,8 +221,8 @@ struct ProfileStatsView: View {
                 .padding(.horizontal, 4)
                 .toyBlock(
                     fill: AppTheme.card,
-                    radius: m.cardCorner * 0.8,
-                    depth: badge.isEarned ? 3 : 0,
+                    radius: m.cardCorner,
+                    depth: badge.isEarned ? m.shallowDepth : 0,
                     border: m.thinBorder + 0.5
                 )
                 .accessibilityElement(children: .ignore)
@@ -249,7 +249,7 @@ struct ProfileStatsView: View {
                         .overlay { Circle().strokeBorder(AppTheme.offInk, lineWidth: m.thinBorder + 0.5) }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, m.gutter * 0.6)
-                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.8, depth: 0, border: m.thinBorder + 0.5)
+                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: 0, border: m.thinBorder + 0.5)
                 }
             }
             .accessibilityHidden(true)
@@ -264,14 +264,14 @@ struct ProfileStatsView: View {
                 showPaywall = true
             } label: {
                 Text("Ontgrendel de Gezinsversie")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.75))
+                    .font(AppTheme.rounded(m.compactButton.textSize))
                     .foregroundStyle(AppTheme.ink)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.8)
+                    .frame(height: m.compactButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.mint,
-                radius: m.cardCorner * 0.9,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border
             ))

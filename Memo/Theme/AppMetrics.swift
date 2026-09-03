@@ -4,6 +4,14 @@ import SwiftUI
 /// iPhone. Wordt uit de horizontale grootteklasse afgeleid: `.regular` is een
 /// iPad op vol scherm, `.compact` een iPhone of een smal deelvenster.
 struct AppMetrics {
+    /// Eén knoprol: hoogte, lettergrootte en diepte horen bij elkaar, zodat
+    /// nergens meer losse vermenigvuldigers bijna-gelijke knoppen opleveren.
+    struct ButtonRole {
+        var height: CGFloat
+        var textSize: CGFloat
+        var depth: CGFloat
+    }
+
     /// De sierstenen op het startscherm.
     var discSize: CGFloat
     /// Lucht tussen de gaatjes van het speelbord.
@@ -13,12 +21,29 @@ struct AppMetrics {
 
     var rowHeight: CGFloat
     var iconWidth: CGFloat
-    var cellCorner: CGFloat
 
+    // De vier vaste hoekrollen: kleine cellen en chips, knoppen, kaarten en
+    // dialogen. Geen andere radii.
+    var cellCorner: CGFloat
+    var buttonCorner: CGFloat
     var cardCorner: CGFloat
+    var dialogCorner: CGFloat
+
+    // De drie vaste dieptes: ondiep (iconknoppen, chips), standaard
+    // (kaarten en knoppen) en held (startknop, dialogen).
+    var shallowDepth: CGFloat
     var depth: CGFloat
+    var heroDepth: CGFloat
+
     var border: CGFloat
     var thinBorder: CGFloat
+
+    // De vaste knoprollen: de held onderaan een scherm, de gewone knop, de
+    // compacte knop in dialogen en lijsten. Iconknoppen zijn `tapTarget`
+    // breed met `shallowDepth`.
+    var heroButton: ButtonRole
+    var defaultButton: ButtonRole
+    var compactButton: ButtonRole
 
     var gutter: CGFloat
     var contentMaxWidth: CGFloat
@@ -34,29 +59,35 @@ struct AppMetrics {
     var displaySize: CGFloat
     var bodySize: CGFloat
     var captionSize: CGFloat
-    var buttonTextSize: CGFloat
-    var buttonHeight: CGFloat
 
     static let phone = AppMetrics(
         discSize: 60, boardGap: 6, boardPadding: 12,
-        rowHeight: 44, iconWidth: 44, cellCorner: 11,
-        cardCorner: 20, depth: 5, border: 3, thinBorder: 2,
+        rowHeight: 44, iconWidth: 44,
+        cellCorner: 11, buttonCorner: 16, cardCorner: 20, dialogCorner: 24,
+        shallowDepth: 3, depth: 5, heroDepth: 6,
+        border: 3, thinBorder: 2,
+        heroButton: ButtonRole(height: 60, textSize: 21, depth: 6),
+        defaultButton: ButtonRole(height: 54, textSize: 18, depth: 5),
+        compactButton: ButtonRole(height: 49, textSize: 17, depth: 5),
         gutter: 14, contentMaxWidth: .infinity, overlayMaxWidth: 460, avatarSize: 44,
         tapTarget: 44,
         brandSize: 52, titleSize: 40, displaySize: 30,
-        bodySize: 17, captionSize: 12,
-        buttonTextSize: 21, buttonHeight: 60
+        bodySize: 17, captionSize: 12
     )
 
     static let pad = AppMetrics(
         discSize: 88, boardGap: 9, boardPadding: 18,
-        rowHeight: 54, iconWidth: 54, cellCorner: 15,
-        cardCorner: 26, depth: 7, border: 4, thinBorder: 2.5,
+        rowHeight: 54, iconWidth: 54,
+        cellCorner: 15, buttonCorner: 21, cardCorner: 26, dialogCorner: 30,
+        shallowDepth: 4, depth: 7, heroDepth: 8,
+        border: 4, thinBorder: 2.5,
+        heroButton: ButtonRole(height: 78, textSize: 28, depth: 8),
+        defaultButton: ButtonRole(height: 70, textSize: 24, depth: 7),
+        compactButton: ButtonRole(height: 64, textSize: 21, depth: 7),
         gutter: 24, contentMaxWidth: 760, overlayMaxWidth: 520, avatarSize: 58,
         tapTarget: 52,
         brandSize: 78, titleSize: 56, displaySize: 44,
-        bodySize: 21, captionSize: 15,
-        buttonTextSize: 28, buttonHeight: 78
+        bodySize: 21, captionSize: 15
     )
 
     static func resolve(_ sizeClass: UserInterfaceSizeClass?) -> AppMetrics {
@@ -80,11 +111,14 @@ struct AppMetrics {
         copy.displaySize *= text
         copy.bodySize *= text
         copy.captionSize *= text
-        copy.buttonTextSize *= text
 
         copy.tapTarget *= touch
-        copy.buttonHeight *= touch
         copy.avatarSize *= touch
+
+        for keyPath in [\AppMetrics.heroButton, \.defaultButton, \.compactButton] {
+            copy[keyPath: keyPath].textSize *= text
+            copy[keyPath: keyPath].height *= touch
+        }
         return copy
     }
 }

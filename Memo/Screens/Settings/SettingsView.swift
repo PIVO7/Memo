@@ -34,7 +34,7 @@ struct SettingsView: View {
                                 .foregroundStyle(AppTheme.ink)
                                 .frame(width: m.tapTarget, height: m.tapTarget)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                     }
 
                     section("THEMA") {
@@ -54,9 +54,9 @@ struct SettingsView: View {
                                 .font(AppTheme.rounded(m.bodySize, .bold))
                                 .foregroundStyle(AppTheme.ink)
                         }
-                        .tint(AppTheme.mint)
+                        .toggleStyle(ToyToggleStyle())
                         .padding(m.gutter)
-                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
                         .onChange(of: soundOn) { _, isOn in
                             SoundPlayer.shared.isEnabled = isOn
                             if isOn {
@@ -80,7 +80,7 @@ struct SettingsView: View {
                             }
                             .padding(m.gutter)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
                         .sheet(isPresented: $showRules) {
                             RulesView()
                                 .appMetrics()
@@ -108,7 +108,7 @@ struct SettingsView: View {
                             }
                             .padding(m.gutter)
                         }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border))
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
                     }
                 }
                 .padding(.horizontal, m.gutter * 1.3)
@@ -159,9 +159,9 @@ struct SettingsView: View {
         }
         .buttonStyle(ToyButtonStyle(
             fill: palette.cream,
-            radius: m.cardCorner * 0.9,
-            depth: picked ? m.depth : 3,
-            border: picked ? m.border + 1 : m.border,
+            radius: m.cardCorner,
+            depth: picked ? m.depth : m.shallowDepth,
+            border: m.border,
             borderColor: picked ? AppTheme.coral : AppTheme.ink
         ))
         .accessibilityLabel(

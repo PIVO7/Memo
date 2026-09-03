@@ -46,14 +46,14 @@ struct ProfileEditorView: View {
         .safeAreaInset(edge: .bottom) {
             Button(action: saveAndClose) {
                 Text("Klaar!")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.8))
+                    .font(AppTheme.rounded(m.defaultButton.textSize))
                     .foregroundStyle(canSave ? AppTheme.ink : AppTheme.offInk)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.85)
+                    .frame(height: m.defaultButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: canSave ? AppTheme.mint : AppTheme.offFill,
-                radius: m.cardCorner * 0.9,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border,
                 borderColor: canSave ? AppTheme.ink : AppTheme.offInk
@@ -142,7 +142,7 @@ struct ProfileEditorFormView: View {
             .foregroundStyle(AppTheme.ink)
             .padding(.horizontal, m.gutter)
             .frame(minHeight: m.tapTarget + 8)
-            .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 2, depth: 3, border: m.thinBorder + 0.5)
+            .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
 
             sectionTitle("KLEUR")
             // Kleine vaste tussenruimte en flexibele cellen: zo passen ook
@@ -220,10 +220,11 @@ struct ProfileEditorFormView: View {
             .frame(height: m.tapTarget)
         }
         .buttonStyle(ToyButtonStyle(
-            fill: picked ? AppTheme.coral : AppTheme.card,
+            fill: picked ? AppTheme.tintCoral : AppTheme.card,
             radius: m.cellCorner,
-            depth: picked ? 3 : 2,
-            border: m.thinBorder
+            depth: m.shallowDepth,
+            border: m.thinBorder,
+            borderColor: picked ? AppTheme.coral : AppTheme.ink
         ))
         .accessibilityLabel(label)
         .accessibilityAddTraits(picked ? .isSelected : [])

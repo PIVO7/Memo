@@ -1,16 +1,16 @@
 import SwiftUI
 
 /// Eén profiel in de lijst. Het potloodje (en een tik op het bolletje) opent
-/// de profieleditor voor naam, kleur en symbool tegelijk; de rij houdt zijn
-/// eigen dialoogtoestand bij zodat er nooit twee dialogen tegelijk openen.
+/// de profieleditor voor naam, kleur en symbool tegelijk; de verwijdervraag
+/// stelt de lijst zelf, in de eigen ToyDialog in plaats van het systeempaneel.
 struct ProfileRowView: View {
     let profile: PlayerProfile
     /// Naam, kleurindex en symbool uit de editor, in die volgorde.
     let onEdit: (String, Int, String?) -> Void
+    /// Vraagt de lijst om de verwijderbevestiging te tonen.
     let onDelete: () -> Void
 
     @Environment(\.metrics) private var m
-    @State private var isDeleting = false
     @State private var showEditor = false
 
     var body: some View {
@@ -51,7 +51,7 @@ struct ProfileRowView: View {
             deleteButton
         }
         .padding(m.gutter * 0.9)
-        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 
     private var editButton: some View {
@@ -66,32 +66,18 @@ struct ProfileRowView: View {
                 .foregroundStyle(AppTheme.ink)
                 .frame(width: m.tapTarget, height: m.tapTarget)
         }
-        .buttonStyle(ToyButtonStyle(fill: AppTheme.tintAmber, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+        .buttonStyle(ToyButtonStyle(fill: AppTheme.tintAmber, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
     }
 
     private var deleteButton: some View {
-        Button(action: beginDelete) {
+        Button(action: onDelete) {
             Label("\(profile.name) verwijderen", systemImage: "trash")
                 .labelStyle(.iconOnly)
                 .font(.system(size: m.captionSize + 2, weight: .black))
                 .foregroundStyle(AppTheme.ink)
                 .frame(width: m.tapTarget, height: m.tapTarget)
         }
-        .buttonStyle(ToyButtonStyle(fill: AppTheme.tintCoral, radius: m.cellCorner, depth: 3, border: m.thinBorder))
-        .confirmationDialog(
-            "\(profile.name) verwijderen?",
-            isPresented: $isDeleting,
-            titleVisibility: .visible
-        ) {
-            Button("Verwijderen", role: .destructive, action: onDelete)
-            Button("Annuleer", role: .cancel) {}
-        } message: {
-            Text("De overwinningen van dit profiel gaan verloren.")
-        }
-    }
-
-    private func beginDelete() {
-        isDeleting = true
+        .buttonStyle(ToyButtonStyle(fill: AppTheme.tintCoral, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
     }
 
     /// Zonder de automatische dim van de systeemknop: in de render-rooktest

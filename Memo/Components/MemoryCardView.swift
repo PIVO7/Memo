@@ -9,6 +9,10 @@ struct MemoryCardView: View {
     /// raster kent zijn maat toch al, en zo staat er geen GeometryReader
     /// per kaart.
     var size: CGFloat
+    /// Losstaande kaartjes (de hero op het startscherm) krijgen dikte;
+    /// kaartjes in het raster of óp een gekleurd blok blijven plat — de
+    /// dichte kant tekent daar zijn eigen dikte al.
+    var depth: CGFloat = 0
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -23,6 +27,13 @@ struct MemoryCardView: View {
             back
                 .opacity(showsFace ? 0 : 1)
                 .rotation3DEffect(.degrees(!showsFace || reduceMotion ? 0 : -180), axis: (x: 0, y: 1, z: 0))
+        }
+        .background {
+            if depth > 0 {
+                RoundedRectangle(cornerRadius: corner, style: .continuous)
+                    .fill(AppTheme.ink)
+                    .offset(y: depth)
+            }
         }
         // Gevonden paren blijven zichtbaar maar treden terug, zodat je in
         // één oogopslag ziet wat nog meedoet.

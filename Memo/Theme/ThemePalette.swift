@@ -77,7 +77,7 @@ extension ThemePalette {
         tintSky: Color(red: 0.89, green: 0.96, blue: 1.00),
         tintCoral: Color(red: 1.00, green: 0.87, blue: 0.83),
         tintStone: Color(red: 0.93, green: 0.89, blue: 0.82),
-        faint: Color(red: 0.49, green: 0.43, blue: 0.35),
+        faint: Color(red: 0.43, green: 0.37, blue: 0.30),
         soft: Color(red: 0.45, green: 0.39, blue: 0.31),
         dim: Color(red: 0.66, green: 0.60, blue: 0.51),
         offFill: Color(red: 0.86, green: 0.83, blue: 0.76),

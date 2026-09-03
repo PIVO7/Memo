@@ -65,7 +65,7 @@ struct StatsOverviewView: View {
                     .foregroundStyle(AppTheme.cardDim)
             }
             .padding(m.gutter * 0.9)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
         }
         .buttonStyle(.plain)
         .accessibilityHint("Toont de statistieken")
@@ -96,7 +96,7 @@ struct StatsOverviewView: View {
                     .foregroundStyle(AppTheme.cardDim)
             }
             .padding(m.gutter * 0.9)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
         }
         .buttonStyle(.plain)
     }
@@ -110,20 +110,20 @@ struct StatsOverviewView: View {
 
             NavigationLink(value: Destination.profiles) {
                 Text("Naar profielen")
-                    .font(AppTheme.rounded(m.buttonTextSize * 0.75))
+                    .font(AppTheme.rounded(m.compactButton.textSize))
                     .foregroundStyle(AppTheme.ink)
                     .frame(maxWidth: .infinity)
-                    .frame(height: m.buttonHeight * 0.8)
+                    .frame(height: m.compactButton.height)
             }
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.mint,
-                radius: m.cardCorner * 0.9,
+                radius: m.buttonCorner,
                 depth: m.depth,
                 border: m.border
             ))
         }
         .padding(m.gutter)
-        .toyBlock(fill: AppTheme.card, radius: m.cardCorner * 0.9, depth: m.depth, border: m.border)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 
     @ViewBuilder
