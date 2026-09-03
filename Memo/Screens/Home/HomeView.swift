@@ -45,6 +45,10 @@ struct HomeView: View {
                                             .font(AppTheme.rounded(m.bodySize, .bold))
                                             .foregroundStyle(AppTheme.cardSoft)
                                     }
+                                    // De band loopt tot de schermrand, de tekst erin blijft
+                                    // in de leeskolom staan.
+                                    .frame(maxWidth: m.contentMaxWidth)
+                                    .frame(maxWidth: .infinity)
                                 }
                             }
                             .padding(.top, m.gutter * 1.6)
@@ -87,6 +91,8 @@ struct HomeView: View {
                                 }
                             }
                             .padding(.horizontal, m.gutter * 1.5)
+                            .frame(maxWidth: m.contentMaxWidth)
+                            .frame(maxWidth: .infinity)
 
                             // Beheer hoort niet tussen de spelmodi: twee
                             // rustige pillen onder de speelkaarten.
@@ -107,6 +113,8 @@ struct HomeView: View {
                             }
                             .padding(.horizontal, m.gutter * 1.5)
                             .padding(.top, m.gutter * 1.2)
+                            .frame(maxWidth: m.contentMaxWidth)
+                            .frame(maxWidth: .infinity)
 
                             Spacer(minLength: 0)
 
@@ -115,7 +123,6 @@ struct HomeView: View {
                             // kleine schermen.
                             Color.clear.frame(height: m.gutter * 7)
                         }
-                        .frame(maxWidth: m.contentMaxWidth)
                         .frame(maxWidth: .infinity, minHeight: geo.size.height)
                     }
                 }

@@ -118,7 +118,7 @@ struct StatsOverviewView: View {
             .buttonStyle(ToyButtonStyle(
                 fill: AppTheme.mint,
                 radius: m.buttonCorner,
-                depth: m.depth,
+                depth: m.compactButton.depth,
                 border: m.border
             ))
         }

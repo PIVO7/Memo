@@ -44,7 +44,7 @@ struct ToyDialog: View {
                 .buttonStyle(ToyButtonStyle(
                     fill: AppTheme.coral,
                     radius: m.buttonCorner,
-                    depth: m.depth,
+                    depth: m.compactButton.depth,
                     border: m.border
                 ))
                 .padding(.top, 4)
@@ -60,7 +60,7 @@ struct ToyDialog: View {
                     .buttonStyle(ToyButtonStyle(
                         fill: AppTheme.card,
                         radius: m.buttonCorner,
-                        depth: m.depth,
+                        depth: m.compactButton.depth,
                         border: m.border
                     ))
                 }

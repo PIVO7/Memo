@@ -61,6 +61,7 @@
 		CAE5A3B680E04BD1A358985B /* CardGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B8AF49971DF303712282DC /* CardGridView.swift */; };
 		CFDAE91F91574C43A28C122C /* RenderSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB010BEB527FBF614080C /* RenderSmokeTests.swift */; };
 		D402CDDA5B4E824D1058EDC4 /* SplitMix64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5774D7D2596B2E59511A8D /* SplitMix64.swift */; };
+		D947EB0C3BC0BE7EC660D91F /* ToyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4910A6CBBC6C45CDBD228 /* ToyToggleStyle.swift */; };
 		DA4DCCBCD5BD8E82EE05F19D /* wissel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27D215C505ABAAA60942ADE9 /* wissel.wav */; };
 		DD00113DB2F8F9763EA77886 /* GameSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */; };
 		E69868E12926773366CC0121 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 00D0CD31089ECB6056E69415 /* Localizable.xcstrings */; };
@@ -104,6 +105,7 @@
 		4157B96FE73FAD7A2FEC7984 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		425AEEE5CCC7A13BDD6A9838 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
 		46637695CC2F9D7139F7AA35 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		49E4910A6CBBC6C45CDBD228 /* ToyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyToggleStyle.swift; sourceTree = "<group>"; };
 		4C64663EA45257DC95762FB6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		5C07AEEA09405D827106A369 /* ComputerLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerLevel.swift; sourceTree = "<group>"; };
 		5E4AF5360E3D9F304FD146BF /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				66F54049424B2D3D51469A2E /* ThemeStore.swift */,
 				C7CEA807CDB1DE78287686F8 /* ToyBlock.swift */,
 				E3ABF5D31BFD64EEBDE31E1B /* ToyButtonStyle.swift */,
+				49E4910A6CBBC6C45CDBD228 /* ToyToggleStyle.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */,
 				F7709D51B46B7526DE975418 /* ToyButtonStyle.swift in Sources */,
 				1B9D50A9062A0F3B3B24FF68 /* ToyDialog.swift in Sources */,
+				D947EB0C3BC0BE7EC660D91F /* ToyToggleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

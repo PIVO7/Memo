@@ -527,6 +527,22 @@
         }
       }
     },
+    "Aan" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activé"
+          }
+        }
+      }
+    },
     "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt" : {
       "localizations" : {
         "en" : {
@@ -620,6 +636,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commence par les cartes que personne n’a vues : c’est comme ça qu’on apprend le plateau."
+          }
+        }
+      }
+    },
+    "Uit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé"
           }
         }
       }

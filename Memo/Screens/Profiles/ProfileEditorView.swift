@@ -54,7 +54,7 @@ struct ProfileEditorView: View {
             .buttonStyle(ToyButtonStyle(
                 fill: canSave ? AppTheme.mint : AppTheme.offFill,
                 radius: m.buttonCorner,
-                depth: m.depth,
+                depth: m.defaultButton.depth,
                 border: m.border,
                 borderColor: canSave ? AppTheme.ink : AppTheme.offInk
             ))

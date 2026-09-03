@@ -2,17 +2,14 @@ import SwiftUI
 
 struct ProfilesView: View {
     @Environment(ProfileStore.self) private var profileStore
-    @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(\.metrics) private var m
     @State private var showNewProfile = false
     /// Het profiel dat op de verwijderbevestiging wacht.
     @State private var deletingProfile: PlayerProfile?
 
-    /// Op een iPad past er een tweede kolom naast; op een iPhone niet.
-    private var columns: [GridItem] {
-        let count = sizeClass == .regular ? 2 : 1
-        return Array(repeating: GridItem(.flexible(), spacing: m.gutter), count: count)
-    }
+    /// Eén kolom, ook op een iPad: naast het bolletje staan de naam, de
+    /// stand en twee knoppen, en in een halve kolom kapte de stand af.
+    private var columns: [GridItem] { [GridItem(.flexible(), spacing: m.gutter)] }
 
     var body: some View {
         ZStack {
@@ -39,11 +36,7 @@ struct ProfilesView: View {
                                     ProfileRowView(
                                         profile: profile,
                                         onEdit: { profileStore.updateProfile(id: profile.id, name: $0, colorIndex: $1, symbol: $2) },
-                                        onDelete: {
-                                            withAnimation(.easeOut(duration: 0.15)) {
-                                                deletingProfile = profile
-                                            }
-                                        }
+                                        onDelete: { requestDelete(profile) }
                                     )
                                 }
                             }
@@ -98,15 +91,8 @@ struct ProfilesView: View {
                     message: String(localized: "De overwinningen van dit profiel gaan verloren."),
                     confirmTitle: String(localized: "Verwijderen"),
                     cancelTitle: String(localized: "Annuleer"),
-                    onConfirm: {
-                        profileStore.deleteProfile(id: profile.id)
-                        deletingProfile = nil
-                    },
-                    onCancel: {
-                        withAnimation(.easeOut(duration: 0.15)) {
-                            deletingProfile = nil
-                        }
-                    }
+                    onConfirm: { confirmDelete(profile) },
+                    onCancel: cancelDelete
                 )
                 .zIndex(5)
             }
@@ -123,6 +109,25 @@ struct ProfilesView: View {
                 }
             )
             .appMetrics()
+        }
+    }
+
+    private func requestDelete(_ profile: PlayerProfile) {
+        withAnimation(.easeOut(duration: 0.15)) {
+            deletingProfile = profile
+        }
+    }
+
+    private func confirmDelete(_ profile: PlayerProfile) {
+        profileStore.deleteProfile(id: profile.id)
+        withAnimation(.easeOut(duration: 0.15)) {
+            deletingProfile = nil
+        }
+    }
+
+    private func cancelDelete() {
+        withAnimation(.easeOut(duration: 0.15)) {
+            deletingProfile = nil
         }
     }
 
@@ -160,7 +165,7 @@ struct NewProfileButton: View {
         .buttonStyle(ToyButtonStyle(
             fill: AppTheme.mint,
             radius: m.buttonCorner,
-            depth: m.depth,
+            depth: m.compactButton.depth,
             border: m.border
         ))
     }
