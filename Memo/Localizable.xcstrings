@@ -365,6 +365,86 @@
       },
       "shouldTranslate" : false
     },
+    "Alle kleurenthema's" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All color themes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les thèmes de couleurs"
+          }
+        }
+      }
+    },
+    "Dommel, Robbie en Professor Punt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dommel, Robbie and Professor Punt"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dommel, Robbie et Professor Punt"
+          }
+        }
+      }
+    },
+    "Drie tegenstanders" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Three opponents"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trois adversaires"
+          }
+        }
+      }
+    },
+    "Eenmalig · geen abonnement" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-time purchase · no subscription"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achat unique · sans abonnement"
+          }
+        }
+      }
+    },
+    "Gemaakt voor gezinnen, niet voor advertenties: niets dat meekijkt en geen abonnement." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made for families, not for ads: nothing watching along, no subscription."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conçu pour les familles, pas pour la publicité : rien qui vous observe, aucun abonnement."
+          }
+        }
+      }
+    },
     "Hier komt de trofeeënkast van %@" : {
       "localizations" : {
         "en" : {
@@ -716,6 +796,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une paire !"
+          }
+        }
+      }
+    },
+    "Per speler, met winreeks en beste vangst" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per player, with win streak and best haul"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Par joueur, avec série de victoires et meilleure récolte"
+          }
+        }
+      }
+    },
+    "Snoep, Oceaan en Nacht" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Candy, Ocean and Night"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonbon, Océan et Nuit"
+          }
+        }
+      }
+    },
+    "Statistieken en trofeeën" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats and trophies"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistiques et trophées"
           }
         }
       }
@@ -3554,6 +3682,38 @@
         }
       }
     },
+    "Voor %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour %@"
+          }
+        }
+      }
+    },
+    "Voor %@ en %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For %@ and %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour %@ et %@"
+          }
+        }
+      }
+    },
     "Vraag even aan papa of mama" : {
       "localizations" : {
         "en" : {
@@ -3838,6 +3998,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ballon de basket"
+          }
+        }
+      }
+    },
+    "Zonder Gezinsversie blijven jullie gewoon samen spelen, met z'n tweeën." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Without the Family Version you can still play together, with two players."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sans la Version Famille, vous continuez à jouer ensemble, à deux."
           }
         }
       }

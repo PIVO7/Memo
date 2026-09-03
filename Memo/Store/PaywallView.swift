@@ -7,6 +7,9 @@ struct PaywallView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.metrics) private var m
+    /// Optioneel: het scherm hangt ook in previews en rendertests, waar geen
+    /// profielen bestaan.
+    @Environment(ProfileStore.self) private var profileStore: ProfileStore?
 
     @State private var gateQuestion: ParentalGateQuestion?
     /// De poort staat vóór het hele scherm: ook de prijzen en de koopknoppen
@@ -19,6 +22,17 @@ struct PaywallView: View {
 
     private var priceText: String {
         entitlements.familyProduct?.displayPrice ?? "…"
+    }
+
+    /// De namen die al in de app staan: het scherm gaat over dít gezin, niet
+    /// over "gebruikers". Geen profielen? Dan blijft de regel weg.
+    private var familyLine: String? {
+        let names = (profileStore?.humanProfiles ?? []).map(\.name)
+        switch names.count {
+        case 0: return nil
+        case 1: return String(localized: "Voor \(names[0])")
+        default: return String(localized: "Voor \(names.dropLast().joined(separator: ", ")) en \(names[names.count - 1])")
+        }
     }
 
     var body: some View {
@@ -84,80 +98,139 @@ struct PaywallView: View {
     }
 
     private var paywallContent: some View {
-        ScrollView {
-            VStack(spacing: m.gutter) {
-                Image(systemName: "figure.2.and.child.holdinghands")
-                    .font(.system(size: m.titleSize, weight: .black))
-                    .foregroundStyle(AppTheme.coral)
+        // De ScrollView vult altijd het venster; op een iPad past alles ruim
+        // en hoort het midden op het scherm te staan in plaats van tegen de
+        // bovenrand met een halve lege pagina eronder.
+        GeometryReader { proxy in
+            ScrollView {
+                VStack(spacing: m.gutter) {
+                    Image(systemName: "figure.2.and.child.holdinghands")
+                        .font(.system(size: m.titleSize, weight: .black))
+                        .foregroundStyle(AppTheme.coral)
 
-                Text("Gezinsversie")
-                    .font(AppTheme.rounded(m.titleSize * 0.7))
-                    .foregroundStyle(AppTheme.headline)
-
-                Text("Eén keer kopen, voor het hele gezin — ook via Delen met gezin.")
-                    .font(AppTheme.rounded(m.captionSize + 2, .bold))
-                    .foregroundStyle(AppTheme.soft)
-                    .multilineTextAlignment(.center)
-
-                VStack(alignment: .leading, spacing: m.gutter * 0.7) {
-                    feature("graduationcap.fill", "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt")
-                    feature("paintpalette.fill", "Alle kleurenthema's: Snoep, Oceaan en Nacht")
-                    feature("chart.bar.fill", "Statistieken per speler, met winreeks en beste vangst")
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(m.gutter)
-                .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
-
-                if entitlements.isFamilyUnlocked {
-                    Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
-                        .font(AppTheme.rounded(m.bodySize))
-                        .foregroundStyle(AppTheme.mint)
-                        .padding(.top, m.gutter)
-                } else {
-                    Button(action: startPurchase) {
-                        Text("Ontgrendel voor \(priceText)")
-                            .font(AppTheme.rounded(m.defaultButton.textSize))
-                            .foregroundStyle(AppTheme.ink)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: m.defaultButton.height)
-                    }
-                    .buttonStyle(ToyButtonStyle(
-                        fill: AppTheme.mint,
-                        radius: m.buttonCorner,
-                        depth: m.defaultButton.depth,
-                        border: m.border
-                    ))
-                    .disabled(isBusy)
-
-                    Button(action: startRestore) {
-                        Text("Eerder gekocht? Zet terug")
-                            .font(AppTheme.rounded(m.captionSize, .bold))
+                    if let familyLine {
+                        Text(familyLine)
+                            .font(AppTheme.rounded(m.captionSize + 2, .bold))
                             .foregroundStyle(AppTheme.soft)
-                            .frame(minHeight: m.tapTarget)
-                            .contentShape(.rect)
+                            .multilineTextAlignment(.center)
                     }
-                    .buttonStyle(.plain)
-                    .disabled(isBusy)
+
+                    Text("Gezinsversie")
+                        .font(AppTheme.rounded(m.titleSize * 0.7))
+                        .foregroundStyle(AppTheme.headline)
+
+                    Text("Eén keer kopen, voor het hele gezin — ook via Delen met gezin.")
+                        .font(AppTheme.rounded(m.captionSize + 2, .bold))
+                        .foregroundStyle(AppTheme.soft)
+                        .multilineTextAlignment(.center)
+
+                    VStack(alignment: .leading, spacing: m.gutter * 0.7) {
+                        feature("graduationcap.fill", "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
+                        feature("paintpalette.fill", "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
+                        feature("chart.bar.fill", "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(m.gutter)
+                    .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
+
+                    reassurance
                 }
+                .padding(.horizontal, m.gutter * 1.4)
+                .padding(.top, m.gutter)
+                .padding(.bottom, m.gutter)
+                .frame(maxWidth: m.overlayMaxWidth)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: visibleHeight(proxy), alignment: .center)
             }
-            .padding(.horizontal, m.gutter * 1.4)
-            .padding(.top, m.gutter)
-            .padding(.bottom, m.gutter * 2)
-            .frame(maxWidth: m.overlayMaxWidth)
-            .frame(maxWidth: .infinity)
         }
+        .safeAreaInset(edge: .bottom) { purchaseBar }
     }
 
-    private func feature(_ icon: String, _ text: LocalizedStringKey) -> some View {
+    private func visibleHeight(_ proxy: GeometryProxy) -> CGFloat {
+        max(proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom, 0)
+    }
+
+    /// Wat een ouder op dit moment wil weten: wat het niet is. Geen abonnement,
+    /// geen advertenties, en gratis blijft gewoon spelen.
+    private var reassurance: some View {
+        VStack(spacing: m.gutter * 0.3) {
+            Text("Zonder Gezinsversie blijven jullie gewoon samen spelen, met z'n tweeën.")
+            Text("Gemaakt voor gezinnen, niet voor advertenties: niets dat meekijkt en geen abonnement.")
+        }
+        .font(AppTheme.rounded(m.captionSize, .bold))
+        .foregroundStyle(AppTheme.soft)
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
+    }
+
+    /// De kassa staat vast onderaan: met grote letters schoof de knop anders
+    /// onder de vouw en leek het scherm een folder zonder kassa.
+    private var purchaseBar: some View {
+        VStack(spacing: m.gutter * 0.4) {
+            if entitlements.isFamilyUnlocked {
+                Label("Ontgrendeld — veel plezier!", systemImage: "checkmark.seal.fill")
+                    .font(AppTheme.rounded(m.bodySize))
+                    .foregroundStyle(AppTheme.mint)
+                    .frame(minHeight: m.tapTarget)
+            } else {
+                Text("Eenmalig · geen abonnement")
+                    .font(AppTheme.rounded(m.captionSize, .bold))
+                    .foregroundStyle(AppTheme.cardSoft)
+                    .multilineTextAlignment(.center)
+
+                Button(action: startPurchase) {
+                    Text("Ontgrendel voor \(priceText)")
+                        .font(AppTheme.rounded(m.defaultButton.textSize))
+                        .foregroundStyle(AppTheme.ink)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: m.defaultButton.height)
+                }
+                .buttonStyle(ToyButtonStyle(
+                    fill: AppTheme.mint,
+                    radius: m.buttonCorner,
+                    depth: m.defaultButton.depth,
+                    border: m.border
+                ))
+                .disabled(isBusy)
+
+                Button(action: startRestore) {
+                    Text("Eerder gekocht? Zet terug")
+                        .font(AppTheme.rounded(m.captionSize, .bold))
+                        .foregroundStyle(AppTheme.cardSoft)
+                        .frame(minHeight: m.tapTarget)
+                        .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .disabled(isBusy)
+            }
+        }
+        .padding(.horizontal, m.gutter)
+        .padding(.vertical, m.gutter * 0.7)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
+        .frame(maxWidth: m.overlayMaxWidth)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, m.gutter * 1.4)
+        .padding(.bottom, m.gutter * 0.6)
+    }
+
+    /// Kop plus uitleg in plaats van één lange zin: zo scan je de lijst in
+    /// twee seconden en lees je alleen door wat je aanspreekt.
+    private func feature(_ icon: String, _ title: LocalizedStringKey, _ detail: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: m.gutter * 0.6) {
             Image(systemName: icon)
                 .font(.system(size: m.bodySize, weight: .black))
                 .foregroundStyle(AppTheme.coral)
                 .frame(width: m.bodySize * 1.6)
-            Text(text)
-                .font(AppTheme.rounded(m.captionSize + 2, .bold))
-                .foregroundStyle(AppTheme.ink)
-                .fixedSize(horizontal: false, vertical: true)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(AppTheme.rounded(m.captionSize + 2))
+                    .foregroundStyle(AppTheme.ink)
+                Text(detail)
+                    .font(AppTheme.rounded(m.captionSize, .bold))
+                    .foregroundStyle(AppTheme.cardSoft)
+            }
+            .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .combine)
     }
