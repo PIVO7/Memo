@@ -3630,6 +3630,22 @@
         }
       }
     },
+    "Tegen de klok, thema's en trofeeën": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time trial, themes and trophies"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contre la montre, thèmes et trophées"
+          }
+        }
+      }
+    },
     "Tegen elkaar": {
       "localizations": {
         "en": {

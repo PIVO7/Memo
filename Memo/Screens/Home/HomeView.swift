@@ -138,6 +138,50 @@ struct HomeView: View {
                             .frame(maxWidth: m.contentMaxWidth)
                             .frame(maxWidth: .infinity)
 
+                            // De Gezinsversie zat verstopt in de instellingen;
+                            // wie niet snuffelt, wist niet dat ze bestond. Een
+                            // eigen kaartje in dezelfde taal als de spelkaarten
+                            // zegt wat erin zit — en verdwijnt na aankoop.
+                            // Mint: de enige gezinskleur zonder eigen kaart op
+                            // dit scherm, dus in één blik iets ánders.
+                            if !entitlements.isFamilyUnlocked {
+                                Button {
+                                    showPaywall = true
+                                } label: {
+                                    HStack(spacing: m.gutter * 0.8) {
+                                        Image(systemName: "star.fill")
+                                            .font(.system(size: m.bodySize, weight: .black))
+                                            .foregroundStyle(.white)
+                                            .frame(width: m.avatarSize * 0.75, height: m.avatarSize * 0.75)
+                                            .toyBlock(fill: AppTheme.amber, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
+
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text("Gezinsversie")
+                                                .font(AppTheme.rounded(m.bodySize))
+                                                .foregroundStyle(AppTheme.ink)
+                                            Text("Tegen de klok, thema's en trofeeën")
+                                                .font(AppTheme.rounded(m.captionSize - 1, .bold))
+                                                .foregroundStyle(AppTheme.cardSoft)
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: m.bodySize * 0.8, weight: .black))
+                                            .foregroundStyle(AppTheme.cardDim)
+                                    }
+                                    .padding(.horizontal, m.gutter * 0.8)
+                                    .padding(.vertical, m.gutter * 0.55)
+                                    .toyBlock(fill: AppTheme.tintMint, radius: m.cardCorner, depth: m.depth, border: m.border)
+                                }
+                                .padding(.horizontal, m.gutter * 1.5)
+                                .padding(.top, m.gutter * 0.85)
+                                .frame(maxWidth: m.contentMaxWidth)
+                                .frame(maxWidth: .infinity)
+                                .accessibilityLabel(Text(verbatim: "\(String(localized: "Gezinsversie")), \(String(localized: "Tegen de klok, thema's en trofeeën"))"))
+                            }
+
                             Spacer(minLength: 0)
 
                             // De tafelrand blijft vrij van knoppen: vaste

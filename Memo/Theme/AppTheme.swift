@@ -26,6 +26,7 @@ enum AppTheme {
     @MainActor static var tintAmber: Color { palette.tintAmber }
     @MainActor static var tintSky: Color { palette.tintSky }
     @MainActor static var tintCoral: Color { palette.tintCoral }
+    @MainActor static var tintMint: Color { palette.tintMint }
     @MainActor static var tintStone: Color { palette.tintStone }
 
     // Tekst

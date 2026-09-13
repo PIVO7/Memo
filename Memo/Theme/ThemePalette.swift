@@ -24,6 +24,7 @@ struct ThemePalette {
     let tintAmber: Color
     let tintSky: Color
     let tintCoral: Color
+    let tintMint: Color
     let tintStone: Color
 
     let faint: Color
@@ -80,6 +81,7 @@ extension ThemePalette {
         tintAmber: Color(red: 1.00, green: 0.90, blue: 0.62),
         tintSky: Color(red: 0.84, green: 0.93, blue: 1.00),
         tintCoral: Color(red: 1.00, green: 0.83, blue: 0.78),
+        tintMint: Color(red: 0.73, green: 0.93, blue: 0.82),
         tintStone: Color(red: 0.93, green: 0.89, blue: 0.82),
         faint: Color(red: 0.43, green: 0.37, blue: 0.30),
         soft: Color(red: 0.45, green: 0.39, blue: 0.31),
@@ -103,6 +105,7 @@ extension ThemePalette {
         tintAmber: Color(red: 1.00, green: 0.93, blue: 0.76),
         tintSky: Color(red: 0.93, green: 0.88, blue: 1.00),
         tintCoral: Color(red: 1.00, green: 0.80, blue: 0.88),
+        tintMint: Color(red: 0.76, green: 0.94, blue: 0.87),
         tintStone: Color(red: 0.93, green: 0.89, blue: 0.84),
         faint: Color(red: 0.52, green: 0.36, blue: 0.45),
         soft: Color(red: 0.51, green: 0.35, blue: 0.44),
@@ -124,6 +127,7 @@ extension ThemePalette {
         tintAmber: Color(red: 1.00, green: 0.94, blue: 0.82),
         tintSky: Color(red: 0.87, green: 0.95, blue: 0.99),
         tintCoral: Color(red: 1.00, green: 0.88, blue: 0.84),
+        tintMint: Color(red: 0.72, green: 0.93, blue: 0.86),
         tintStone: Color(red: 0.89, green: 0.93, blue: 0.92),
         faint: Color(red: 0.31, green: 0.43, blue: 0.47),
         soft: Color(red: 0.29, green: 0.42, blue: 0.46),
@@ -152,6 +156,7 @@ extension ThemePalette {
         tintAmber: Color(red: 0.96, green: 0.90, blue: 0.74),
         tintSky: Color(red: 0.84, green: 0.92, blue: 0.96),
         tintCoral: Color(red: 0.96, green: 0.82, blue: 0.78),
+        tintMint: Color(red: 0.76, green: 0.90, blue: 0.81),
         tintStone: Color(red: 0.85, green: 0.82, blue: 0.74),
         faint: Color(red: 0.70, green: 0.74, blue: 0.84),
         soft: Color(red: 0.79, green: 0.82, blue: 0.90),
