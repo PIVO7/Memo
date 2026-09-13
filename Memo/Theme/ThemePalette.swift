@@ -63,19 +63,23 @@ enum ThemeID: String, CaseIterable, Identifiable {
 }
 
 extension ThemePalette {
+    /// De tinten staan hier voller dan vroeger: het bleke geel, beige en
+    /// wit lazen op de spelborden als één vlak. Botergeel, koel grijs en
+    /// voller roze en blauw houden de vlakken ook voor kinderogen uit
+    /// elkaar — gelijkgetrokken met Dobbel, waar deze stap begon.
     static let klassiek = ThemePalette(
         cream: Color(red: 1.00, green: 0.98, blue: 0.95),
         card: .white,
         ink: Color(red: 0.13, green: 0.13, blue: 0.11),
         headline: Color(red: 0.13, green: 0.13, blue: 0.11),
-        sunk: Color(red: 0.97, green: 0.95, blue: 0.89),
+        sunk: Color(red: 0.91, green: 0.90, blue: 0.86),
         amber: Color(red: 1.00, green: 0.79, blue: 0.24),
         coral: Color(red: 1.00, green: 0.42, blue: 0.29),
         mint: Color(red: 0.24, green: 0.84, blue: 0.55),
         sky: Color(red: 0.29, green: 0.62, blue: 1.00),
-        tintAmber: Color(red: 1.00, green: 0.95, blue: 0.81),
-        tintSky: Color(red: 0.89, green: 0.96, blue: 1.00),
-        tintCoral: Color(red: 1.00, green: 0.87, blue: 0.83),
+        tintAmber: Color(red: 1.00, green: 0.90, blue: 0.62),
+        tintSky: Color(red: 0.84, green: 0.93, blue: 1.00),
+        tintCoral: Color(red: 1.00, green: 0.83, blue: 0.78),
         tintStone: Color(red: 0.93, green: 0.89, blue: 0.82),
         faint: Color(red: 0.43, green: 0.37, blue: 0.30),
         soft: Color(red: 0.45, green: 0.39, blue: 0.31),
