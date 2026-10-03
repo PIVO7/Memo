@@ -12,6 +12,8 @@ struct PaywallView: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore?
 
     @State private var gateQuestion: ParentalGateQuestion?
+    @State private var gateEntry = ""
+    @FocusState private var gateFieldFocused: Bool
     /// De poort staat vóór het hele scherm: ook de prijzen en de koopknoppen
     /// zijn oudergebied (kindercategorie).
     @State private var gatePassed = false
@@ -123,9 +125,20 @@ struct PaywallView: View {
 
     private var paywallBody: some View {
         VStack(spacing: m.gutter) {
-            Image(systemName: "figure.2.and.child.holdinghands")
-                .font(.system(size: m.titleSize, weight: .black))
-                .foregroundStyle(AppTheme.coral)
+            // Dezelfde speelgoedtegels als in de winkel van Dobbel en Raak: de
+            // paywall hoort bij de familie, niet bij een winkel.
+            HStack(spacing: -m.discSize * 0.15) {
+                TileBadge(symbol: "square.fill.on.square.fill", colorIndex: 1, size: m.discSize * 0.95)
+                    .rotationEffect(.degrees(-8))
+                    .zIndex(1)
+                TileBadge(symbol: "figure.2.and.child.holdinghands", colorIndex: 0, size: m.discSize * 1.1)
+                    .zIndex(2)
+                TileBadge(symbol: "star.fill", colorIndex: 2, size: m.discSize * 0.95)
+                    .rotationEffect(.degrees(8))
+                    .offset(y: m.discSize * 0.1)
+            }
+            .accessibilityHidden(true)
+            .padding(.top, m.gutter)
 
             if let familyLine {
                 Text(familyLine)
@@ -143,15 +156,16 @@ struct PaywallView: View {
                 .foregroundStyle(AppTheme.soft)
                 .multilineTextAlignment(.center)
 
-            VStack(alignment: .leading, spacing: m.gutter * 0.7) {
-                feature("stopwatch.fill", "Tegen de klok", "Solo: alle paren zo snel mogelijk")
-                feature("graduationcap.fill", "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
-                feature("paintpalette.fill", "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
-                feature("chart.bar.fill", "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")
+            VStack(spacing: m.gutter * 0.7) {
+                feature("stopwatch.fill", tint: AppTheme.tintAmber, symbolColorIndex: 3,
+                        "Tegen de klok", "Solo: alle paren zo snel mogelijk")
+                feature("graduationcap.fill", tint: AppTheme.tintSky, symbolColorIndex: 1,
+                        "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
+                feature("paintpalette.fill", tint: AppTheme.tintCoral, symbolColorIndex: 0,
+                        "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
+                feature("trophy.fill", tint: AppTheme.tintAmber, symbolColorIndex: 2,
+                        "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(m.gutter)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
 
             reassurance
 
@@ -225,14 +239,21 @@ struct PaywallView: View {
         .padding(.bottom, m.gutter * 0.6)
     }
 
-    /// Kop plus uitleg in plaats van één lange zin: zo scan je de lijst in
-    /// twee seconden en lees je alleen door wat je aanspreekt.
-    private func feature(_ icon: String, _ title: LocalizedStringKey, _ detail: LocalizedStringKey) -> some View {
-        HStack(alignment: .top, spacing: m.gutter * 0.6) {
-            Image(systemName: icon)
-                .font(.system(size: m.bodySize, weight: .black))
-                .foregroundStyle(AppTheme.coral)
-                .frame(width: m.bodySize * 1.6)
+    /// Eén feature op een eigen kaart, met het icoon op een gekleurd
+    /// tegeltje — dezelfde taal als de menutegels op het startscherm. Kop plus
+    /// uitleg in plaats van één lange zin: zo scan je de lijst in twee
+    /// seconden.
+    private func feature(
+        _ icon: String,
+        tint: Color,
+        symbolColorIndex: Int,
+        _ title: LocalizedStringKey,
+        _ detail: LocalizedStringKey
+    ) -> some View {
+        HStack(spacing: m.gutter * 0.8) {
+            TileBadge(symbol: icon, colorIndex: symbolColorIndex, size: m.avatarSize * 0.6)
+                .frame(width: m.avatarSize * 0.9, height: m.avatarSize * 0.9)
+                .toyBlock(fill: tint, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
@@ -243,7 +264,10 @@ struct PaywallView: View {
                     .foregroundStyle(AppTheme.cardSoft)
             }
             .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(m.gutter * 0.8)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
         .accessibilityElement(children: .combine)
     }
 
@@ -266,22 +290,39 @@ struct PaywallView: View {
                     .font(AppTheme.rounded(m.titleSize * 0.6))
                     .foregroundStyle(AppTheme.coral)
 
-                HStack(spacing: m.gutter * 0.7) {
-                    ForEach(question.options, id: \.self) { option in
-                        Button {
-                            answerGate(with: option, question: question)
-                        } label: {
-                            Text("\(option)")
-                                .font(AppTheme.rounded(m.bodySize + 2))
-                                .foregroundStyle(AppTheme.ink)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: m.tapTarget)
-                        }
-                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
-                    }
+                // Het antwoord wordt ingetypt: uit drie knoppen valt te
+                // gokken, een leeg veld niet.
+                TextField(
+                    "",
+                    text: $gateEntry,
+                    prompt: Text(verbatim: "?").foregroundStyle(AppTheme.cardDim)
+                )
+                .keyboardType(.numberPad)
+                .focused($gateFieldFocused)
+                .font(AppTheme.rounded(m.bodySize + 4))
+                .foregroundStyle(AppTheme.ink)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: m.tapTarget * 2.2)
+                .frame(height: m.tapTarget)
+                .toyBlock(fill: AppTheme.sunk, radius: m.cellCorner, depth: 0, border: m.thinBorder)
+                .accessibilityLabel(String(localized: "Antwoord"))
+                .onAppear { gateFieldFocused = true }
+
+                Button {
+                    answerGate(question: question)
+                } label: {
+                    Text("Controleer")
+                        .font(AppTheme.rounded(m.bodySize + 2))
+                        .foregroundStyle(AppTheme.ink)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: m.tapTarget)
                 }
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.mint, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
+                .disabled(Int(gateEntry) == nil)
             }
             .padding(m.gutter * 1.4)
+            // Kaartwit en niet cream: in het nachtthema is cream donker en
+            // zou de donkere inkt onleesbaar worden.
             .toyBlock(fill: AppTheme.card, radius: m.dialogCorner, depth: m.heroDepth, border: m.border)
             .frame(maxWidth: m.overlayMaxWidth * 0.82)
             .padding(m.gutter * 2)
@@ -290,12 +331,14 @@ struct PaywallView: View {
         .transition(.opacity)
     }
 
-    private func answerGate(with option: Int, question: ParentalGateQuestion) {
-        guard option == question.answer else {
-            // Fout: nieuwe vraag, zodat gokken niet loont.
+    private func answerGate(question: ParentalGateQuestion) {
+        guard Int(gateEntry) == question.answer else {
+            // Fout: nieuwe som en een leeg veld, zodat gokken niet loont.
+            gateEntry = ""
             gateQuestion = .make()
             return
         }
+        gateEntry = ""
         withAnimation(.easeOut(duration: 0.15)) {
             gateQuestion = nil
             gatePassed = true

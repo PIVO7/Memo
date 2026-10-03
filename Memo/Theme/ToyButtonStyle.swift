@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 /// Knop die bij het indrukken echt inzakt: de schaduw krimpt terwijl de knop
 /// evenveel naar beneden schuift, zodat de totale hoogte gelijk blijft.
 @MainActor
@@ -10,13 +9,17 @@ struct ToyButtonStyle: ButtonStyle {
     var depth: CGFloat = 6
     var border: CGFloat = 3
     var borderColor: Color = AppTheme.ink
+    /// Laat de knop ingedrukt tonen los van de echte aanraking. Voor knoppen
+    /// die na een tik meteen van staat wisselen (zoals de gooiknop in
+    /// Dobbel) en de klik anders visueel verliezen.
+    var forcePressed = false
 
     func makeBody(configuration: Configuration) -> some View {
         // Bij depth 0 valt er niets in te zakken; dan blijft de knop stilstaan.
         // Anders zakt de knop helemaal tot op de grond: schaduw plat, en de
-        // volle diepte naar beneden — ook een ondiep scorevakje geeft zo een
+        // volle diepte naar beneden — ook een ondiepe knop geeft zo een
         // voelbare klik.
-        let sunk = configuration.isPressed && depth > 0
+        let sunk = (configuration.isPressed || forcePressed) && depth > 0
         return configuration.label
             .toyBlock(fill: fill, radius: radius, depth: sunk ? 0 : depth, border: border, borderColor: borderColor)
             .offset(y: sunk ? depth : 0)

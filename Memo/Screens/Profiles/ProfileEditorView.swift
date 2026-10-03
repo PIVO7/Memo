@@ -131,8 +131,8 @@ struct ProfileEditorFormView: View {
                         text: $name,
                         // Eigen promptkleur: de systeemplaceholder kleurt met
                         // het toestelschema mee en werd in donkere modus wit
-                        // op de witte kaart.
-                        prompt: Text("Naam van de speler").foregroundStyle(AppTheme.ink.opacity(0.42))
+                        // op de lichte kaart.
+                        prompt: Text("Naam van de speler").foregroundStyle(AppTheme.cardDim)
                     )
                     .textInputAutocapitalization(.words)
                     .submitLabel(.done)
@@ -155,8 +155,8 @@ struct ProfileEditorFormView: View {
 
             sectionTitle("SYMBOOL")
             LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 6),
-                spacing: 8
+                columns: Array(repeating: GridItem(.flexible(), spacing: m.gutter * 0.6), count: 6),
+                spacing: m.gutter * 0.6
             ) {
                 symbolCell(nil, label: String(localized: "Initialen"))
                 ForEach(Self.symbols, id: \.name) { symbol in

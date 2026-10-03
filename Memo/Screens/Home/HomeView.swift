@@ -36,7 +36,8 @@ struct HomeView: View {
 
                                 CardBandView(height: m.gutter * 0.7, lineWidth: m.border) {
                                     VStack(spacing: 8) {
-                                        Text("Memo!")
+                                        // De merknaam vertaalt niet mee.
+                                        Text(verbatim: "Memo!")
                                             .font(AppTheme.rounded(m.brandSize * 0.82))
                                             .foregroundStyle(AppTheme.ink)
                                             .minimumScaleFactor(0.6)

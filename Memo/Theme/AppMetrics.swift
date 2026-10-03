@@ -12,15 +12,15 @@ struct AppMetrics {
         var depth: CGFloat
     }
 
-    /// De sierstenen op het startscherm.
-    var discSize: CGFloat
-    /// Lucht tussen de gaatjes van het speelbord.
-    var boardGap: CGFloat
-    /// De rand van het bord rond het raster van gaatjes.
-    var boardPadding: CGFloat
+    // Per spel: de maten van de eigen speelstukken. Alles hierna is gedeeld
+    // met de andere spellen.
 
-    var rowHeight: CGFloat
-    var iconWidth: CGFloat
+    /// De speelstukken op het startscherm en in de winkel.
+    var discSize: CGFloat
+    /// Lucht tussen de vakjes van het speelveld.
+    var boardGap: CGFloat
+    /// De rand van het speelveld rond het raster.
+    var boardPadding: CGFloat
 
     // De vier vaste hoekrollen: kleine cellen en chips, knoppen, kaarten en
     // dialogen. Geen andere radii.
@@ -29,7 +29,7 @@ struct AppMetrics {
     var cardCorner: CGFloat
     var dialogCorner: CGFloat
 
-    // De drie vaste dieptes: ondiep (iconknoppen, chips), standaard
+    // De drie vaste dieptes: ondiep (iconknoppen, chips, badges), standaard
     // (kaarten en knoppen) en held (startknop, dialogen).
     var shallowDepth: CGFloat
     var depth: CGFloat
@@ -62,7 +62,6 @@ struct AppMetrics {
 
     static let phone = AppMetrics(
         discSize: 60, boardGap: 6, boardPadding: 12,
-        rowHeight: 44, iconWidth: 44,
         cellCorner: 11, buttonCorner: 16, cardCorner: 20, dialogCorner: 24,
         shallowDepth: 3, depth: 5, heroDepth: 6,
         border: 3, thinBorder: 2,
@@ -77,7 +76,6 @@ struct AppMetrics {
 
     static let pad = AppMetrics(
         discSize: 88, boardGap: 9, boardPadding: 18,
-        rowHeight: 54, iconWidth: 54,
         cellCorner: 15, buttonCorner: 21, cardCorner: 26, dialogCorner: 30,
         shallowDepth: 4, depth: 7, heroDepth: 8,
         border: 4, thinBorder: 2.5,
@@ -148,8 +146,9 @@ private struct MetricsProvider: ViewModifier {
 }
 
 extension View {
-    /// Zet de maten klaar voor alles hieronder. Hoort op elke schermwortel,
-    /// ook binnen een cover — die erft de omgeving niet altijd.
+    /// Zet de maten en het kleurenschema klaar voor alles hieronder. Hoort op
+    /// elke schermwortel, ook binnen een blad of cover — die erven de
+    /// omgeving niet altijd.
     func appMetrics() -> some View {
         modifier(MetricsProvider())
     }
