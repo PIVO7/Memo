@@ -7,23 +7,20 @@ import SwiftUI
 private struct ThemeTrialNudge: ViewModifier {
     let game: ActiveGame?
 
-    @Environment(EntitlementStore.self) private var entitlements
     @State private var endedTheme: ThemeID?
-    @State private var showPaywall = false
 
     func body(content: Content) -> some View {
         content
             .overlay {
                 if let endedTheme {
+                    // Bewust zonder koopknop: dit bordje ziet vaak een kind.
+                    // De weg naar de Gezinsversie loopt via Instellingen,
+                    // waar de ouder-poort voor staat.
                     ToyDialog(
                         title: String(localized: "Dat was \(endedTheme.title) op proef"),
-                        message: String(localized: "Het thema staat weer op Klassiek. Met de Gezinsversie blijft \(endedTheme.title) gewoon aan — en de andere thema's ook."),
-                        confirmTitle: String(localized: "Bekijk de Gezinsversie"),
-                        cancelTitle: String(localized: "Oké"),
-                        onConfirm: {
-                            dismiss()
-                            showPaywall = true
-                        },
+                        message: String(localized: "Het thema staat weer op Klassiek. Papa of mama vindt de Gezinsversie in Instellingen."),
+                        confirmTitle: String(localized: "Oké"),
+                        onConfirm: dismiss,
                         onCancel: dismiss
                     )
                 }
@@ -31,10 +28,6 @@ private struct ThemeTrialNudge: ViewModifier {
             .onChange(of: game?.id) { _, id in
                 guard id == nil else { return }
                 check()
-            }
-            .sheet(isPresented: $showPaywall) {
-                PaywallView(entitlements: entitlements)
-                    .appMetrics()
             }
     }
 

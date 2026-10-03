@@ -5,11 +5,11 @@ import SwiftUI
 struct ThemePalette {
     /// De achtergrond van elk scherm.
     let cream: Color
-    /// Kaarten en knoppen. In de lichte thema's wit; in het nachtthema warm
-    /// papier, zodat de vlakken niet fel oplichten.
+    /// Kaarten, knoppen en speelstukken. In de lichte thema's wit; in het
+    /// nachtthema warm papier, zodat de vlakken niet fel oplichten.
     let card: Color
-    /// Randen, slagschaduwen en tekst óp witte kaarten. Blijft in elk thema
-    /// donker, want de kaarten blijven wit.
+    /// Randen, slagschaduwen en tekst óp kaarten. Blijft in elk thema
+    /// donker, want de kaarten blijven licht.
     let ink: Color
     /// Tekst die rechtstreeks op de achtergrond staat; in het nachtthema
     /// licht waar `ink` donker blijft.
@@ -67,7 +67,7 @@ extension ThemePalette {
     /// De tinten staan hier voller dan vroeger: het bleke geel, beige en
     /// wit lazen op de spelborden als één vlak. Botergeel, koel grijs en
     /// voller roze en blauw houden de vlakken ook voor kinderogen uit
-    /// elkaar — gelijkgetrokken met Dobbel, waar deze stap begon.
+    /// elkaar.
     static let klassiek = ThemePalette(
         cream: Color(red: 1.00, green: 0.98, blue: 0.95),
         card: .white,
@@ -136,13 +136,10 @@ extension ThemePalette {
         offInk: Color(red: 0.27, green: 0.35, blue: 0.35)
     )
 
-    /// De kaarten en het scoreblad blijven wit met donkere inkt; alleen de
-    /// wereld eromheen wordt donker. Zo blijft het spel zelf even leesbaar
-    /// als overdag.
-    /// Avondlicht in plaats van schel wit: de kaarten en knoppen zijn warm
-    /// papier met donkere inkt, zodat het spel leesbaar blijft zonder dat de
-    /// vlakken uit het donker knallen. De tinten zijn een tikje gedempt en de
-    /// tekst op de achtergrond juist lichter.
+    /// Avondlicht in plaats van schel wit: de kaarten en de spelborden zijn
+    /// warm papier met donkere inkt, zodat het spel leesbaar blijft zonder
+    /// dat de vlakken uit het donker knallen. De tinten zijn een tikje
+    /// gedempt en de tekst op de achtergrond juist lichter.
     static let nacht = ThemePalette(
         cream: Color(red: 0.16, green: 0.18, blue: 0.27),
         card: Color(red: 0.93, green: 0.91, blue: 0.85),

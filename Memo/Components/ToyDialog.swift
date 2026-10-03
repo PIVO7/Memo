@@ -31,6 +31,8 @@ struct ToyDialog: View {
 
                 Text(message)
                     .font(AppTheme.rounded(m.bodySize * 0.94, .bold))
+                    // Gedempte inkt en niet `soft`: de kaart is altijd licht,
+                    // maar soft is in het nachtthema licht.
                     .foregroundStyle(AppTheme.cardSoft)
                     .multilineTextAlignment(.center)
 

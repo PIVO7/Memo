@@ -26,10 +26,10 @@ struct TimeTrialHeaderView: View {
                     .font(AppTheme.rounded(m.captionSize, .bold))
                     .foregroundStyle(AppTheme.ink)
                     .monospacedDigit()
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 2)
+                    .padding(.horizontal, m.gutter * 0.5)
+                    .padding(.vertical, m.gutter * 0.15)
                     .background(Capsule().fill(AppTheme.tintAmber))
-                    .overlay(Capsule().strokeBorder(AppTheme.ink, lineWidth: 1.5))
+                    .overlay(Capsule().strokeBorder(AppTheme.ink, lineWidth: m.thinBorder * 0.75))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -46,7 +46,7 @@ struct TimeTrialHeaderView: View {
         .padding(.horizontal, m.gutter * 0.5 + m.border)
         .padding(.vertical, m.gutter * 0.45)
         .frame(maxWidth: .infinity)
-        .toyBlock(fill: AppTheme.card, radius: m.buttonCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
+        .toyBlock(fill: AppTheme.tintSky, radius: m.buttonCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(
             String(localized: "\(player.name), \(pairs) van \(totalPairs) paren, \(ClockText.spoken(seconds: elapsedSeconds()))")

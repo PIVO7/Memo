@@ -21,7 +21,9 @@ struct GameHeaderView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, m.gutter * 0.45)
         .frame(maxWidth: .infinity)
-        .toyBlock(fill: AppTheme.card, radius: m.buttonCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
+        // Hemelsblauw in plaats van kaartwit, zoals in Dobbel: zo heeft de
+        // stand een eigen gezicht tussen de witte vlakken van het spel.
+        .toyBlock(fill: AppTheme.tintSky, radius: m.buttonCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
     }
 
     private func chip(for player: GamePlayer, index: Int) -> some View {
@@ -38,10 +40,10 @@ struct GameHeaderView: View {
             Text("\(pairs)")
                 .font(AppTheme.rounded(m.captionSize, .bold))
                 .foregroundStyle(AppTheme.ink)
-                .padding(.horizontal, 7)
-                .padding(.vertical, 2)
+                .padding(.horizontal, m.gutter * 0.5)
+                .padding(.vertical, m.gutter * 0.15)
                 .background(Capsule().fill(AppTheme.tintAmber))
-                .overlay(Capsule().strokeBorder(AppTheme.ink, lineWidth: 1.5))
+                .overlay(Capsule().strokeBorder(AppTheme.ink, lineWidth: m.thinBorder * 0.75))
         }
         // De ring tekent naar binnen, dus zijn dikte komt bovenop de marge.
         // Vaste 10/6 punten liet hem op een iPad tegen de letters aanlopen,

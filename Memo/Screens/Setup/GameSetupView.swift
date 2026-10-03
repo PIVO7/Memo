@@ -68,10 +68,10 @@ struct GameSetupView: View {
                         // ContentUnavailableView met systeemtypografie.
                         VStack(spacing: m.gutter * 0.6) {
                             Image(systemName: "person.crop.circle.badge.plus")
-                                .font(.system(size: m.avatarSize * 0.6, weight: .black))
-                                .foregroundStyle(AvatarBadge.palette[4])
+                                .font(.system(size: m.avatarSize * 0.62, weight: .black))
+                                .foregroundStyle(AppTheme.ink)
                                 .frame(width: m.avatarSize * 1.3, height: m.avatarSize * 1.3)
-                                .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
+                                .toyBlock(fill: AppTheme.tintCoral, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
                                 .accessibilityHidden(true)
                             Text("Geen profielen")
                                 .font(AppTheme.rounded(m.bodySize + 4))

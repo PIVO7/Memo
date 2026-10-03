@@ -73,17 +73,18 @@ struct RulesView: View {
     }
 
     private func section(_ title: LocalizedStringKey, @ViewBuilder content: () -> some View) -> some View {
-        VStack(alignment: .leading, spacing: m.gutter * 0.6) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(AppTheme.rounded(m.captionSize * 0.9))
                 .kerning(1.4)
                 .foregroundStyle(AppTheme.faint)
+                .padding(.leading, 4)
             content()
         }
     }
 
     private func card(@ViewBuilder content: () -> some View) -> some View {
-        VStack(alignment: .leading, spacing: m.gutter * 0.9) {
+        VStack(alignment: .leading, spacing: m.gutter * 0.8) {
             content()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -96,7 +97,7 @@ struct RulesView: View {
             Image(systemName: icon)
                 .font(.system(size: m.bodySize, weight: .black))
                 .foregroundStyle(AppTheme.coral)
-                .frame(width: m.bodySize * 1.6)
+                .frame(width: m.bodySize * 1.5)
             Text(text)
                 .font(AppTheme.rounded(m.captionSize + 2, .bold))
                 .foregroundStyle(AppTheme.ink)
