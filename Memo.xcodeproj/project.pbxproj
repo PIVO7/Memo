@@ -80,6 +80,7 @@
 		FAB8F24BEC2EB93267FF9107 /* GamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D827565961B6FC56D160A /* GamePlayer.swift */; };
 		FD189B55854CB2D904331E71 /* MemoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */; };
 		AB161EB1DB07A3A1A9BC687A /* TileBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E235BB5423CD9256AC6BF /* TileBadge.swift */; };
+		4443CFDE94677E3A6614E1B6 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C3656C0527FC1ED1DB32F /* MedalView.swift */; };
 		F634BFCCF5E82558FA9A2598 /* CoachBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2B1CD13D42FAF5EDD15173 /* CoachBubbleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +170,7 @@
 		F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		F9C3485EC79C0A44984D4C82 /* ThemeTrialNudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTrialNudge.swift; sourceTree = "<group>"; };
 		6A7E235BB5423CD9256AC6BF /* TileBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileBadge.swift; sourceTree = "<group>"; };
+		7F1C3656C0527FC1ED1DB32F /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		1B2B1CD13D42FAF5EDD15173 /* CoachBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachBubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +243,7 @@
 				46637695CC2F9D7139F7AA35 /* ConfettiView.swift */,
 				D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */,
 				6A7E235BB5423CD9256AC6BF /* TileBadge.swift */,
+				7F1C3656C0527FC1ED1DB32F /* MedalView.swift */,
 				8823457F9CDC0A035D1A0971 /* ToyDialog.swift */,
 			);
 			path = Components;
@@ -586,6 +589,7 @@
 				324336BF5697A633FC65EC58 /* ThemeTrialNudge.swift in Sources */,
 				17BF94457180FBFCBD9E8963 /* ThemedBackground.swift in Sources */,
 				AB161EB1DB07A3A1A9BC687A /* TileBadge.swift in Sources */,
+				4443CFDE94677E3A6614E1B6 /* MedalView.swift in Sources */,
 				CEE44AFD99D45184AA27B134 /* TimeTrialHeaderView.swift in Sources */,
 				3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */,
 				F7709D51B46B7526DE975418 /* ToyButtonStyle.swift in Sources */,

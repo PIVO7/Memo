@@ -9,11 +9,13 @@ struct ProfileBadge: Identifiable, Equatable {
     let goal: String
     let icon: String
     let isEarned: Bool
+    /// Brons, zilver of goud; volgt uit de plek in de kast.
+    var tier: MedalTier = .brons
 
     /// De hele kast voor één profiel, in vaste volgorde: van makkelijk naar
     /// moeilijk, zodat er snel iets glimt.
     static func collection(for profile: PlayerProfile) -> [ProfileBadge] {
-        [
+        let badges = [
             ProfileBadge(
                 id: "eerste-potje",
                 title: String(localized: "Eerste potje"),
@@ -32,7 +34,7 @@ struct ProfileBadge: Identifiable, Equatable {
                 id: "even-sterk",
                 title: String(localized: "Even sterk"),
                 goal: String(localized: "Speel een keer gelijk"),
-                icon: "equal.circle.fill",
+                icon: "equal",
                 isEarned: profile.draws >= 1
             ),
             ProfileBadge(
@@ -81,23 +83,28 @@ struct ProfileBadge: Identifiable, Equatable {
                 id: "sterspeler",
                 title: String(localized: "Sterspeler"),
                 goal: String(localized: "Win 10 potjes"),
-                icon: "star.circle.fill",
+                icon: "hands.clap.fill",
                 isEarned: profile.wins >= 10
             ),
             ProfileBadge(
                 id: "kampioen",
                 title: String(localized: "Kampioen"),
                 goal: String(localized: "Speel 25 potjes"),
-                icon: "medal.fill",
+                icon: "flag.checkered",
                 isEarned: profile.gamesPlayed >= 25
             ),
             ProfileBadge(
                 id: "memolegende",
                 title: String(localized: "Memolegende"),
                 goal: String(localized: "Speel 50 potjes"),
-                icon: "checkmark.seal.fill",
+                icon: "heart.fill",
                 isEarned: profile.gamesPlayed >= 50
             )
         ]
+        return badges.enumerated().map { rank, badge in
+            var badge = badge
+            badge.tier = MedalTier(rank: rank, of: badges.count)
+            return badge
+        }
     }
 }

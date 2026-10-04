@@ -196,24 +196,16 @@ struct ProfileStatsView: View {
 
     private func trophyCase(for profile: PlayerProfile) -> some View {
         let badges = ProfileBadge.collection(for: profile)
-        let tints = [AppTheme.amber, AppTheme.mint, AppTheme.sky, AppTheme.coral]
-
         return LazyVGrid(columns: badgeColumns, spacing: m.gutter * 0.6) {
-            ForEach(Array(badges.enumerated()), id: \.element.id) { index, badge in
+            ForEach(badges) { badge in
                 VStack(spacing: 6) {
-                    Image(systemName: badge.isEarned ? badge.icon : "lock.fill")
-                        .font(.system(size: m.bodySize + 4, weight: .black))
-                        .foregroundStyle(badge.isEarned ? AppTheme.ink : AppTheme.offInk)
-                        .frame(width: m.tapTarget * 0.82, height: m.tapTarget * 0.82)
-                        .background(
-                            Circle().fill(badge.isEarned ? tints[index % tints.count] : AppTheme.offFill)
-                        )
-                        .overlay {
-                            Circle().strokeBorder(
-                                badge.isEarned ? AppTheme.ink : AppTheme.offInk,
-                                lineWidth: m.thinBorder + 0.5
-                            )
-                        }
+                    MedalView(
+                        symbol: badge.icon,
+                        tier: badge.tier,
+                        isEarned: badge.isEarned,
+                        size: m.tapTarget,
+                        depth: m.shallowDepth
+                    )
 
                     Text(badge.title)
                         .font(AppTheme.rounded(m.captionSize * 0.88, .bold))
@@ -263,19 +255,18 @@ struct ProfileStatsView: View {
         return VStack(spacing: m.gutter) {
             LazyVGrid(columns: badgeColumns, spacing: m.gutter * 0.6) {
                 ForEach(preview) { badge in
-                    Image(systemName: badge.isEarned ? badge.icon : "lock.fill")
-                        .font(.system(size: m.bodySize + 4, weight: .black))
-                        .foregroundStyle(badge.isEarned ? AppTheme.ink : AppTheme.offInk)
-                        .frame(width: m.tapTarget * 0.82, height: m.tapTarget * 0.82)
-                        .background(Circle().fill(badge.isEarned ? AppTheme.amber : AppTheme.offFill))
-                        .overlay {
-                            Circle().strokeBorder(
-                                badge.isEarned ? AppTheme.ink : AppTheme.offInk,
-                                lineWidth: m.thinBorder + 0.5
-                            )
-                        }
-                        .overlay(alignment: .bottomTrailing) {
-                            if badge.isEarned { lockPip }
+                    MedalView(
+                        symbol: badge.icon,
+                        tier: badge.tier,
+                        isEarned: badge.isEarned,
+                        size: m.tapTarget,
+                        depth: m.shallowDepth
+                    )
+                        // Het slotje rechtsonder op de rozet, niet op de lintjes.
+                        .overlay(alignment: .top) {
+                            if badge.isEarned {
+                                lockPip.offset(x: m.tapTarget * 0.36, y: m.tapTarget * 0.6)
+                            }
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, m.gutter * 0.6)
