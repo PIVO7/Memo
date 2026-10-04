@@ -50,6 +50,7 @@
 		8E7CBEB4B0D0E58099AFB3EF /* ParentalGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E3895D7C4DC8E81E0C18B2 /* ParentalGate.swift */; };
 		91023F886AEB394688F1E49A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBEE752A44FFBCB499987646 /* plop.wav */; };
 		9958E72DE66760D9E0CCB600 /* GameScreenRenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5070771B30D3D3E971DA3B9 /* GameScreenRenderTests.swift */; };
+		5E751BB9651F1745DEB40D90 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525585915F2156C724201828 /* PrivacyView.swift */; };
 		9A5A3F702C07A02354FA1237 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8277CE241B234CBB2CAF2A /* SettingsView.swift */; };
 		9BB7BBF05F5440822620A360 /* fanfare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04E3CA284CC1D2ED2FBB8F64 /* fanfare.wav */; };
 		9CD16C1B03427FBBF34ABAE1 /* HomeHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354008D8A32DD748DA74FD62 /* HomeHeroView.swift */; };
@@ -78,6 +79,8 @@
 		F9F174EF955CD920320B8908 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974A5091F9C370C2F565F158 /* Destination.swift */; };
 		FAB8F24BEC2EB93267FF9107 /* GamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4D827565961B6FC56D160A /* GamePlayer.swift */; };
 		FD189B55854CB2D904331E71 /* MemoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */; };
+		AB161EB1DB07A3A1A9BC687A /* TileBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E235BB5423CD9256AC6BF /* TileBadge.swift */; };
+		F634BFCCF5E82558FA9A2598 /* CoachBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2B1CD13D42FAF5EDD15173 /* CoachBubbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,7 @@
 		66F54049424B2D3D51469A2E /* ThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStore.swift; sourceTree = "<group>"; };
 		6AA29D49F235339476DD0C57 /* EntitlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementStore.swift; sourceTree = "<group>"; };
 		6B2B7B1A674C2724BF54761E /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		525585915F2156C724201828 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		6C8277CE241B234CBB2CAF2A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6D79015A77FC47B46525F983 /* ParentalGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateTests.swift; sourceTree = "<group>"; };
 		6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshot.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		EBEE752A44FFBCB499987646 /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plop.wav; sourceTree = "<group>"; };
 		F1DBC37D6EA565CE0F36DED6 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		F9C3485EC79C0A44984D4C82 /* ThemeTrialNudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTrialNudge.swift; sourceTree = "<group>"; };
+		6A7E235BB5423CD9256AC6BF /* TileBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileBadge.swift; sourceTree = "<group>"; };
+		1B2B1CD13D42FAF5EDD15173 /* CoachBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachBubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -213,6 +219,7 @@
 		3072A05A4B5CD09B595591D4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				525585915F2156C724201828 /* PrivacyView.swift */,
 				6C8277CE241B234CBB2CAF2A /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -233,6 +240,7 @@
 				A389E101676AE4E1D0C0D23A /* AvatarBadge.swift */,
 				46637695CC2F9D7139F7AA35 /* ConfettiView.swift */,
 				D7C672F0E733C4AD7A8564FF /* MemoryCardView.swift */,
+				6A7E235BB5423CD9256AC6BF /* TileBadge.swift */,
 				8823457F9CDC0A035D1A0971 /* ToyDialog.swift */,
 			);
 			path = Components;
@@ -258,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				09B8AF49971DF303712282DC /* CardGridView.swift */,
+				1B2B1CD13D42FAF5EDD15173 /* CoachBubbleView.swift */,
 				B43A15666A5067DC77B837CB /* GameCoverView.swift */,
 				39DFD5B1B6CF78AA5CE598F2 /* GameHeaderView.swift */,
 				D54D193FD4EE0C139C778F0B /* GameResultOverlay.swift */,
@@ -531,6 +540,7 @@
 				AC3A1EDAC7AD341371ADE1BA /* AvatarBadge.swift in Sources */,
 				CAE5A3B680E04BD1A358985B /* CardGridView.swift in Sources */,
 				59219C6B1F4182EF3F01AC4D /* CardRowBand.swift in Sources */,
+				F634BFCCF5E82558FA9A2598 /* CoachBubbleView.swift in Sources */,
 				2EAB77030658AA9A48FCC34A /* ClockText.swift in Sources */,
 				14D4975AFEB00318AB086A95 /* ComputerAI.swift in Sources */,
 				890640D3EB29EAF534D56CF4 /* ComputerLevel.swift in Sources */,
@@ -566,6 +576,7 @@
 				71E49BB8991940733B70EB7B /* ProfileStore.swift in Sources */,
 				4A4646EAEA658C8B9D26185D /* ProfilesView.swift in Sources */,
 				6318BE77EAC9063AB7254B36 /* RulesView.swift in Sources */,
+				5E751BB9651F1745DEB40D90 /* PrivacyView.swift in Sources */,
 				9A5A3F702C07A02354FA1237 /* SettingsView.swift in Sources */,
 				33EE95B2BC54B16D4B7F1E21 /* SoundPlayer.swift in Sources */,
 				D402CDDA5B4E824D1058EDC4 /* SplitMix64.swift in Sources */,
@@ -574,6 +585,7 @@
 				4D529BF48C72536744CC5639 /* ThemeStore.swift in Sources */,
 				324336BF5697A633FC65EC58 /* ThemeTrialNudge.swift in Sources */,
 				17BF94457180FBFCBD9E8963 /* ThemedBackground.swift in Sources */,
+				AB161EB1DB07A3A1A9BC687A /* TileBadge.swift in Sources */,
 				CEE44AFD99D45184AA27B134 /* TimeTrialHeaderView.swift in Sources */,
 				3053B6352BC2F02A39184658 /* ToyBlock.swift in Sources */,
 				F7709D51B46B7526DE975418 /* ToyButtonStyle.swift in Sources */,

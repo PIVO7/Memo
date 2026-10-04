@@ -715,18 +715,34 @@
         }
       }
     },
-    "Alles ontgrendelen": {
+    "Alles blijft op dit toestel": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock everything"
+            "value": "Everything stays on this device"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tout débloquer"
+            "value": "Tout reste sur cet appareil"
+          }
+        }
+      }
+    },
+    "Als gast, zonder iets aan te maken": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As a guest, nothing to set up"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En invité, rien à créer"
           }
         }
       }
@@ -743,6 +759,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Annuler"
+          }
+        }
+      }
+    },
+    "Antwoord": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réponse"
           }
         }
       }
@@ -796,18 +828,18 @@
         }
       }
     },
-    "Bekijk de Gezinsversie": {
+    "Bekijken of een aankoop terugzetten": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "See the Family Version"
+            "value": "View or restore a purchase"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voir la Version Famille"
+            "value": "Voir ou restaurer un achat"
           }
         }
       }
@@ -841,6 +873,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enregistrer"
+          }
+        }
+      }
+    },
+    "Bij het volgende potje bieden we de uitleg weer aan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next game we'll offer the tips again"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À la prochaine partie, on te proposera à nouveau les explications"
           }
         }
       }
@@ -909,6 +957,22 @@
         }
       }
     },
+    "Controleer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier"
+          }
+        }
+      }
+    },
     "Dat lukte niet": {
       "localizations": {
         "en": {
@@ -941,18 +1005,34 @@
         }
       }
     },
-    "De aankoop wacht nog op goedkeuring van een ouder.": {
+    "De aankoop van de Gezinsversie loopt volledig via Apple. De app zelf ziet geen betaalgegevens.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The purchase is waiting for a parent’s approval."
+            "value": "The Family version purchase is handled entirely by Apple. The app itself never sees any payment details."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’achat attend l’accord d’un parent."
+            "value": "L'achat de la Version famille est entièrement géré par Apple. L'app ne voit jamais aucune donnée de paiement."
+          }
+        }
+      }
+    },
+    "De aankoop wacht op goedkeuring van een ouder. Zodra die er is, wordt alles vanzelf ontgrendeld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase is waiting for a parent's approval. Once approved, everything unlocks automatically."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'achat attend l'approbation d'un parent. Dès qu'elle arrive, tout se déverrouille automatiquement."
           }
         }
       }
@@ -1049,6 +1129,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Retourne les cartes et trouve les paires"
+          }
+        }
+      }
+    },
+    "Draai er nog één om. Zijn ze hetzelfde? Dan heb je een paar!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flip one more. Are they the same? Then you've got a pair!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retournes-en encore une. Elles sont pareilles ? Alors tu as une paire !"
           }
         }
       }
@@ -1181,6 +1277,22 @@
         }
       }
     },
+    "Eerste keer Memo?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First time playing Memo?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première partie de Memo ?"
+          }
+        }
+      }
+    },
     "Eerste potje": {
       "localizations": {
         "en": {
@@ -1193,6 +1305,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Première partie"
+          }
+        }
+      }
+    },
+    "Eigen avatars, trofeeën en records": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your own avatars, trophies and records"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos propres avatars, trophées et records"
           }
         }
       }
@@ -1309,22 +1437,6 @@
         }
       }
     },
-    "GEZINSVERSIE": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FAMILY VERSION"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "VERSION FAMILLE"
-          }
-        }
-      }
-    },
     "Gast": {
       "localizations": {
         "en": {
@@ -1421,18 +1533,18 @@
         }
       }
     },
-    "Geen profielen": {
+    "Geen reclame, geen volgcodes, geen analyse door derden. Wij sturen geen gegevens naar eigen servers — die hebben we niet.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No profiles"
+            "value": "No ads, no trackers, no third-party analytics. We send no data to servers of our own — we don't have any."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aucun profil"
+            "value": "Pas de publicité, pas de traceurs, pas d'analyse par des tiers. Nous n'envoyons aucune donnée vers nos serveurs — nous n'en avons pas."
           }
         }
       }
@@ -1694,18 +1806,18 @@
         }
       }
     },
-    "Het thema staat weer op Klassiek. Met de Gezinsversie blijft %@ gewoon aan — en de andere thema's ook.": {
+    "Het thema staat weer op Klassiek. Papa of mama vindt de Gezinsversie in Instellingen.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The theme is back to Classic. With the Family Version %@ simply stays on — and so do the other themes."
+            "value": "The theme is back to Classic. Mom or dad can find the Family version in Settings."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le thème est revenu à Classique. Avec la Version Famille, %@ reste activé — et les autres thèmes aussi."
+            "value": "Le thème est revenu à Classique. Papa ou maman trouvera la Version famille dans les Réglages."
           }
         }
       }
@@ -1840,6 +1952,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Réglages"
+          }
+        }
+      }
+    },
+    "Ja, leg uit!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes, show me!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oui, explique-moi !"
           }
         }
       }
@@ -2170,6 +2298,22 @@
         }
       }
     },
+    "Kopen via de App Store": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchases go through the App Store"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les achats passent par l'App Store"
+          }
+        }
+      }
+    },
     "Koraal": {
       "localizations": {
         "en": {
@@ -2250,6 +2394,22 @@
         }
       }
     },
+    "Liever eigen avatars?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer your own avatars?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envie de vos propres avatars ?"
+          }
+        }
+      }
+    },
     "Lopend spel": {
       "localizations": {
         "en": {
@@ -2282,34 +2442,18 @@
         }
       }
     },
-    "Maak eerst een profiel aan om te spelen.": {
+    "Maak spelers aan": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Create a profile first to play."
+            "value": "Create players"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crée d’abord un profil pour jouer."
-          }
-        }
-      }
-    },
-    "Maak eerst een speler aan": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create a player first"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crée d’abord un joueur"
+            "value": "Créer des joueurs"
           }
         }
       }
@@ -2394,6 +2538,22 @@
         }
       }
     },
+    "Memo! werkt zonder account en zonder internet. Profielen, scores en instellingen worden alleen op dit toestel bewaard en verlaten het niet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memo! works without an account and without internet. Profiles, scores and settings are stored on this device only and never leave it."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memo! fonctionne sans compte et sans internet. Les profils, scores et réglages sont enregistrés uniquement sur cet appareil et ne le quittent jamais."
+          }
+        }
+      }
+    },
     "Memolegende": {
       "localizations": {
         "en": {
@@ -2406,6 +2566,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Légende du Memo"
+          }
+        }
+      }
+    },
+    "Met een profiel onthoudt Memo wie er wint — met een eigen avatar, trofeeën en records.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With a profile, Memo remembers who wins — with your own avatar, trophies and records."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec un profil, Memo retient qui gagne — avec son propre avatar, des trophées et des records."
+          }
+        }
+      }
+    },
+    "Met twee gasten, zonder iets aan te maken": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With two guests, nothing to set up"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec deux invités, rien à créer"
+          }
+        }
+      }
+    },
+    "Meteen spelen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play right away"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jouer tout de suite"
           }
         }
       }
@@ -2557,6 +2765,38 @@
         }
       }
     },
+    "Nee, ik kan het al": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No, I've got this"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non, je sais déjà jouer"
+          }
+        }
+      }
+    },
+    "Niet hetzelfde? Onthoud waar ze liggen, ze draaien weer om.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not the same? Remember where they are, they'll flip back over."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas pareilles ? Retiens où elles sont, elles vont se retourner."
+          }
+        }
+      }
+    },
     "Niet nu": {
       "localizations": {
         "en": {
@@ -2569,6 +2809,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pas maintenant"
+          }
+        }
+      }
+    },
+    "Niets dat meekijkt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing watching along"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien qui vous observe"
+          }
+        }
+      }
+    },
+    "Niets gevonden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing found"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun achat trouvé"
           }
         }
       }
@@ -2685,38 +2957,6 @@
         }
       }
     },
-    "Of speel als gast": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Or play as a guest"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ou joue en invité"
-          }
-        }
-      }
-    },
-    "Of speel met twee gasten": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Or play with two guests"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ou jouez avec deux invités"
-          }
-        }
-      }
-    },
     "Oké": {
       "localizations": {
         "en": {
@@ -2777,6 +3017,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Débloqué — amuse-toi bien !"
+          }
+        }
+      }
+    },
+    "Ontgrendelen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouiller"
           }
         }
       }
@@ -2953,6 +3209,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Partie %lld : %lld paires, gagnée"
+          }
+        }
+      }
+    },
+    "Privacy en contact": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy and contact"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confidentialité et contact"
           }
         }
       }
@@ -3742,6 +4014,22 @@
         }
       }
     },
+    "Tik om de uitleg te sluiten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to close the tip"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche pour fermer l'explication"
+          }
+        }
+      }
+    },
     "Tik om ze om te draaien": {
       "localizations": {
         "en": {
@@ -3754,6 +4042,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Touche pour les retourner"
+          }
+        }
+      }
+    },
+    "Tik op een kaartje om het om te draaien.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a card to flip it over."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche une carte pour la retourner."
           }
         }
       }
@@ -3902,6 +4206,38 @@
         }
       }
     },
+    "Uitleg opnieuw aanbieden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offer the tips again"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proposer à nouveau les explications"
+          }
+        }
+      }
+    },
+    "VOOR OUDERS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR PARENTS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "POUR LES PARENTS"
+          }
+        }
+      }
+    },
     "Verder spelen": {
       "localizations": {
         "en": {
@@ -3930,6 +4266,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quitter"
+          }
+        }
+      }
+    },
+    "Verwijder je de app, dan zijn ook alle spelersgegevens weg.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete the app and all player data is gone with it."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimez l'app et toutes les données des joueurs disparaissent avec elle."
           }
         }
       }
@@ -4111,6 +4463,38 @@
         }
       }
     },
+    "Vraag onderweg": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Request sent"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demande envoyée"
+          }
+        }
+      }
+    },
+    "Vragen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questions?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des questions ?"
+          }
+        }
+      }
+    },
     "Wie de meeste paren heeft, wint het potje.": {
       "localizations": {
         "en": {
@@ -4139,6 +4523,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Qui détient le record ?"
+          }
+        }
+      }
+    },
+    "Wil je tijdens het spelen korte uitleg krijgen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Would you like short tips while you play?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veux-tu quelques explications pendant la partie ?"
           }
         }
       }
@@ -4267,6 +4667,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Série de victoires"
+          }
+        }
+      }
+    },
+    "Wissen is wissen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted is deleted"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimé, c'est supprimé"
           }
         }
       }

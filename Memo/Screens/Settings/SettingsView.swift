@@ -9,8 +9,10 @@ struct SettingsView: View {
     @Environment(\.metrics) private var m
 
     @State private var soundOn = SoundPlayer.shared.isEnabled
+    @State private var coachReset = false
     @State private var showRules = false
     @State private var showPaywall = false
+    @State private var showPrivacy = false
     /// Het thema waar de proefvraag over gaat.
     @State private var trialCandidate: ThemeID?
 
@@ -91,19 +93,47 @@ struct SettingsView: View {
                             PaywallView(entitlements: entitlements)
                                 .appMetrics()
                         }
+
+                        Button {
+                            CoachTour.seen = false
+                            coachReset = true
+                        } label: {
+                            HStack {
+                                Text(coachReset
+                                 ? LocalizedStringKey("Bij het volgende potje bieden we de uitleg weer aan")
+                                 : LocalizedStringKey("Uitleg opnieuw aanbieden"))
+                                    .font(AppTheme.rounded(m.bodySize, .bold))
+                                    .foregroundStyle(coachReset ? AppTheme.cardSoft : AppTheme.ink)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Image(systemName: coachReset ? "checkmark.circle.fill" : "questionmark.bubble.fill")
+                                    .font(.system(size: m.bodySize, weight: .black))
+                                    .foregroundStyle(coachReset ? AppTheme.mint : AppTheme.coral)
+                            }
+                            .padding(m.gutter)
+                        }
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
+                        .disabled(coachReset)
                     }
 
-                    section("GEZINSVERSIE") {
+                    // De vaste ingang voor ouders: de winkel (met daarachter
+                    // ook "Zet terug") en de privacyverklaring. De ouder-poort
+                    // zit in het winkelscherm zelf.
+                    section("VOOR OUDERS") {
                         Button {
                             showPaywall = true
                         } label: {
                             HStack {
-                                Text(entitlements.isFamilyUnlocked
-                                     ? LocalizedStringKey("Ontgrendeld — veel plezier!")
-                                     : LocalizedStringKey("Alles ontgrendelen"))
-                                    .font(AppTheme.rounded(m.bodySize, .bold))
-                                    .foregroundStyle(AppTheme.ink)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Gezinsversie")
+                                        .font(AppTheme.rounded(m.bodySize, .bold))
+                                        .foregroundStyle(AppTheme.ink)
+                                    Text(entitlements.isFamilyUnlocked
+                                         ? LocalizedStringKey("Ontgrendeld — veel plezier!")
+                                         : LocalizedStringKey("Bekijken of een aankoop terugzetten"))
+                                        .font(AppTheme.rounded(m.captionSize, .bold))
+                                        .foregroundStyle(entitlements.isFamilyUnlocked ? AppTheme.mint : AppTheme.cardSoft)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                                 Image(systemName: entitlements.isFamilyUnlocked ? "checkmark.seal.fill" : "figure.2.and.child.holdinghands")
                                     .font(.system(size: m.bodySize, weight: .black))
                                     .foregroundStyle(entitlements.isFamilyUnlocked ? AppTheme.mint : AppTheme.coral)
@@ -111,6 +141,26 @@ struct SettingsView: View {
                             .padding(m.gutter)
                         }
                         .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
+
+                        Button {
+                            showPrivacy = true
+                        } label: {
+                            HStack {
+                                Text("Privacy en contact")
+                                    .font(AppTheme.rounded(m.bodySize, .bold))
+                                    .foregroundStyle(AppTheme.ink)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Image(systemName: "hand.raised.fill")
+                                    .font(.system(size: m.bodySize, weight: .black))
+                                    .foregroundStyle(AppTheme.sky)
+                            }
+                            .padding(m.gutter)
+                        }
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
+                        .sheet(isPresented: $showPrivacy) {
+                            PrivacyView()
+                                .appMetrics()
+                        }
                     }
                 }
                 .padding(.horizontal, m.gutter * 1.3)

@@ -32,6 +32,16 @@ struct GameView: View {
 
     private enum FlipOutcome { case match, mismatch, finished }
 
+    /// De eerste-keer-uitleg: drie hints die elk op hun moment verschijnen.
+    private enum CoachStep {
+        case none, flip, second, remember
+    }
+
+    /// De uitleg wordt aangeboden, niet opgedrongen: dit is de vraag vooraf.
+    @State private var showCoachOffer = false
+    @State private var coachStep: CoachStep = .none
+    @State private var coachVisible = false
+
     /// De korte knal bij een gevonden paar; verdwijnt vanzelf weer.
     @State private var showMatchCallout = false
     @State private var matchCallout: Task<Void, Never>?
@@ -82,6 +92,11 @@ struct GameView: View {
                     .zIndex(2)
             }
 
+            if coachVisible {
+                coachOverlay
+                    .zIndex(3)
+            }
+
             if showResult {
                 GameResultOverlay(
                     players: engine.players,
@@ -111,6 +126,18 @@ struct GameView: View {
                 )
                 .zIndex(5)
             }
+
+            if showCoachOffer {
+                ToyDialog(
+                    title: String(localized: "Eerste keer Memo?"),
+                    message: String(localized: "Wil je tijdens het spelen korte uitleg krijgen?"),
+                    confirmTitle: String(localized: "Ja, leg uit!"),
+                    cancelTitle: String(localized: "Nee, ik kan het al"),
+                    onConfirm: acceptCoaching,
+                    onCancel: declineCoaching
+                )
+                .zIndex(5)
+            }
         }
         .task(id: engine.currentPlayerIndex) {
             await engine.playComputerTurnIfNeeded()
@@ -119,6 +146,8 @@ struct GameView: View {
             // Een hervat spel dat toch al uit bleek: meteen de eindstand.
             if engine.isFinished {
                 showResult = true
+            } else {
+                startCoachingIfNeeded()
             }
         }
         .onChange(of: engine.saveVersion) { _, _ in
@@ -130,9 +159,14 @@ struct GameView: View {
             guard new.count > old.count else { return }
             flipPulse += 1
             SoundPlayer.shared.play(.drop)
+            coachAfterFlip(openCards: new.count)
         }
         .onChange(of: engine.matchPulse) { _, _ in
             lastOutcome = .match
+            // Het eerste paar is gevonden: dan snapt het kind het spel.
+            if coachStep != .none {
+                finishCoaching()
+            }
             presentMatchCallout()
             winPulse += 1
             SoundPlayer.shared.play(.score)
@@ -144,6 +178,7 @@ struct GameView: View {
         }
         .onChange(of: engine.mismatchPulse) { _, _ in
             lastOutcome = .mismatch
+            coachAfterMismatch()
         }
         .onChange(of: engine.isResolving) { _, resolving in
             resolveDelay?.cancel()
@@ -157,11 +192,19 @@ struct GameView: View {
         .onChange(of: engine.isFinished) { _, finished in
             guard finished else { return }
             lastOutcome = .finished
+            if coachStep != .none {
+                finishCoaching()
+            }
             gameDidFinish()
         }
         .onChange(of: engine.turnJustChanged) { _, changed in
             guard changed else { return }
             lastOutcome = nil
+            // De uitleg is voor een mens aan zet; tijdens de computerbeurt
+            // hoort er geen bubbel in beeld.
+            if engine.currentPlayer.isComputer, coachStep != .none {
+                finishCoaching()
+            }
             announceTurnChange()
             engine.acknowledgeTurnChange()
         }
@@ -247,6 +290,120 @@ struct GameView: View {
     private func leave() {
         persistProgress()
         onClose()
+    }
+
+    // MARK: - Eerste-keer-uitleg
+
+    /// Alleen bij een vers spel met een mens aan zet — en dan nog als vraag,
+    /// want ongevraagde uitleg is vervelend voor wie het spel al kent.
+    private func startCoachingIfNeeded() {
+        guard !CoachTour.seen,
+              engine.attempts == 0,
+              engine.faceUpIndices.isEmpty,
+              engine.pairsRemaining == engine.boardSize.pairCount,
+              !engine.isFinished,
+              !engine.currentPlayer.isComputer else { return }
+        withAnimation(.easeOut(duration: 0.15)) {
+            showCoachOffer = true
+        }
+    }
+
+    private func acceptCoaching() {
+        withAnimation(.easeOut(duration: 0.15)) {
+            showCoachOffer = false
+        }
+        advanceCoach(to: .flip)
+    }
+
+    private func declineCoaching() {
+        // Niet meer vragen: wie het al kan, kan het volgende potje ook al.
+        CoachTour.seen = true
+        withAnimation(.easeOut(duration: 0.15)) {
+            showCoachOffer = false
+        }
+    }
+
+    /// Eerste kaartje open: nu het tweede. Na de laatste hint verdwijnt die
+    /// bij de volgende tik op een kaartje.
+    private func coachAfterFlip(openCards: Int) {
+        guard !engine.currentPlayer.isComputer else { return }
+        switch coachStep {
+        case .flip where openCards == 1:
+            advanceCoach(to: .second)
+        case .remember where openCards == 1:
+            // Alleen bij een nieuw eerste kaartje: de tweede kaart van de
+            // misser zelf telt niet.
+            finishCoaching()
+        default:
+            break
+        }
+    }
+
+    /// Een eerste misser: de laatste hint. Daarna is de uitleg klaar, ook
+    /// als het kind het spel nu verlaat.
+    private func coachAfterMismatch() {
+        guard coachStep == .flip || coachStep == .second,
+              !engine.currentPlayer.isComputer else { return }
+        CoachTour.seen = true
+        advanceCoach(to: .remember)
+    }
+
+    private func advanceCoach(to step: CoachStep) {
+        coachStep = step
+        withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.35, dampingFraction: 0.8)) {
+            coachVisible = true
+        }
+    }
+
+    private func hideCoachBubble() {
+        withAnimation(.easeOut(duration: 0.15)) {
+            coachVisible = false
+        }
+    }
+
+    private func finishCoaching() {
+        CoachTour.seen = true
+        coachStep = .none
+        withAnimation(.easeOut(duration: 0.15)) {
+            coachVisible = false
+        }
+    }
+
+    /// De bubbel hangt bovenaan, over de tussenstand, zodat hij geen
+    /// kaartjes afdekt. Tikken ernaast gaat gewoon door naar het speelveld.
+    @ViewBuilder
+    private var coachOverlay: some View {
+        VStack(spacing: 0) {
+            switch coachStep {
+            case .flip:
+                CoachBubbleView(
+                    text: String(localized: "Tik op een kaartje om het om te draaien."),
+                    icon: "hand.tap.fill",
+                    onDismiss: hideCoachBubble
+                )
+                .padding(.top, m.tapTarget + m.gutter * 2)
+                Spacer(minLength: 0)
+            case .second:
+                CoachBubbleView(
+                    text: String(localized: "Draai er nog één om. Zijn ze hetzelfde? Dan heb je een paar!"),
+                    icon: "square.on.square",
+                    onDismiss: hideCoachBubble
+                )
+                .padding(.top, m.tapTarget + m.gutter * 2)
+                Spacer(minLength: 0)
+            case .remember:
+                CoachBubbleView(
+                    text: String(localized: "Niet hetzelfde? Onthoud waar ze liggen, ze draaien weer om."),
+                    icon: "brain.head.profile",
+                    onDismiss: hideCoachBubble
+                )
+                .padding(.top, m.tapTarget + m.gutter * 2)
+                Spacer(minLength: 0)
+            case .none:
+                EmptyView()
+            }
+        }
+        .padding(.horizontal, 24)
     }
 
     // MARK: - Reacties op het spel

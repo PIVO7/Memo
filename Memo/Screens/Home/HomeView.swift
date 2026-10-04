@@ -247,8 +247,9 @@ struct HomeView: View {
 
     private var winsSubtitle: String {
         let total = profileStore.humanProfiles.reduce(0) { $0 + $1.wins }
+        // Geen voorwaarde maar een uitnodiging: spelen kan ook als gast.
         if profileStore.humanProfiles.isEmpty {
-            return String(localized: "Maak eerst een speler aan")
+            return String(localized: "Eigen avatars, trofeeën en records")
         }
         return String(localized: "\(profileStore.humanProfiles.count) spelers · \(total) overwinningen")
     }
