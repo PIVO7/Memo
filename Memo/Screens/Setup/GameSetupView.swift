@@ -63,82 +63,99 @@ struct GameSetupView: View {
                 }
 
                 if profileStore.humanProfiles.isEmpty {
-                    VStack(spacing: m.gutter) {
-                        // Eigen kaartje in de speelgoedstijl in plaats van
-                        // ContentUnavailableView met systeemtypografie.
-                        VStack(spacing: m.gutter * 0.6) {
-                            Image(systemName: "person.crop.circle.badge.plus")
-                                .font(.system(size: m.avatarSize * 0.6, weight: .black))
-                                .foregroundStyle(AvatarBadge.palette[4])
-                                .frame(width: m.avatarSize * 1.3, height: m.avatarSize * 1.3)
-                                .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
-                                .accessibilityHidden(true)
-                            Text("Geen profielen")
-                                .font(AppTheme.rounded(m.bodySize + 4))
-                                .foregroundStyle(AppTheme.ink)
-                            Text("Maak eerst een profiel aan om te spelen.")
-                                .font(AppTheme.rounded(m.captionSize + 1, .bold))
-                                .foregroundStyle(AppTheme.cardSoft)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(m.gutter * 1.4)
-                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
-
-                        NavigationLink(value: Destination.profiles) {
-                            Text("Naar profielen")
-                                .font(AppTheme.rounded(m.defaultButton.textSize))
-                                .foregroundStyle(AppTheme.ink)
+                    // Kan op een kleine iPhone met tegenstander- én bordkeuze
+                    // net te lang worden; past het, dan veert er niets.
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: m.gutter) {
+                            // Meteen kunnen spelen staat voorop: een eerste
+                            // potje mag niets vragen. Gasten worden nergens
+                            // bewaard.
+                            Button(action: requestGuestStart) {
+                                VStack(spacing: 3) {
+                                    Text("Meteen spelen")
+                                        .font(AppTheme.rounded(m.heroButton.textSize))
+                                        .foregroundStyle(AppTheme.ink)
+                                    // Expliciet LocalizedStringKey: een ternary
+                                    // van twee letterlijke strings wordt anders
+                                    // een gewone String en die vertaalt Text
+                                    // niet. Solo en tegen de computer speelt er
+                                    // één gast, tegen elkaar twee.
+                                    Text(mode == .versusFriends
+                                         ? LocalizedStringKey("Met twee gasten, zonder iets aan te maken")
+                                         : LocalizedStringKey("Als gast, zonder iets aan te maken"))
+                                        .font(AppTheme.rounded(m.captionSize, .bold))
+                                        .foregroundStyle(AppTheme.cardSoft)
+                                }
                                 .frame(maxWidth: .infinity)
-                                .frame(height: m.defaultButton.height)
-                        }
-                        .buttonStyle(ToyButtonStyle(
-                            fill: AppTheme.mint,
-                            radius: m.buttonCorner,
-                            depth: m.defaultButton.depth,
-                            border: m.border
-                        ))
-                    }
-
-                    // Ook zonder profiel hoort de tegenstanderkeuze in beeld:
-                    // een gast speelde anders altijd tegen Robbie zonder dat
-                    // ergens te zien was.
-                    if mode == .versusComputer {
-                        Text("KIES JE TEGENSTANDER")
-                            .font(AppTheme.rounded(m.captionSize * 0.9))
-                            .kerning(1.4)
-                            .foregroundStyle(AppTheme.faint)
-
-                        HStack(spacing: m.gutter * 0.75) {
-                            ForEach(ComputerLevel.allCases) { level in
-                                opponentButton(level)
+                                .frame(height: m.heroButton.height + m.captionSize)
                             }
-                        }
-                    }
+                            .buttonStyle(ToyButtonStyle(
+                                fill: AppTheme.mint,
+                                radius: m.buttonCorner,
+                                depth: m.heroButton.depth,
+                                border: m.border
+                            ))
 
-                    boardSection
+                            // Profielen als uitnodiging, niet als voorwaarde:
+                            // wie avatars en trofeeën wil, maakt ze — later
+                            // mag ook.
+                            VStack(spacing: m.gutter * 0.6) {
+                                Image(systemName: "person.crop.circle.badge.plus")
+                                    .font(.system(size: m.avatarSize * 0.62, weight: .black))
+                                    .foregroundStyle(AppTheme.ink)
+                                    .frame(width: m.avatarSize * 1.3, height: m.avatarSize * 1.3)
+                                    .toyBlock(fill: AppTheme.tintCoral, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
+                                    .accessibilityHidden(true)
+                                Text("Liever eigen avatars?")
+                                    .font(AppTheme.rounded(m.bodySize + 4))
+                                    .foregroundStyle(AppTheme.ink)
+                                Text("Met een profiel onthoudt Memo wie er wint — met een eigen avatar, trofeeën en records.")
+                                    .font(AppTheme.rounded(m.captionSize + 1, .bold))
+                                    .foregroundStyle(AppTheme.cardSoft)
+                                    .multilineTextAlignment(.center)
 
-                    // Meteen kunnen spelen zonder eerst een profiel aan
-                    // te maken; gasten worden niet bewaard.
-                    Button(action: requestGuestStart) {
-                        // Expliciet LocalizedStringKey: een ternary van twee
-                        // letterlijke strings wordt anders een gewone String
-                        // en die vertaalt Text niet.
-                        Text(mode == .versusFriends
-                             ? LocalizedStringKey("Of speel met twee gasten")
-                             : LocalizedStringKey("Of speel als gast"))
-                            .font(AppTheme.rounded(m.compactButton.textSize))
-                            .foregroundStyle(AppTheme.ink)
+                                NavigationLink(value: Destination.profiles) {
+                                    Text("Maak spelers aan")
+                                        .font(AppTheme.rounded(m.compactButton.textSize))
+                                        .foregroundStyle(AppTheme.ink)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: m.compactButton.height)
+                                }
+                                .buttonStyle(ToyButtonStyle(
+                                    fill: AppTheme.card,
+                                    radius: m.buttonCorner,
+                                    depth: m.compactButton.depth,
+                                    border: m.border
+                                ))
+                            }
                             .frame(maxWidth: .infinity)
-                            .frame(height: m.compactButton.height)
+                            .padding(m.gutter * 1.4)
+                            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
+
+                            // Ook zonder profiel hoort de tegenstanderkeuze in
+                            // beeld: een gast speelde anders altijd tegen
+                            // Robbie zonder dat ergens te zien was.
+                            if mode == .versusComputer {
+                                Text("KIES JE TEGENSTANDER")
+                                    .font(AppTheme.rounded(m.captionSize * 0.9))
+                                    .kerning(1.4)
+                                    .foregroundStyle(AppTheme.faint)
+
+                                HStack(spacing: m.gutter * 0.75) {
+                                    ForEach(ComputerLevel.allCases) { level in
+                                        opponentButton(level)
+                                    }
+                                }
+                            }
+
+                            boardSection
+                        }
+                        // Ruimte voor de diepte van de knoppen, anders knipt
+                        // de scrollrand hun onderkant af.
+                        .padding(.vertical, 2)
+                        .padding(.bottom, m.depth)
                     }
-                    .buttonStyle(ToyButtonStyle(
-                        fill: AppTheme.card,
-                        radius: m.buttonCorner,
-                        depth: m.compactButton.depth,
-                        border: m.border
-                    ))
-                    .padding(.bottom, 6)
+                    .scrollBounceBehavior(.basedOnSize)
                 } else {
                     Text(mode == .versusFriends
                          ? LocalizedStringKey("KIES 2 SPELERS")

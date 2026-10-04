@@ -131,9 +131,20 @@ struct PaywallView: View {
 
     private var paywallBody: some View {
         VStack(spacing: m.gutter) {
-            Image(systemName: "figure.2.and.child.holdinghands")
-                .font(.system(size: m.titleSize, weight: .black))
-                .foregroundStyle(AppTheme.coral)
+            // Dezelfde speelgoedtegels als in Raak: de paywall hoort bij de
+            // familie, niet bij een winkel.
+            HStack(spacing: -m.discSize * 0.15) {
+                TileBadge(symbol: "star.fill", colorIndex: 1, size: m.discSize * 0.95)
+                    .rotationEffect(.degrees(-8))
+                    .zIndex(1)
+                TileBadge(symbol: "figure.2.and.child.holdinghands", colorIndex: 0, size: m.discSize * 1.1)
+                    .zIndex(2)
+                TileBadge(symbol: "square.on.square", colorIndex: 2, size: m.discSize * 0.95)
+                    .rotationEffect(.degrees(8))
+                    .offset(y: m.discSize * 0.1)
+            }
+            .accessibilityHidden(true)
+            .padding(.top, m.gutter)
 
             if let familyLine {
                 Text(familyLine)
@@ -151,15 +162,16 @@ struct PaywallView: View {
                 .foregroundStyle(AppTheme.soft)
                 .multilineTextAlignment(.center)
 
-            VStack(alignment: .leading, spacing: m.gutter * 0.7) {
-                feature("stopwatch.fill", "Tegen de klok", "Solo: alle paren zo snel mogelijk")
-                feature("graduationcap.fill", "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
-                feature("paintpalette.fill", "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
-                feature("chart.bar.fill", "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")
+            VStack(spacing: m.gutter * 0.7) {
+                feature("stopwatch.fill", tint: AppTheme.tintAmber, symbolColorIndex: 3,
+                        "Tegen de klok", "Solo: alle paren zo snel mogelijk")
+                feature("graduationcap.fill", tint: AppTheme.tintSky, symbolColorIndex: 1,
+                        "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
+                feature("paintpalette.fill", tint: AppTheme.tintCoral, symbolColorIndex: 0,
+                        "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
+                feature("trophy.fill", tint: AppTheme.tintAmber, symbolColorIndex: 2,
+                        "Statistieken en trofeeën", "Per speler, met winreeks en beste vangst")
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(m.gutter)
-            .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
 
             reassurance
 
@@ -244,14 +256,20 @@ struct PaywallView: View {
         .padding(.bottom, m.gutter * 0.6)
     }
 
-    /// Kop plus uitleg in plaats van één lange zin: zo scan je de lijst in
-    /// twee seconden en lees je alleen door wat je aanspreekt.
-    private func feature(_ icon: String, _ title: LocalizedStringKey, _ detail: LocalizedStringKey) -> some View {
-        HStack(alignment: .top, spacing: m.gutter * 0.6) {
-            Image(systemName: icon)
-                .font(.system(size: m.bodySize, weight: .black))
-                .foregroundStyle(AppTheme.coral)
-                .frame(width: m.bodySize * 1.6)
+    /// Eén feature op een eigen kaart, met het icoon op een gekleurd
+    /// tegeltje — dezelfde taal als in Raak. Kop plus uitleg in plaats van
+    /// één lange zin: zo scan je de lijst in twee seconden.
+    private func feature(
+        _ icon: String,
+        tint: Color,
+        symbolColorIndex: Int,
+        _ title: LocalizedStringKey,
+        _ detail: LocalizedStringKey
+    ) -> some View {
+        HStack(spacing: m.gutter * 0.8) {
+            TileBadge(symbol: icon, colorIndex: symbolColorIndex, size: m.avatarSize * 0.6)
+                .frame(width: m.avatarSize * 0.9, height: m.avatarSize * 0.9)
+                .toyBlock(fill: tint, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
@@ -262,7 +280,10 @@ struct PaywallView: View {
                     .foregroundStyle(AppTheme.cardSoft)
             }
             .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(m.gutter * 0.8)
+        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
         .accessibilityElement(children: .combine)
     }
 

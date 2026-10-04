@@ -731,6 +731,22 @@
         }
       }
     },
+    "Als gast, zonder iets aan te maken": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As a guest, nothing to set up"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En invité, rien à créer"
+          }
+        }
+      }
+    },
     "Annuleer": {
       "localizations": {
         "en": {
@@ -857,6 +873,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enregistrer"
+          }
+        }
+      }
+    },
+    "Bij het volgende potje bieden we de uitleg weer aan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next game we'll offer the tips again"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À la prochaine partie, on te proposera à nouveau les explications"
           }
         }
       }
@@ -1101,6 +1133,22 @@
         }
       }
     },
+    "Draai er nog één om. Zijn ze hetzelfde? Dan heb je een paar!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flip one more. Are they the same? Then you've got a pair!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retournes-en encore une. Elles sont pareilles ? Alors tu as une paire !"
+          }
+        }
+      }
+    },
     "Draai om": {
       "localizations": {
         "en": {
@@ -1229,6 +1277,22 @@
         }
       }
     },
+    "Eerste keer Memo?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First time playing Memo?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première partie de Memo ?"
+          }
+        }
+      }
+    },
     "Eerste potje": {
       "localizations": {
         "en": {
@@ -1241,6 +1305,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Première partie"
+          }
+        }
+      }
+    },
+    "Eigen avatars, trofeeën en records": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your own avatars, trophies and records"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos propres avatars, trophées et records"
           }
         }
       }
@@ -1449,22 +1529,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pas de paire ? Les cartes se referment et c’est à l’autre."
-          }
-        }
-      }
-    },
-    "Geen profielen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No profiles"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun profil"
           }
         }
       }
@@ -1892,6 +1956,22 @@
         }
       }
     },
+    "Ja, leg uit!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes, show me!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oui, explique-moi !"
+          }
+        }
+      }
+    },
     "Je voortgang wordt bewaard.": {
       "localizations": {
         "en": {
@@ -2314,6 +2394,22 @@
         }
       }
     },
+    "Liever eigen avatars?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer your own avatars?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envie de vos propres avatars ?"
+          }
+        }
+      }
+    },
     "Lopend spel": {
       "localizations": {
         "en": {
@@ -2346,34 +2442,18 @@
         }
       }
     },
-    "Maak eerst een profiel aan om te spelen.": {
+    "Maak spelers aan": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Create a profile first to play."
+            "value": "Create players"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crée d’abord un profil pour jouer."
-          }
-        }
-      }
-    },
-    "Maak eerst een speler aan": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create a player first"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crée d’abord un joueur"
+            "value": "Créer des joueurs"
           }
         }
       }
@@ -2486,6 +2566,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Légende du Memo"
+          }
+        }
+      }
+    },
+    "Met een profiel onthoudt Memo wie er wint — met een eigen avatar, trofeeën en records.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With a profile, Memo remembers who wins — with your own avatar, trophies and records."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec un profil, Memo retient qui gagne — avec son propre avatar, des trophées et des records."
+          }
+        }
+      }
+    },
+    "Met twee gasten, zonder iets aan te maken": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With two guests, nothing to set up"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec deux invités, rien à créer"
+          }
+        }
+      }
+    },
+    "Meteen spelen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play right away"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jouer tout de suite"
           }
         }
       }
@@ -2633,6 +2761,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nuit"
+          }
+        }
+      }
+    },
+    "Nee, ik kan het al": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No, I've got this"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non, je sais déjà jouer"
+          }
+        }
+      }
+    },
+    "Niet hetzelfde? Onthoud waar ze liggen, ze draaien weer om.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not the same? Remember where they are, they'll flip back over."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas pareilles ? Retiens où elles sont, elles vont se retourner."
           }
         }
       }
@@ -2793,38 +2953,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Océan"
-          }
-        }
-      }
-    },
-    "Of speel als gast": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Or play as a guest"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ou joue en invité"
-          }
-        }
-      }
-    },
-    "Of speel met twee gasten": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Or play with two guests"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ou jouez avec deux invités"
           }
         }
       }
@@ -3886,6 +4014,22 @@
         }
       }
     },
+    "Tik om de uitleg te sluiten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to close the tip"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche pour fermer l'explication"
+          }
+        }
+      }
+    },
     "Tik om ze om te draaien": {
       "localizations": {
         "en": {
@@ -3898,6 +4042,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Touche pour les retourner"
+          }
+        }
+      }
+    },
+    "Tik op een kaartje om het om te draaien.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a card to flip it over."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche une carte pour la retourner."
           }
         }
       }
@@ -4042,6 +4202,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Désactivé"
+          }
+        }
+      }
+    },
+    "Uitleg opnieuw aanbieden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offer the tips again"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proposer à nouveau les explications"
           }
         }
       }
@@ -4347,6 +4523,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Qui détient le record ?"
+          }
+        }
+      }
+    },
+    "Wil je tijdens het spelen korte uitleg krijgen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Would you like short tips while you play?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veux-tu quelques explications pendant la partie ?"
           }
         }
       }

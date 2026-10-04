@@ -9,6 +9,7 @@ struct SettingsView: View {
     @Environment(\.metrics) private var m
 
     @State private var soundOn = SoundPlayer.shared.isEnabled
+    @State private var coachReset = false
     @State private var showRules = false
     @State private var showPaywall = false
     @State private var showPrivacy = false
@@ -92,6 +93,26 @@ struct SettingsView: View {
                             PaywallView(entitlements: entitlements)
                                 .appMetrics()
                         }
+
+                        Button {
+                            CoachTour.seen = false
+                            coachReset = true
+                        } label: {
+                            HStack {
+                                Text(coachReset
+                                 ? LocalizedStringKey("Bij het volgende potje bieden we de uitleg weer aan")
+                                 : LocalizedStringKey("Uitleg opnieuw aanbieden"))
+                                    .font(AppTheme.rounded(m.bodySize, .bold))
+                                    .foregroundStyle(coachReset ? AppTheme.cardSoft : AppTheme.ink)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Image(systemName: coachReset ? "checkmark.circle.fill" : "questionmark.bubble.fill")
+                                    .font(.system(size: m.bodySize, weight: .black))
+                                    .foregroundStyle(coachReset ? AppTheme.mint : AppTheme.coral)
+                            }
+                            .padding(m.gutter)
+                        }
+                        .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border))
+                        .disabled(coachReset)
                     }
 
                     // De vaste ingang voor ouders: de winkel (met daarachter
