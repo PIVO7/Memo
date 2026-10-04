@@ -30,8 +30,14 @@ final class EntitlementStore {
     init() {
         isFamilyUnlocked = UserDefaults.standard.bool(forKey: Self.cacheKey)
         updatesTask = Task { [weak self] in
-            for await _ in Transaction.updates {
+            // Aankopen die buiten de app om binnenkomen — een ouder die een
+            // "Vraag om te kopen" goedkeurt, of een aankoop op een ander
+            // gezinstoestel — eerst verzilveren en daarna afronden. Zonder
+            // finish() levert StoreKit de transactie bij elke start opnieuw.
+            for await update in Transaction.updates {
+                guard case .verified(let transaction) = update else { continue }
                 await self?.refreshEntitlements()
+                await transaction.finish()
             }
         }
         Task { await load() }

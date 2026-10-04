@@ -50,6 +50,7 @@
 		8E7CBEB4B0D0E58099AFB3EF /* ParentalGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E3895D7C4DC8E81E0C18B2 /* ParentalGate.swift */; };
 		91023F886AEB394688F1E49A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBEE752A44FFBCB499987646 /* plop.wav */; };
 		9958E72DE66760D9E0CCB600 /* GameScreenRenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5070771B30D3D3E971DA3B9 /* GameScreenRenderTests.swift */; };
+		5E751BB9651F1745DEB40D90 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525585915F2156C724201828 /* PrivacyView.swift */; };
 		9A5A3F702C07A02354FA1237 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8277CE241B234CBB2CAF2A /* SettingsView.swift */; };
 		9BB7BBF05F5440822620A360 /* fanfare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04E3CA284CC1D2ED2FBB8F64 /* fanfare.wav */; };
 		9CD16C1B03427FBBF34ABAE1 /* HomeHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354008D8A32DD748DA74FD62 /* HomeHeroView.swift */; };
@@ -119,6 +120,7 @@
 		66F54049424B2D3D51469A2E /* ThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStore.swift; sourceTree = "<group>"; };
 		6AA29D49F235339476DD0C57 /* EntitlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementStore.swift; sourceTree = "<group>"; };
 		6B2B7B1A674C2724BF54761E /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		525585915F2156C724201828 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		6C8277CE241B234CBB2CAF2A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6D79015A77FC47B46525F983 /* ParentalGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateTests.swift; sourceTree = "<group>"; };
 		6E8182B3347E6D435BBB9811 /* GameSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshot.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		3072A05A4B5CD09B595591D4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				525585915F2156C724201828 /* PrivacyView.swift */,
 				6C8277CE241B234CBB2CAF2A /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -566,6 +569,7 @@
 				71E49BB8991940733B70EB7B /* ProfileStore.swift in Sources */,
 				4A4646EAEA658C8B9D26185D /* ProfilesView.swift in Sources */,
 				6318BE77EAC9063AB7254B36 /* RulesView.swift in Sources */,
+				5E751BB9651F1745DEB40D90 /* PrivacyView.swift in Sources */,
 				9A5A3F702C07A02354FA1237 /* SettingsView.swift in Sources */,
 				33EE95B2BC54B16D4B7F1E21 /* SoundPlayer.swift in Sources */,
 				D402CDDA5B4E824D1058EDC4 /* SplitMix64.swift in Sources */,
