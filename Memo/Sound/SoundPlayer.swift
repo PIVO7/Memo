@@ -3,8 +3,11 @@ import AVFoundation
 /// Speelt de korte spelgeluiden af. De ambient-categorie houdt de
 /// mute-schakelaar van het toestel de baas en laat muziek van een andere app
 /// gewoon doorspelen — precies wat je wil bij een spelletje aan tafel.
-@MainActor
-final class SoundPlayer {
+///
+/// Al het audiowerk loopt op een eigen achtergrondwachtrij: de audiosessie
+/// instellen en activeren kan even blokkeren, en op de main thread zou dat
+/// de interface kunnen laten haperen.
+final class SoundPlayer: @unchecked Sendable {
     static let shared = SoundPlayer()
 
     enum Sound: String, CaseIterable {
@@ -26,10 +29,28 @@ final class SoundPlayer {
     }
 
     private static let enabledKey = "geluid-aan"
+    private let queue = DispatchQueue(label: "com.pivo7.memo.sound", qos: .userInitiated)
+    /// Alleen aanraken vanop `queue`.
     private var players: [Sound: AVAudioPlayer] = [:]
 
     private init() {
-        try? AVAudioSession.sharedInstance().setCategory(.ambient)
+        queue.async { self.setUp() }
+    }
+
+    func play(_ sound: Sound) {
+        guard isEnabled else { return }
+        queue.async {
+            guard let player = self.players[sound] else { return }
+            player.currentTime = 0
+            player.play()
+        }
+    }
+
+    private func setUp() {
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(.ambient)
+        // Zelf activeren, zodat de eerste play() dat niet impliciet hoeft te doen.
+        try? session.setActive(true)
         for sound in Sound.allCases {
             guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: "wav") else {
                 continue
@@ -38,11 +59,5 @@ final class SoundPlayer {
             player?.prepareToPlay()
             players[sound] = player
         }
-    }
-
-    func play(_ sound: Sound) {
-        guard isEnabled, let player = players[sound] else { return }
-        player.currentTime = 0
-        player.play()
     }
 }
