@@ -334,16 +334,16 @@ private struct ResultBanner: View {
             .padding(.vertical, m.gutter * 0.55)
             .toyBlock(fill: AppTheme.coral, radius: m.cellCorner, depth: m.depth, border: m.border)
             .background(alignment: .leading) {
-                RibbonTail(pointsLeading: true)
+                ResultRibbonTail(pointsLeading: true)
                     .fill(AppTheme.coral)
-                    .overlay(RibbonTail(pointsLeading: true).fill(AppTheme.ink.opacity(0.3)))
+                    .overlay(ResultRibbonTail(pointsLeading: true).fill(AppTheme.ink.opacity(0.3)))
                     .frame(width: m.gutter * 1.5, height: m.gutter * 2.2)
                     .offset(x: -m.gutter, y: m.gutter * 0.6)
             }
             .background(alignment: .trailing) {
-                RibbonTail(pointsLeading: false)
+                ResultRibbonTail(pointsLeading: false)
                     .fill(AppTheme.coral)
-                    .overlay(RibbonTail(pointsLeading: false).fill(AppTheme.ink.opacity(0.3)))
+                    .overlay(ResultRibbonTail(pointsLeading: false).fill(AppTheme.ink.opacity(0.3)))
                     .frame(width: m.gutter * 1.5, height: m.gutter * 2.2)
                     .offset(x: m.gutter, y: m.gutter * 0.6)
             }
@@ -351,7 +351,7 @@ private struct ResultBanner: View {
 }
 
 /// Lintuiteinde met een driehoekige inkeping.
-private struct RibbonTail: Shape {
+private struct ResultRibbonTail: Shape {
     var pointsLeading: Bool
 
     func path(in rect: CGRect) -> Path {
